@@ -1,0 +1,15 @@
+INSTRUCTIONS :
+
+1. <oph_button_type_1> is button-array opening tag.
+2. </oph_button_type_1> is button-array closing tag.
+3. <oph_button_type_1></oph_button_type_1> has following attributes : class,count,butnames.
+4. "class" attribute can be used to help alter button container features using CSS file ie- B.css.
+5. "count" attribute can be used to specify number of buttons required.
+6. "butnames" attribute is used to give buttons their NAMES. Each button name must be separated by an "Underscore" (example BUTTON1_BUTTON2).
+7. Each button has a class attribute which starts from "but0".
+
+It is unnecessary to make changes to JavaScript file ie .js file.
+
+If you still couldn't properly utilize this tag then shutdown your PC and set it on fire.
+
+(DISCLAIMER : I am in no way responsible for any hardware or software or (any kind of) damages caused due to anything related to my code or my instrauctions or (everything I can think of).)
