@@ -5,10 +5,21 @@ for(outerloop=0;outerloop<document.getElementsByTagName("oph_button_type_1").len
 	var butnames=document.getElementsByTagName("oph_button_type_1")[outerloop].getAttribute("butnames");
 	var links=document.getElementsByTagName("oph_button_type_1")[outerloop].getAttribute("access");
 	var linktype=document.getElementsByTagName("oph_button_type_1")[outerloop].getAttribute("accesstype");
+	if(butnames===null)
+	{
+		butnames="undefined";	
+	}
+	if(links===null)
+	{
+		links="undefined";	
+	}
+	if(linktype===null)
+	{
+		linktype="undefined";	
+	}
 	var str=butnames.split("_");
 	var lnk=links.split("~");
-	var lnktp=linktype.split("_");
-
+	var lnktp=linktype.split("_");	
 	for(innerloop=0;innerloop<count;innerloop++)
 	{
 		var x1=document.createElement("butts");
