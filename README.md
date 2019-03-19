@@ -29,3 +29,8 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. Boot
   * Basic HTML + Minimal CSS.
 * Knowledge required for 100% Tag Usability :
   * Basic HTML + Minimal Javascript.
+  
+* Example Tag Used : 
+
+<lazyB class="obt1" count="2" beautify="type1" butnames="CONFIRM_CANCEL" accesstype="inner_outer" access="NULL~https://www.google.com/">
+</lazyB>
