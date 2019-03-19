@@ -32,5 +32,7 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. Boot
   
 * Example Tag Used : 
 
-<lazyB class="obt1" count="2" beautify="type1" butnames="CONFIRM_CANCEL" accesstype="inner_outer" access="NULL~https://www.google.com/">
-</lazyB>
+\<lazyB class="obt1" count="2" beautify="type1" butnames="CONFIRM_CANCEL" accesstype="inner_outer" access="NULL~https://www.google.com/" \>
+\</lazyB\>
+
+![Output of above tag](https://raw.githubusercontent.com/akatsukioshiro/WEB-DEVELOPMENT-TECHNIQUES/image/img.png)
