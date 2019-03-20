@@ -12,7 +12,7 @@ INSTRUCTIONS :
 10. if accesstype attribute is "outer" links like "google.com" will work.
 11. if accesstype attribute is "inner" then you must edit gigi function's name in event listener, and create new functions for each button with inner attribute with function names stored in array and make it dynamic to suite your needs.(JAVASCRIPT editing is required for this attribute only!!!)
 12. "inner attribute will be utilized to do things like display:block or display:none on clicking button etc. Keep access attribute as NULL for this type."
-13. "beautify" attribute has 5 types : type1-type5 and they are only for instant deployment, their background can be set using Beautify.css.
+13. "beautify" attribute has 5 types : type1-type5 and they are only for instant deployment, their background can be altered using Beautify.css though they are good to go normally.
 
 It is unnecessary to make changes to JavaScript file ie .js file.
 
