@@ -35,4 +35,4 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. Boot
 \<lazyB class="obt1" count="2" beautify="type1" butnames="CONFIRM_CANCEL" accesstype="inner_outer" access="NULL~https://www.google.com/" \>
 \</lazyB\>
 
-![Output of above tag](https://raw.githubusercontent.com/akatsukioshiro/WEB-DEVELOPMENT-TECHNIQUES/blob/master/image/img.png)
+![Output of above tag](https://github.com/akatsukioshiro/WEB-DEVELOPMENT-TECHNIQUES/blob/master/image/img.png)
