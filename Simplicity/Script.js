@@ -14,7 +14,7 @@ var elem;
 for(var i=0;i<res.length;i++)
 {
 	if(res[i]==="create")
-	{	alert("1");
+	{	
 		elem=document.createElement(res[i+1]);
 	}
 	if(res[i]==="dimensions")
@@ -30,10 +30,12 @@ for(var i=0;i<res.length;i++)
 		var ctxt = "";
   		for (var j = 0; j < c.length; j++) 
 		{
-    			ctxt=c[i].tagName.toLowerCase();
+    			ctxt=c[j].tagName.toLowerCase();
 			if(ctxt==="create")
 			{
-				
+				var dd=document.getElementsByTagName(ctxt)[0];
+				dd.parentNode.removeChild(dd);
+				//alert("1");					
 			}
   		}
 	}
