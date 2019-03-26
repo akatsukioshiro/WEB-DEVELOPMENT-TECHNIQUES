@@ -1,5 +1,5 @@
 # WEB-DEVELOPMENT-TECHNIQUES
-So, here I am gonna upload techniques for crazy developers and lazy gooses. Bootstrap is doing similar or same shit but I wanna call my shit "Lazy Strap".
+So, here I am gonna upload techniques for crazy developers and lazy gooses. I have seen that Javascript is really powerful when it comes to manipulation of HTML elements and what can be more better if I could just make libraries that would enable someone to deploy cool websites with least HTML knowledge.
 
 # 1. lazyStrap Buttons : (outdated)
 * (continued as lazyB)
