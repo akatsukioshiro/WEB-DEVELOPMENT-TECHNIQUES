@@ -46,9 +46,23 @@ for(var i=0;i<txt.length;i++)
 				for(var wit=(j+1);wit<line.length;wit++)
 				{
 					var w=document.createElement(line[wit]);
-					w.style.display="block";
+					w.style.display="inline-block";
 					document.getElementsByTagName(make.nodeName.toLowerCase())[0].appendChild(w);
 				}	
+			}
+			if(line[j]==="buttons")
+			{
+				if(line[j+1]==="are")
+				{
+					var butts=line[j+2].split(",");
+					for(var b=0;b<butts.length;b++)
+					{
+						var butt=document.createElement(butts[b]);
+						butt.style.display="inline-block";
+						butt.innerHTML=butts[b];
+						document.getElementsByTagName("buttons")[0].appendChild(butt);
+					}
+				}
 			}
 		}
 		
