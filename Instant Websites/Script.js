@@ -46,7 +46,6 @@ for(var i=0;i<txt.length;i++)
 				for(var wit=(j+1);wit<line.length;wit++)
 				{
 					var w=document.createElement(line[wit]);
-					w.style.display="inline-block";
 					document.getElementsByTagName(make.nodeName.toLowerCase())[0].appendChild(w);
 				}	
 			}
@@ -58,8 +57,8 @@ for(var i=0;i<txt.length;i++)
 					for(var b=0;b<butts.length;b++)
 					{
 						var butt=document.createElement(butts[b]);
-						butt.style.display="inline-block";
 						butt.innerHTML=butts[b];
+						butt.className="buttons";
 						document.getElementsByTagName("buttons")[0].appendChild(butt);
 					}
 				}
