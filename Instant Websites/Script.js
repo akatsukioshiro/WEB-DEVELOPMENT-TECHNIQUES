@@ -21,16 +21,20 @@ box.style.height="100vh";
 box.style.width="100vw";
 box.style.display="block";
 document.body.appendChild(box);
+var tgnm="box";
 for(var i=0;i<txt.length;i++)
 {
 	if(txt[i]!=="")
 	{
+		var make;
 		var line=txt[i].split(" ");
+		var check=0;
 		for(var j=0;j<line.length;j++)
 		{
 			if(line[j]==="make")
 			{
-				var make=document.createElement(line[j+1]);
+				check=1;
+				make=document.createElement(line[j+1]);
 				make.style.display="block";
 			}
 			if(line[j]==="of")
@@ -39,9 +43,11 @@ for(var i=0;i<txt.length;i++)
 				make.style.height=dimensions[0];
 				make.style.width=dimensions[1];
 			}
+			if(line[j]==="in")tgnm=line[j+1];
 			if(line[j]==="with")
 			{
-				document.getElementsByTagName("box")[0].appendChild(make);
+				check=2;
+				document.getElementsByTagName(tgnm)[0].appendChild(make);
 				//alert(make.nodeName.toLowerCase());
 				for(var wit=(j+1);wit<line.length;wit++)
 				{
@@ -64,6 +70,6 @@ for(var i=0;i<txt.length;i++)
 				}
 			}
 		}
-		
+		if(check===1)document.getElementsByTagName(tgnm)[0].appendChild(make);	
 	}
 }
