@@ -22,6 +22,12 @@ box.style.width="100vw";
 box.style.display="block";
 document.body.appendChild(box);
 var tgnm="box";
+var funcs = [
+    first_function,
+    second_function,
+    third_function,
+    forth_function
+]
 for(var i=0;i<txt.length;i++)
 {
 	if(txt[i]!=="")
@@ -64,6 +70,7 @@ for(var i=0;i<txt.length;i++)
 					{
 						var butt=document.createElement(butts[b]);
 						butt.innerHTML=butts[b];
+						butt.addEventListener("click", funcs[b], false);
 						butt.className="buttons";
 						document.getElementsByTagName("buttons")[0].appendChild(butt);
 					}
@@ -73,3 +80,7 @@ for(var i=0;i<txt.length;i++)
 		if(check===1)document.getElementsByTagName(tgnm)[0].appendChild(make);	
 	}
 }
+function first_function(){alert("hi 1");}
+function second_function(){alert("hi 2");}
+function third_function(){alert("hi 3");}
+function forth_function(){alert("hi 4");}

@@ -36,3 +36,13 @@ width:6vw;
 display:block;
 margin: auto;
 }
+center_div
+{
+background-color:white;
+display:block;
+position:fixed;
+top: 50%;
+left: 50%;
+margin-top: -9em;  
+margin-left: -15em;
+}
