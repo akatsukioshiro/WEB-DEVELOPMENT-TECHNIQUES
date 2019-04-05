@@ -9,16 +9,16 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. I ha
 * Custom Attributes for functionality.
 * Custom Attribute List :
   * beautify 
-    * type1 : (rounded buttons with gradient background)
-    * type2 : (rounded buttons with gradient background)
-    * type3 : (rounded buttons with gradient background)
-    * type4 : (rounded buttons with gradient background)
-    * type5 : (rounded buttons with gradient background)
+    ** type1 : (rounded buttons with gradient background)
+    ** type2 : (rounded buttons with gradient background)
+    ** type3 : (rounded buttons with gradient background)
+    ** type4 : (rounded buttons with gradient background)
+    ** type5 : (rounded buttons with gradient background)
   * count : (Number of buttons required)
   * butnames : (Name of each button separated by "_")
   * accesstype :
-    * inner : (to call javascript functions)
-    * outer : (to use with hyperlinks)
+    ** inner : (to call javascript functions)
+    ** outer : (to use with hyperlinks)
   * access : (NULL is used for "inner" accesstype separated by "~" hyperlinks is used for "outer" accesstype)
 * Can beautify further with custom CSS.
 * Quick implementation.
@@ -42,4 +42,37 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. I ha
 * This attribute "def" has 2 types:
   * navbar : instantly creates navbar (child elements need to be ordered using attribute "pos" numberred from "1").(refer example)
   * sidepane : instantly creates sidepane.
+
+# 4. Simplicity ~ Alpha Stage (outdated)
+* (updated & continued as Instant Websites)
+
+# 5. Instant Websites ~ Beta Stage (outdated)
+* (restructerred & continued as HTML WEBcodes)
+
+# 6. HTML WEBcodes ~ (under development)
+* Webpage definition language.
+* Syntax similar to **SQL**.
+* Simplicity with improved Functionality.
+* Currently unique tagnames required.
+* Creativity via TAG based 'css' is fully functional.
+* Keyword List :
+  * make : 
+    ** creates div.
+    ** Syntax : make *element_name*
+  * in :
+    ** appends div in chosen parent element.
+    ** by default all elements will be created in *box* tag under body if *in* keyword not used.
+    ** Syntax : make *child_element* in *parent_element_of_your_choice*
+  * with :
+    ** adds child elements while parent creation.
+    ** Child element names are separated by space.
+    ** Syntax : make *element_name* with *child1* *child2* *child3*
+  * where :
+    ** used to select an element/elements to define it further.
+    ** has following attributes :
+        * **all** : *all* is used to select all *sibling elements* to define property.
+        * **is/are clickable** is used to provide *elements* with _onclick_ functionality along with _dynamic function names_.
+    ** Syntax : make *element_name* with *child1* *child2* where *child1*,*child2* are clickable
+    ** Syntax : make *element_name* with *child1* *child2* where *all* are clickable
+    ** **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
 
