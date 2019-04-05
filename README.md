@@ -57,22 +57,22 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. I ha
 * Creativity via TAG based 'css' is fully functional.
 * Keyword List :
   * make : 
-    ** creates div.
-    ** Syntax : make *element_name*
+    * creates div.
+    * Syntax : make *element_name*
   * in :
-    ** appends div in chosen parent element.
-    ** by default all elements will be created in *box* tag under body if *in* keyword not used.
-    ** Syntax : make *child_element* in *parent_element_of_your_choice*
+    * appends div in chosen parent element.
+    * by default all elements will be created in *box* tag under body if *in* keyword not used.
+    * Syntax : make *child_element* in *parent_element_of_your_choice*
   * with :
-    ** adds child elements while parent creation.
-    ** Child element names are separated by space.
-    ** Syntax : make *element_name* with *child1* *child2* *child3*
+    * adds child elements while parent creation.
+    * Child element names are separated by space.
+    * Syntax : make *element_name* with *child1* *child2* *child3*
   * where :
-    ..* used to select an element/elements to define it further.
-    ..* has following attributes :
-        ..* **all** : *all* is used to select all *sibling elements* to define property.
-        ..* **is/are clickable** is used to provide *elements* with _onclick_ functionality along with _dynamic function names_.
-    ..* Syntax : make *element_name* with *child1* *child2* where *child1*,*child2* are clickable
-    ..* Syntax : make *element_name* with *child1* *child2* where *all* are clickable
-    ..* **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
+    * used to select an element/elements to define it further.
+    * has following attributes :
+        - **all** : *all* is used to select all *sibling elements* to define property.
+        - **is/are clickable** is used to provide *elements* with _onclick_ functionality along with _dynamic function names_.
+    * Syntax : make *element_name* with *child1* *child2* where *child1*,*child2* are clickable
+    * Syntax : make *element_name* with *child1* *child2* where *all* are clickable
+    * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
 
