@@ -1,5 +1,8 @@
 # WEB-DEVELOPMENT-TECHNIQUES
-So, here I am gonna upload techniques for crazy developers and lazy gooses. I have seen that Javascript is really powerful when it comes to manipulation of HTML elements and what can be more better if I could just make libraries that would enable someone to deploy cool websites with least HTML knowledge.
+
+*'I have seen that Javascript is really powerful when it comes to manipulation of HTML elements and what can be more better if I could just make libraries that would enable someone to deploy cool websites with least HTML knowledge.'
+**-Author**
+*
 
 # 1. lazyStrap Buttons : (outdated)
 * (continued as lazyB)
@@ -9,16 +12,16 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. I ha
 * Custom Attributes for functionality.
 * Custom Attribute List :
   * beautify 
-    ** type1 : (rounded buttons with gradient background)
-    ** type2 : (rounded buttons with gradient background)
-    ** type3 : (rounded buttons with gradient background)
-    ** type4 : (rounded buttons with gradient background)
-    ** type5 : (rounded buttons with gradient background)
+    * type1 : (rounded buttons with gradient background)
+    * type2 : (rounded buttons with gradient background)
+    * type3 : (rounded buttons with gradient background)
+    * type4 : (rounded buttons with gradient background)
+    * type5 : (rounded buttons with gradient background)
   * count : (Number of buttons required)
   * butnames : (Name of each button separated by "_")
   * accesstype :
-    ** inner : (to call javascript functions)
-    ** outer : (to use with hyperlinks)
+    * inner : (to call javascript functions)
+    * outer : (to use with hyperlinks)
   * access : (NULL is used for "inner" accesstype separated by "~" hyperlinks is used for "outer" accesstype)
 * Can beautify further with custom CSS.
 * Quick implementation.
