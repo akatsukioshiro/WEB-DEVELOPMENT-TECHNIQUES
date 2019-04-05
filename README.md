@@ -37,7 +37,7 @@ So, here I am gonna upload techniques for crazy developers and lazy gooses. I ha
 
 ![Output of above tag](https://github.com/akatsukioshiro/WEB-DEVELOPMENT-TECHNIQUES/blob/master/image/img.png)
 
-# 3. lazy Attribute ~ Alpha Stage (Testing)
+# 3. lazy Attribute ~ Alpha Stage (progress haulted)
 * ONE Attribute to create instant websites easily.
 * This attribute "def" has 2 types:
   * navbar : instantly creates navbar (child elements need to be ordered using attribute "pos" numberred from "1").(refer example)
