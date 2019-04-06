@@ -86,4 +86,8 @@
     * Syntax : make *element_name* with *child1* *child2* where *child1*,*child2* are clickable
     * Syntax : make *element_name* with *child1* *child2* where *all* are clickable
     * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
-
+* __\<data\>__ Tag :
+  * used to add text content inside tags.
+  * **Requirements** :
+    * Tagname, Tag ID and Content required.
+  * __Syntax__ : _**tagname**_(_**id**=idname;_){_textContent (Paragraph also supported)_}
