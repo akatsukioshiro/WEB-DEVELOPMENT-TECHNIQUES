@@ -88,6 +88,7 @@
     * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
 * __\<data\>__ Tag :
   * used to add text content inside tags.
+  * initialization Syntax : __\<data\>_tag specific content_\<\/data\>__
   * **Requirements** :
     * Tagname, Tag ID and Content required.
-  * __Syntax__ : _**tagname**_(_**id**=idname;_){_textContent (Paragraph also supported)_}
+  * __Syntax__ of _tag specific content_ : _**tagname**_(_**id**=idname;_){_textContent (Paragraph also supported)_}
