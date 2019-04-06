@@ -63,9 +63,9 @@
     * creates div.
     * Syntax : make *element_name*
     * Additional attributes (if necessary either or both can be added) :
-      - ***id=****idname*
-      - ***class=****classname*
-      - Syntax : make *element_name* ***id=****idname* ***class=****classname*
+      - *__id__=idname*
+      - *__class__=classname*
+      - Syntax : make *element_name* *__id__=idname* *__class__=classname*
   * in :
     * appends div in chosen parent element.
     * by default all elements will be created in *box* tag under body if *in* keyword not used.
@@ -75,9 +75,9 @@
     * Child element names are separated by space.
     * Syntax : make *element_name* with *child1* *child2* *child3*
     * Additional child attributes (if necessary either or both can be added) :
-      - *(**id=****idname;)*
-      - *(**class=****classname;)*
-      - Syntax : make *element_name* *(**id=****idname;**class=****classname;)*
+      - *(__id__=idname;)*
+      - *(__class__=classname;)*
+      - Syntax : make *element_name* *(__id__=idname;__class__=classname;)*
   * where :
     * used to select an element/elements to define it further.
     * has following attributes :
