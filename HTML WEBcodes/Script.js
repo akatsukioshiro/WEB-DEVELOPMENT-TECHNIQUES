@@ -1,6 +1,6 @@
 func_count=0;
 var x = document.getElementsByTagName("body")[0].childNodes;
-var txt,fText,res;
+var txt,fText,res,gText;
 for(var i = 0; i < x.length; i++) 
 {
 	if (x[i].nodeName === "#text") 
@@ -8,13 +8,35 @@ for(var i = 0; i < x.length; i++)
         	fText = x[i].nodeValue;
 	}
 }
-txt = fText.split(/\r?\n|\r/g);
 for(var i = 0; i < x.length; i++) 
 {
 	if (x[i].nodeName === "#text") 
 	{
-       		x[i].parentNode.removeChild(x[i]);
+       		//alert(x[i].nodeValue);
+		x[i].parentNode.removeChild(x[i]);
     	}
+}
+for(var i = 0; i < x.length; i++) 
+{
+	if (x[i].nodeName === "DATA")
+	{
+		var y=document.getElementsByTagName(x[i].nodeName.toLowerCase())[0].childNodes;
+		for(var i = 0; i < y.length; i++) 
+		{
+			if (y[i].nodeName === "#text") 
+			{
+        			gText = y[i].nodeValue;
+			}
+		}
+	}
+}
+txt = fText.split(/\r?\n|\r/g);
+for(var i = 0; i < x.length; i++) 
+{
+	if (x[i].nodeName === "DATA")
+	{
+		x[i].parentNode.removeChild(x[i]);
+	}
 }
 document.body.style.margin="0";
 var box=document.createElement("box");
@@ -125,6 +147,42 @@ for(var i=0;i<txt.length;i++)
 		tgnm="box";	
 	}
 }
+//===================================================
+if(gText!==undefined && gText!==null)
+{
+	var data=gText.split("|");
+
+	for(var t=0;t<data.length;t++)
+	{
+		var TagNM=data[t].split("(");
+		if(TagNM[1]!==undefined && TagNM[1]!==null)
+		{
+			var TagID1=TagNM[1].split(";");
+			var TagID=TagID1[0].split("=");
+			var TagCN1=TagID1[1].split("{");
+			var TagCNM=TagCN1[1].split("}");
+			TagCNM[0]=TagCNM[0].replace(/\r?\n|\r/g, " ");
+			var temp=TagNM[0];
+			dataline(temp,TagID[1],TagCNM[0]);
+		}
+	}
+}
+function dataline(name,id,dataline)
+{
+	name=name.trim();
+	id=id.trim();
+	dataline=dataline.trim();
+	var mx=document.getElementsByTagName(name).length;
+	for(var run=0;run<mx;run++)
+	{
+		if(document.getElementsByTagName(name)[run].id===id)
+		{
+			document.getElementsByTagName(name)[run].innerHTML=dataline;
+		}
+	}
+}
+//===================================================
+
 function first_function(){alert("hi 1");}
 function second_function(){alert("hi 2");}
 function third_function(){alert("hi 3");}
