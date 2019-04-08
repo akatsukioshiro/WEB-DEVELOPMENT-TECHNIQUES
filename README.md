@@ -65,11 +65,11 @@
     * Additional attributes (if necessary either or both can be added) :
       - *__id__=idname*
       - *__class__=classname*
-      - Syntax : make *element_name* *__id__=idname* *__class__=classname*
+      - Syntax : __make__ *element_name* *__id__=idname* *__class__=classname*
   * in :
     * appends div in chosen parent element.
     * by default all elements will be created in *box* tag under body if *in* keyword not used.
-    * Syntax : make *child_element* in *parent_element_of_your_choice*
+    * Syntax : __make__ *child_element* __in__ *parent_element_of_your_choice*
   * with :
     * adds child elements while parent creation.
     * Child element names are separated by space.
@@ -77,15 +77,27 @@
     * Additional child attributes (if necessary either or both can be added) :
       - *(__id__=idname;)*
       - *(__class__=classname;)*
-      - Syntax : make *element_name* *(__id__=idname;__class__=classname;)*
+      - Syntax : __make__ *element_name* __with__ *childelement(__id__=idname;__class__=classname;)*
   * where :
     * used to select an element/elements to define it further.
     * has following attributes :
-        - **all** : *all* is used to select all *sibling elements* to define property.
-        - **is/are clickable** is used to provide *elements* with _onclick_ functionality along with _dynamic function names_.
-    * Syntax : make *element_name* with *child1* *child2* where *child1*,*child2* are clickable
-    * Syntax : make *element_name* with *child1* *child2* where *all* are clickable
-    * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
+      - **and** : *and* is used to define an *element* clickable as well as *editable to accept input*.
+      - **all** : *all* is used to select all *sibling elements* to define property.
+      - **is/are clickable** is used to provide *elements* with _onclick_ functionality along with _dynamic function names_.
+      - **take/takes input** is used to make *elements* accept *text input*.
+    * **SYNTAX EXAMPLES :**
+      - **Type 1 :**  
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *child1*,*child2* are clickable
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *all* are clickable
+        * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
+      - **Type 2 :**  
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *child1*,*child2* take input
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *all* take input
+        * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
+      - **Type 3 :**
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *child1*,*child2* take input __and__ *child1*,*child2* are clickable
+        * Syntax : __make__ *element_name* __with__ *child1* *child2* __where__ *all* take input __and__ *all* are clickable
+        * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
 * __\<data\>__ Tag :
   * used to add text content inside tags.
   * initialization Syntax : __\<data\>_tag specific content_\<\/data\>__
