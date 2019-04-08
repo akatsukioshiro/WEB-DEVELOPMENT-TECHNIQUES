@@ -53,11 +53,29 @@
 * (restructerred & continued as HTML WEBcodes)
 
 # 6. HTML WEBcodes ~ (under development)
-* Webpage definition language.
+* (redefined & continued for HTML5 as SML)
+
+# 7. SML (Structured Markup Language)
 * Syntax similar to **SQL**.
 * Simplicity with improved Functionality.
 * Currently unique tagnames required.
 * Creativity via TAG based 'css' is fully functional.
+* __BASIC Necessary Instructions :__
+  * No need to use <\html\>\</html>,\<head\>\</head\>,\<body\>\</body\>
+  * __\<!DOCTYPE html\>__ is mandatory.
+  * __\<data\>\</data\>__ if necessary, will be initialised after doctype.
+  * Element definition is done after \<data\> tag is closed.
+  * __Script.js__ is mandatory .js File to be added only after 'Element Definition' phase.
+  * Add stylesheet at the end.
+  * Each statement must end with a __full stop "."__, it is a special character so do not use it elsewhere.
+* __Special Character List :__
+  * __FULL STOP : .__ is used to end a statement.
+  * __COMMA     : ,__ is used to separate child element names in where keyword.
+  * __SEMICOLON : ;__ is used to separate id and class of child elements in with keyword.
+  * __BRACKETS  :__ 
+    * __()__ is used to enclose id and class of child elements in with keyword.
+    * __()__ is used to enclose id of element to which content data needs to be added, within DATA TAG.
+    * __{}__ is used to enclose element content data in DATA TAG.
 * Keyword List :
   * make : 
     * creates div.
@@ -100,7 +118,7 @@
         * **ABOVE 2 Syntaxes show example that produce SAME RESULTS.**
 * __\<data\>__ Tag :
   * used to add text content inside tags.
-  * initialization Syntax : __\<data\>_tag specific content_\<\/data\>__
+  * initialization Syntax : __\<data\>_tag specific content_\</data\>__
   * **Requirements** :
     * Tagname, Tag ID and Content required.
   * __Syntax__ of _tag specific content_ : _**tagname**_(_**id**=idname;_){_textContent (Paragraph also supported)_}
