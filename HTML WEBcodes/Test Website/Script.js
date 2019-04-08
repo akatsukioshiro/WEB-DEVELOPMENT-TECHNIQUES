@@ -140,7 +140,72 @@ for(var i=0;i<txt.length;i++)
 						func_count++;
 					}
 				}
+				if((line[j+2]==="takes" || line[j+2]==="take")&&(line[j+3]==="input"))
+				{
+					if(line[j+1]==="all")
+					{
+						var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+					}
+					else
+					{
+						var divs=line[j+1].split(",");
+					}
+					for(var wit=0;wit<divs.length;wit++)
+					{
+						if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
+						else a=divs[wit];
+						var ce=document.getElementsByTagName(a)[0];
+						ce.style.outline="thin solid grey";
+						ce.setAttribute("contenteditable","true");
+					}	
+				}
+				if(line[j+4] ==="and")
+				{
+					j=j+4;
+					if((line[j+2]==="is" || line[j+2]==="are")&&(line[j+3]==="clickable"))
+					{
+						if(line[j+1]==="all")
+						{
+							var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+						}
+						else
+						{
+							var divs=line[j+1].split(",");
+						}
+						for(var wit=0;wit<divs.length;wit++)
+						{
+							if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
+							else a=divs[wit];
+							var butt=document.getElementsByTagName(a)[0];
+							butt.innerHTML=a;
+							butt.addEventListener("click", funcs[func_count], false);
+							func_count++;
+						}
+					}
+					if((line[j+2]==="takes" || line[j+2]==="take")&&(line[j+3]==="input"))
+					{
+						if(line[j+1]==="all")
+						{
+							var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+						}
+						else
+						{
+							var divs=line[j+1].split(",");
+						}
+						for(var wit=0;wit<divs.length;wit++)
+						{
+							if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
+							else a=divs[wit];
+							var ce=document.getElementsByTagName(a)[0];
+							ce.style.outline="thin solid grey";
+							ce.setAttribute("contenteditable","true");
+						}	
+					}
+				}
+				
+				
 			}
+			
 			
 		}
 		if(check===1)document.getElementsByTagName(tgnm)[0].appendChild(make);
