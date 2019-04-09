@@ -112,6 +112,12 @@ for(var i=0;i<txt.length;i++)
 									var chk=ic3[mk].split("=");
 									if(chk[0]==="id")w.id=chk[1];
 									else if(chk[0]==="class")w.className=chk[1];
+									else if(chk[0]==="hw")
+									{
+										var cross=chk[1].split("*");
+										w.style.height=cross[0];
+										w.style.width=cross[1];
+									}
 								}	
 							}
 						}
@@ -145,6 +151,32 @@ for(var i=0;i<txt.length;i++)
 								butt.innerHTML=a;
 								butt.addEventListener("click", funcs[func_count], false);
 								func_count++;
+							}
+						}
+						else if(line[j+3]==="draggable")
+						{
+							if(line[j+1]==="all")
+							{
+								var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+							}
+							else
+							{
+								var divs=line[j+1].split(",");
+							}
+							for(var wit=0;wit<divs.length;wit++)
+							{
+								if(line[j+1]==="all")var a=divs[0].tagName.toLowerCase();//divs[wit]
+								else a=divs[0];//divs[wit]
+								var boxes = document.createElement(a+wit);
+								boxes.style.display="inline-block";
+								boxes.style.cssFloat="Left";
+								document.getElementsByTagName(make.nodeName.toLowerCase())[0].appendChild(boxes);
+  								var content=document.getElementsByTagName(a)[0];
+								var child=document.adoptNode(content);
+								boxes.appendChild(child);
+								boxes.style.height=content.style.height;boxes.style.width=content.style.width;
+								content.style.position="absolute";
+								dragElement(content);
 							}
 						}
 					}
@@ -203,10 +235,10 @@ if(gText!==undefined && gText!==null)
 }
 function dragElement(elmnt) 
 {
-	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-	if (document.getElementsByTagName(elmnt.tagName.toLowerCase())[0]) 
+	var pos1, pos2, pos3, pos4;
+	if (document.getElementById(elmnt.id)) 
 	{
-		document.getElementsByTagName(elmnt.tagName.toLowerCase())[0].onmousedown = dragMouseDown;
+		document.getElementById(elmnt.id).onmousedown = dragMouseDown;
 	} 
 	else 
 	{
@@ -220,6 +252,7 @@ function dragElement(elmnt)
     		pos4 = e.clientY;
     		document.onmouseup = closeDragElement;
     		document.onmousemove = elementDrag;
+		console.log(pos3+"&"+pos4);
   	}
 	function elementDrag(e) 
 	{
