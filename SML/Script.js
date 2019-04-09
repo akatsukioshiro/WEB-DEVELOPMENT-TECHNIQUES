@@ -120,72 +120,37 @@ for(var i=0;i<txt.length;i++)
 				}	
 			}
 			if(line[j]==="where")
-			{
-				if((line[j+2]==="is" || line[j+2]==="are")&&(line[j+3]==="clickable"))
+			{	
+				var dowill="0";
+				do
 				{
-					if(line[j+1]==="all")
+					if(dowill==="1")j=j+4;
+					if(line[j+2]==="is" || line[j+2]==="are")
 					{
-						var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
-					}
-					else
-					{
-						var divs=line[j+1].split(",");
-					}
-					for(var wit=0;wit<divs.length;wit++)
-					{
-						if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
-						else a=divs[wit];
-						var butt=document.getElementsByTagName(a)[0];
-						butt.innerHTML=a;
-						butt.addEventListener("click", funcs[func_count], false);
-						func_count++;
-					}
-				}
-				if((line[j+2]==="takes" || line[j+2]==="take")&&(line[j+3]==="input"))
-				{
-					if(line[j+1]==="all")
-					{
-						var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
-					}
-					else
-					{
-						var divs=line[j+1].split(",");
-					}
-					for(var wit=0;wit<divs.length;wit++)
-					{
-						if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
-						else a=divs[wit];
-						var ce=document.getElementsByTagName(a)[0];
-						ce.style.outline="thin solid grey";
-						ce.setAttribute("contenteditable","true");
-					}	
-				}
-				if(line[j+4] ==="and")
-				{
-					j=j+4;
-					if((line[j+2]==="is" || line[j+2]==="are")&&(line[j+3]==="clickable"))
-					{
-						if(line[j+1]==="all")
+						if(line[j+3]==="clickable")
 						{
-							var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
-						}
-						else
-						{
-							var divs=line[j+1].split(",");
-						}
-						for(var wit=0;wit<divs.length;wit++)
-						{
-							if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
-							else a=divs[wit];
-							var butt=document.getElementsByTagName(a)[0];
-							butt.innerHTML=a;
-							butt.addEventListener("click", funcs[func_count], false);
-							func_count++;
+							if(line[j+1]==="all")
+							{
+								var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+							}
+							else
+							{
+								var divs=line[j+1].split(",");
+							}
+							for(var wit=0;wit<divs.length;wit++)
+							{
+								if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
+								else a=divs[wit];
+								var butt=document.getElementsByTagName(a)[0];
+								butt.innerHTML=a;
+								butt.addEventListener("click", funcs[func_count], false);
+								func_count++;
+							}
 						}
 					}
 					if((line[j+2]==="takes" || line[j+2]==="take")&&(line[j+3]==="input"))
 					{
-						if(line[j+1]==="all")
+							if(line[j+1]==="all")
 						{
 							var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
 						}
@@ -202,9 +167,12 @@ for(var i=0;i<txt.length;i++)
 							ce.setAttribute("contenteditable","true");
 						}	
 					}
+					
+					if(line[j+4] ==="and")dowill="1";
+					else dowill="0";
 				}
-				
-				
+				while(dowill==="1");	
+					
 			}
 			
 			
@@ -215,7 +183,7 @@ for(var i=0;i<txt.length;i++)
 }
 //===================================================
 if(gText!==undefined && gText!==null)
-{
+{	
 	var data=gText.split("|");
 
 	for(var t=0;t<data.length;t++)
@@ -231,6 +199,43 @@ if(gText!==undefined && gText!==null)
 			var temp=TagNM[0];
 			dataline(temp,TagID[1],TagCNM[0]);
 		}
+	}
+}
+function dragElement(elmnt) 
+{
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	if (document.getElementsByTagName(elmnt.tagName.toLowerCase())[0]) 
+	{
+		document.getElementsByTagName(elmnt.tagName.toLowerCase())[0].onmousedown = dragMouseDown;
+	} 
+	else 
+	{
+		elmnt.onmousedown = dragMouseDown;
+	}
+	function dragMouseDown(e) 
+	{
+		e = e || window.event;
+		e.preventDefault();
+	    	pos3 = e.clientX;
+    		pos4 = e.clientY;
+    		document.onmouseup = closeDragElement;
+    		document.onmousemove = elementDrag;
+  	}
+	function elementDrag(e) 
+	{
+    		e = e || window.event;
+		e.preventDefault();
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
+	function closeDragElement() 
+	{
+		document.onmouseup = null;
+		document.onmousemove = null;
 	}
 }
 function dataline(name,id,dataline)
