@@ -52,7 +52,7 @@
 # 5. Instant Websites ~ Beta Stage (outdated)
 * (restructerred & continued as HTML WEBcodes)
 
-# 6. HTML WEBcodes ~ (under development)
+# 6. HTML WEBcodes ~ (outdated)
 * (redefined & continued for HTML5 as SML)
 
 # 7. SML (Structured Markup Language)
