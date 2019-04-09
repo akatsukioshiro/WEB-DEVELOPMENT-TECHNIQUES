@@ -243,10 +243,21 @@ function dataline(name,id,dataline)
 	{
 		if(document.getElementsByTagName(name)[run].id===id)
 		{
-			document.getElementsByTagName(name)[run].innerHTML=dataline;
+			var splitt=dataline.split("=");
+			if(splitt[1]===undefined || splitt[1]===null)
+			{	
+				document.getElementsByTagName(name)[run].innerHTML=splitt[0];
+			}
+			else if(splitt[0]==="img")
+			{
+				var imgdiv=document.getElementsByTagName(name)[run];
+				imgdiv.style.backgroundImage = "url('"+splitt[1]+"')"; 	
+				imgdiv.style.backgroundSize = "cover"; 					
+			}
 		}
 	}
 }
+
 //===================================================
 
 function first_function(){alert("hi 1");}

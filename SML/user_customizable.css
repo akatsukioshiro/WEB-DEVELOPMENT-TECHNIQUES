@@ -15,11 +15,19 @@ name
 	background-color:grey;
 	display:inline-block;
 	height:10vh;
-	width:40%;
+	width:20%;
 	font: 15px arial, sans-serif;
 	font-size: 1.2rem;
 	text-align:center;
 	line-height:10vh;
+	float:left;
+}
+logo
+{
+	display:inline-block;
+	height:10vh;
+	width:20%;
+	
 	float:left;
 }
 buttons
