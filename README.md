@@ -53,9 +53,9 @@
 * (restructerred & continued as HTML WEBcodes)
 
 # 6. HTML WEBcodes ~ (outdated)
-* (redefined & continued for HTML5 as SML)
+* (renamed & continued for HTML5 as SML)
 
-# 7. SML (Structured Markup Language)
+# 7. SML ~ (outdated with many elements redefined)
 * Syntax similar to **SQL**.
 * Simplicity with improved Functionality.
 * Currently unique tagnames required.
@@ -123,3 +123,5 @@
     * Tagname, Tag ID and Content required.
   * __Syntax__ of _tag specific content_ : _**tagname**_(_**id**=idname;_){_textContent (Paragraph also supported)_}
   * __Syntax__ of _image content_ : _**tagname**_(_**id**=idname;_){_**img**=imgname.imgformat_}
+
+# 8. 
