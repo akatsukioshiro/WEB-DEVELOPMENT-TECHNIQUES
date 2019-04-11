@@ -337,8 +337,8 @@ function callcolorer()
 	//alert(x89);
 	if(x89===32)
 	{
-		var cc=document.getElementsByTagName("codecontent")[0].innerHTML;
-		var clines=cc.split("$");//alert(clines);
+		var cc=document.getElementsByTagName("codecontent")[0];
+		var clines=cc.innerHTML.split("$");//alert(clines);
 		for(var clinest=1;clinest<clines.length;clinest++)
 		{	
 			
@@ -353,7 +353,10 @@ function callcolorer()
 				{
 					case "make": 
 					{
-						alert(cwords[cwrst]);
+						var cd=cc.innerHTML;
+						var cd1="<span style='color:red;'>"+cwords[cwrst]+"</span>";
+						cd=cd.replace(cwords[cwrst], cd1);
+						cc.innerHTML=cd;
 						break;
 					}
 				}				

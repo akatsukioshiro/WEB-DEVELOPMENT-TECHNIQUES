@@ -35,6 +35,18 @@ codecontent
 	display:block;
 	
 }
+codecontent1
+{
+	background-color:rgba(0,0,0,0.1);
+	height:90%;
+	width:45%;
+	z-index:10;
+	display:block;
+	top:10%;
+	left:2.5%;
+	position:absolute;
+	
+}
 .cpane
 {
 	margin-left:auto;
