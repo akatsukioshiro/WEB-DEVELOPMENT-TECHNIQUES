@@ -329,7 +329,7 @@ function calldrag(boxes,content,makenodenmlc)
 }
 //===================================================
 
-function first_function(){alert("hi 1");}
+function first_function(){alert(document.getElementsByTagName("codecontent")[0].innerHTML);}
 function second_function(){alert("hi 2");}
 function third_function(){alert("hi 3");}
 function forth_function(){alert("hi 4");}
