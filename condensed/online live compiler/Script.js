@@ -327,6 +327,13 @@ function calldrag(boxes,content,makenodenmlc)
 	content.style.marginLeft=0;
 	dragElement(content);
 }
+//onkeyup="myFunction()"
+document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
+
+function callcolorer()
+{
+	alert(document.getElementsByTagName("codecontent")[0].innerHTML);
+}
 //===================================================
 
 function first_function(){alert(document.getElementsByTagName("codecontent")[0].innerHTML);}
