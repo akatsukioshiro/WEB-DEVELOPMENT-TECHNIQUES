@@ -200,5 +200,5 @@
         * Supported types :
           * Text
           * Image
-    * Syntax : remake *element_name* having id=idname adding text=|textcontent
-    * Syntax : remake *element_name* having id=idname adding image=|imageurl
+    * Syntax : **remake** *element_name* **having** id=_idname_ **adding** text=|_textcontent_
+    * Syntax : **remake** *element_name* **having** id=_idname_ **adding** image=|_imageurl_
