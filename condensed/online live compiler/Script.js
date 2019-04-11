@@ -335,7 +335,7 @@ function callcolorer()
 	//alert(document.getElementsByTagName("codecontent")[0].innerHTML);
 	var x89 = event.which || event.keyCode;
 	//alert(x89);
-	if(x89===32)
+	if(x89===32 || x89===13)
 	{
 		var cc=document.getElementsByTagName("codecontent")[0];
 		var clines=cc.innerHTML.split("$");//alert(clines);
@@ -346,14 +346,15 @@ function callcolorer()
 			//alert(cwords);
 			var ttttt="0";
 			for(var cwrst=0;cwrst<cwords.length;cwrst++)
-			{
+			{	
+				cwords[cwrst]=cwords[cwrst].trim();
 				if(cwords[cwrst]==="<span")
 				{
 					ttttt="1";
 					continue;
 					
 				}
-				if(ttttt==="1")
+				else if(ttttt==="1")
 				{
 					var rarar=cwords[cwrst].split(">");
 					rarar[2]=rarar[2].replace("&nbsp;", "");
@@ -362,13 +363,13 @@ function callcolorer()
 					
 				}
 				if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
-				alert(cwords[cwrst]);
+				//alert(cwords[cwrst]);
 				
 				switch(cwords[cwrst])
 				{
 					case "make": 
 					{
-						redder(cc,cwords[cwrst]);
+						redder(cc,cwords[cwrst]);//alert("2");
 						break;
 					}
 					case "remake": 
@@ -412,10 +413,12 @@ function redder(cc,sas)
 {
 	var cd=cc.innerHTML;
 	var cd1="<span style='color:red;'>"+sas+"</span>";
-	cd=cd.replace(sas, cd1);
+	var re=new RegExp(sas, 'g');
+	cd=cd.replace(re, cd1);
 	cc.innerHTML=cd;
 	cc.focus();
 	setEndOfContenteditable(cc);
+	
 }
 function setEndOfContenteditable(contentEditableElement)
 {
@@ -438,7 +441,7 @@ function setEndOfContenteditable(contentEditableElement)
     }
 }
 
-function first_function(){alert(document.getElementsByTagName("codecontent")[0].innerHTML);}
+function first_function(){alert(document.getElementsByTagName("codecontent")[0].textContent);}
 function second_function(){alert("hi 2");}
 function third_function(){alert("hi 3");}
 function forth_function(){alert("hi 4");}
