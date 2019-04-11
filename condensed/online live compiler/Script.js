@@ -411,7 +411,7 @@ function callcolorer()
 						redder(cc,cwords[cwrst]);
 						break;
 					}
-					
+										
 				}				
 			}
 		}
@@ -423,7 +423,11 @@ function redder(cc,sas)
 	var cd=cc.innerHTML;
 	var cd1="<span style='color:red;'>"+sas+"</span>";
 	var re=new RegExp(sas, 'g');
+	var re1=new RegExp("<div>", 'g');
+	var re2=new RegExp("</div>", 'g');
 	cd=cd.replace(re, cd1);
+	cd=cd.replace(re1, "");
+	cd=cd.replace(re1, "");
 	cc.innerHTML=cd;
 	cc.focus();
 	setEndOfContenteditable(cc);
