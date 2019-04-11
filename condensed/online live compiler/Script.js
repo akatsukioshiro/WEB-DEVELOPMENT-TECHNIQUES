@@ -333,18 +333,31 @@ document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callco
 function callcolorer()
 {
 	//alert(document.getElementsByTagName("codecontent")[0].innerHTML);
-	var cc=document.getElementsByTagName("codecontent")[0].innerHTML;
-	var clines=cc.split("$");//alert(clines);
-	for(var clinest=0;clinest<clines.length;clinest++)
+	var x89 = event.which || event.keyCode;
+	//alert(x89);
+	if(x89===32)
 	{
-		var cwords=clines[clinest].split(" ");
-		alert(cwords);
-		for(var cwrst=0;cwrst<cwords.length;cwrst++)
-		{
-			switch(cwords[cwrst])
+		var cc=document.getElementsByTagName("codecontent")[0].innerHTML;
+		var clines=cc.split("$");//alert(clines);
+		for(var clinest=1;clinest<clines.length;clinest++)
+		{	
+			
+			var cwords=clines[clinest].split(" ");
+			//alert(cwords);
+			for(var cwrst=0;cwrst<cwords.length;cwrst++)
 			{
-				case make: alert(cwords[cwrst]);
-			}				
+				
+				if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
+				//alert(cwords[cwrst]);
+				switch(cwords[cwrst])
+				{
+					case "make": 
+					{
+						alert(cwords[cwrst]);
+						break;
+					}
+				}				
+			}
 		}
 	}
 }
