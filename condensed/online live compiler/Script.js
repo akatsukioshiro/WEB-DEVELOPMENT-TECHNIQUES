@@ -348,6 +348,7 @@ function callcolorer()
 			for(var cwrst=0;cwrst<cwords.length;cwrst++)
 			{	
 				cwords[cwrst]=cwords[cwrst].trim();
+				//alert(cwords[cwrst]);
 				if(cwords[cwrst]==="<span")
 				{
 					ttttt="1";
@@ -357,7 +358,10 @@ function callcolorer()
 				else if(ttttt==="1")
 				{
 					var rarar=cwords[cwrst].split(">");
-					rarar[2]=rarar[2].replace("&nbsp;", "");
+					if(rarar[2]!==undefined)
+					{
+						rarar[2]=rarar[2].replace("&nbsp;", "");
+					}
 					cwords[cwrst]=rarar[2];
 					ttttt="0";
 					
@@ -398,6 +402,11 @@ function callcolorer()
 						break;
 					}
 					case "adding": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "and": 
 					{
 						redder(cc,cwords[cwrst]);
 						break;
