@@ -357,6 +357,8 @@ function callcolorer()
 						var cd1="<span style='color:red;'>"+cwords[cwrst]+"</span>";
 						cd=cd.replace(cwords[cwrst], cd1);
 						cc.innerHTML=cd;
+						cc.focus();
+						setEndOfContenteditable(cc);
 						break;
 					}
 				}				
@@ -365,6 +367,26 @@ function callcolorer()
 	}
 }
 //===================================================
+function setEndOfContenteditable(contentEditableElement)
+{
+    var range,selection;
+    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+    {
+        range = document.createRange();
+	range.selectNodeContents(contentEditableElement);	
+	range.collapse(false);
+	selection = window.getSelection();
+	selection.removeAllRanges();
+	selection.addRange(range);
+    }
+    else if(document.selection)//IE 8 and lower
+    { 
+        range = document.body.createTextRange();
+        range.moveToElementText(contentEditableElement);
+        range.collapse(false);
+        range.select();
+    }
+}
 
 function first_function(){alert(document.getElementsByTagName("codecontent")[0].innerHTML);}
 function second_function(){alert("hi 2");}
