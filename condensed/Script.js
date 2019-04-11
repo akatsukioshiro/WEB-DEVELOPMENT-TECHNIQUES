@@ -34,6 +34,7 @@ var funcs = [
 ]
 for(var i=0;i<txt.length;i++)
 {
+	var withwer="0";
 	if(txt[i]!=="")
 	{
 		var make;
@@ -74,7 +75,7 @@ for(var i=0;i<txt.length;i++)
 				}
 				case "with":
 				{
-					check=2;
+					check=2;withwer="1";
 					document.getElementsByTagName(tgnm)[0].appendChild(make);
 				
 					for(var iwit=(j+1);iwit<line.length;iwit++)
@@ -151,6 +152,7 @@ for(var i=0;i<txt.length;i++)
 				}
 				case "where":
 				{	
+					if(withwer==="0")document.getElementsByTagName(tgnm)[0].appendChild(make);
 					var dowill="0";
 					do
 					{
@@ -161,21 +163,53 @@ for(var i=0;i<txt.length;i++)
 							{
 								if(line[j+1]==="all")
 								{
-									var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+									if(withwer==="1")
+									{
+										var divs=document.getElementsByTagName(make.nodeName.toLowerCase())[0].children;	
+									}
+									else if(withwer==="0")
+									{
+										var divs;
+										divs[0]=make.nodeName.toLowerCase();
+										
+									}
+									
 								}
 								else
 								{
-									var divs=line[j+1].split(",");
+									if(withwer==="1")
+									{
+										var divs=line[j+1].split(",");	
+									}
+									else if(withwer==="0")
+									{
+										var divs;
+										divs[0]=line[j+1];
+										
+									}
+									
 								}
-								for(var wit=0;wit<divs.length;wit++)
+								if(withwer==="1")
 								{
-									if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
-									else a=divs[wit];
+									for(var wit=0;wit<divs.length;wit++)
+									{
+										if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
+										else a=divs[wit];
+										var butt=document.getElementsByTagName(a)[0];
+										butt.innerHTML=a;
+										butt.addEventListener("click", funcs[func_count], false);
+										func_count++;
+									}	
+								}
+								else if(withwer==="0")
+								{
+									a=divs[0];
 									var butt=document.getElementsByTagName(a)[0];
 									butt.innerHTML=a;
 									butt.addEventListener("click", funcs[func_count], false);
 									func_count++;
 								}
+								
 							}
 							else if(line[j+3]==="draggable")
 							{
@@ -222,7 +256,7 @@ for(var i=0;i<txt.length;i++)
 						else dowill="0";
 					}
 					while(dowill==="1");	
-					break;	
+					break;check==="2";	
 				}
 			}
 			
