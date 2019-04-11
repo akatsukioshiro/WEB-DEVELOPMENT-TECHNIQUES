@@ -344,29 +344,79 @@ function callcolorer()
 			
 			var cwords=clines[clinest].split(" ");
 			//alert(cwords);
+			var ttttt="0";
 			for(var cwrst=0;cwrst<cwords.length;cwrst++)
 			{
-				
+				if(cwords[cwrst]==="<span")
+				{
+					ttttt="1";
+					continue;
+					
+				}
+				if(ttttt==="1")
+				{
+					var rarar=cwords[cwrst].split(">");
+					rarar[2]=rarar[2].replace("&nbsp;", "");
+					cwords[cwrst]=rarar[2];
+					ttttt="0";
+					
+				}
 				if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
-				//alert(cwords[cwrst]);
+				alert(cwords[cwrst]);
+				
 				switch(cwords[cwrst])
 				{
 					case "make": 
 					{
-						var cd=cc.innerHTML;
-						var cd1="<span style='color:red;'>"+cwords[cwrst]+"</span>";
-						cd=cd.replace(cwords[cwrst], cd1);
-						cc.innerHTML=cd;
-						cc.focus();
-						setEndOfContenteditable(cc);
+						redder(cc,cwords[cwrst]);
 						break;
 					}
+					case "remake": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "with": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "where": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "in": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "having": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					case "adding": 
+					{
+						redder(cc,cwords[cwrst]);
+						break;
+					}
+					
 				}				
 			}
 		}
 	}
 }
 //===================================================
+function redder(cc,sas)
+{
+	var cd=cc.innerHTML;
+	var cd1="<span style='color:red;'>"+sas+"</span>";
+	cd=cd.replace(sas, cd1);
+	cc.innerHTML=cd;
+	cc.focus();
+	setEndOfContenteditable(cc);
+}
 function setEndOfContenteditable(contentEditableElement)
 {
     var range,selection;
