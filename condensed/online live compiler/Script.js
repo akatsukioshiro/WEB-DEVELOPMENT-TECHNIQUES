@@ -327,35 +327,33 @@ function calldrag(boxes,content,makenodenmlc)
 	content.style.marginLeft=0;
 	dragElement(content);
 }
-//onkeyup="myFunction()"
 document.getElementsByTagName("codecontent1")[0].style.outline="thin solid grey";
 document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
+document.getElementsByTagName("codecontent")[0].addEventListener("paste", callerer);
+var paster="notpasted";
+function callerer()
+{
+	setTimeout(callcolorer, 50);
+	paster="pasted";
+}
 function callcolorer()
 {
-	
-	//alert(document.getElementsByTagName("codecontent")[0].innerHTML);
-	var x89 = event.which || event.keyCode;
-	//alert(x89);
-	if(x89===32 || x89===13 || x89===17)
-	{
+	if(paster==="notpasted")var x89 = event.which || event.keyCode;
+	if(x89===32 || x89===13 || x89===17 || paster==="pasted")
+	{	paster="notpasted";
 		var cc=document.getElementsByTagName("codecontent")[0];
 		var clines=cc.innerHTML.split("$");//alert(clines);
 		for(var clinest=1;clinest<clines.length;clinest++)
 		{	
 			
 			var cwords=clines[clinest].split(" ");
-			//alert(cwords);
 			var ttttt="0";
 			for(var cwrst=0;cwrst<cwords.length;cwrst++)
 			{	
 				cwords[cwrst]=cwords[cwrst].trim();
-				//alert("1"+cwords[cwrst]);
 				if(cwords[cwrst]==="<span")
 				{
 					ttttt="1";
-					//continue;
-					
-					
 				}
 				else if(ttttt==="1")
 				{
@@ -370,31 +368,25 @@ function callcolorer()
 				}
 				if(cwords[cwrst]===undefined)
 				{
-					//alert("2"+cwords[cwrst]);
 					cwords[cwrst]=cwords[cwrst+2];
-					//alert("3"+cwords[cwrst]);
 					if(cwords[cwrst]!==undefined)var rarar=cwords[cwrst].split(">");
-					//alert("4"+rarar[rarar.length-1]);
 					if(rarar[2]!==undefined)
 					{
 						var rre=new RegExp("&nbsp;", 'g');
 						rarar[2]=rarar[2].replace(rre, "");
 					}
 					cwords[cwrst]=rarar[2];
-					//alert("5"+cwords[cwrst]);
 				}
 				if(ttttt!=="1")
 				{
 					if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
 					var choicer=["","",""];
 					if(cwords[cwrst]!==undefined)choicer=cwords[cwrst].split("=");
-					//alert("6"+choicer[0]);
 					choicer[0]=choicer[0].replace(new RegExp("<br>",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("<br",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("&nbsp;",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("</div>",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("<div>",'g'), "");
-					//alert("7"+choicer[0]);
 					if(choicer[0]!==undefined)
 					{
 					switch(choicer[0])
@@ -500,10 +492,7 @@ function callcolorer()
 					
 					}										
 				}
-				//if(cwords[cwrst]===undefined)
-				//{
-			//		cwrst+=2;
-		//		}				
+								
 			}
 		}
 	}
@@ -511,37 +500,31 @@ function callcolorer()
 //===================================================
 function coler(cc,sas,ch)
 {
-	//alert("sas : "+sas);
 	var cd=cc.innerHTML;
 	if(ch==="1")	
 	{
 		var cd1="<span style='color:red;'>"+sas+"</span>";
-	//	alert("sas1 : "+cd1);
 	}
 	else if(ch==="2")	
 	{
 		var choicy=sas.split("=");
 		var cd1="<span style='color:green;'>"+choicy[0]+"</span>";
 		//cd1=cd1+"="+choicy[1];
-//	alert("sas2 : "+cd1);
-}
+	}
 	else if(ch==="3")	
 	{
 		var cd1="<span style='color:blue;'>"+sas+"</span>";
-//	alert("sas3 : "+cd1);
-}
+	}
 	else if(ch==="4")	
 	{
 		var choicy=sas.split("=");
 		var cd1="<span style='color:pink;'>"+choicy[0]+"</span>";
 		//cd1=cd1+"="+choicy[1];
 		//alert(cd1);
-//	alert("sas4 : "+cd1);
-}
+	}
 	var re=new RegExp("("+sas+")", 'g');
 	var re1=new RegExp("<div>", 'g');
 	var re2=new RegExp("</div>", 'g');
-	//var cd2=cd.match(cd1);
 	cd=cd.replace(new RegExp("\\b"+sas+"\\b",'g'), cd1);
 	cd=cd.replace(re1, "");
 	cd=cd.replace(re2, "");
@@ -550,10 +533,7 @@ function coler(cc,sas,ch)
 		cd1=cd1+"|";
 		cd=cd.replace(cd1, "");
 	}
-	//cd=cd.replace(new RegExp("$",'g'), "<br> $");
 	cc.innerHTML=cd;
-	//cc.innerHTML=cc.innerHTML+"<br>";
-	//cc.innerHTML=cc.innerHTML.replace(new RegExp("<br>",'g'), "");
 	cc.focus();
 	setEndOfContenteditable(cc);
 	
