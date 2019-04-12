@@ -494,6 +494,7 @@ function callcolorer()
 						
 						
 					}
+					
 					}										
 				}
 				//if(cwords[cwrst]===undefined)
@@ -548,6 +549,8 @@ function coler(cc,sas,ch)
 	}
 	//cd=cd.replace(new RegExp("$",'g'), "<br> $");
 	cc.innerHTML=cd;
+	cc.innerHTML=cc.innerHTML+"<br>";
+	cc.innerHTML=cc.innerHTML.replace(new RegExp("<br>",'g'), "");
 	cc.focus();
 	setEndOfContenteditable(cc);
 	
