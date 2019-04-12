@@ -202,3 +202,6 @@
           * Image
     * Syntax : **remake** *element_name* **having** id=_idname_ **adding** text=|_textcontent_
     * Syntax : **remake** *element_name* **having** id=_idname_ **adding** image=|_imageurl_
+# 9. **online live compiler _for condensed & made using condensed_** :
+* Provides **Syntax Highlighting**.
+* Currently work under progress to help develop webpages using condensed.
