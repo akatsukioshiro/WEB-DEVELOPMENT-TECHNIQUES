@@ -336,7 +336,7 @@ function callcolorer()
 	//alert(document.getElementsByTagName("codecontent")[0].innerHTML);
 	var x89 = event.which || event.keyCode;
 	//alert(x89);
-	if(x89===32 || x89===13)
+	if(x89===32 || x89===13 || x89===17)
 	{
 		var cc=document.getElementsByTagName("codecontent")[0];
 		var clines=cc.innerHTML.split("$");//alert(clines);
@@ -391,6 +391,9 @@ function callcolorer()
 					//alert("6"+choicer[0]);
 					choicer[0]=choicer[0].replace(new RegExp("<br>",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("<br",'g'), "");
+					choicer[0]=choicer[0].replace(new RegExp("&nbsp;",'g'), "");
+					choicer[0]=choicer[0].replace(new RegExp("</div>",'g'), "");
+					choicer[0]=choicer[0].replace(new RegExp("<div>",'g'), "");
 					//alert("7"+choicer[0]);
 					if(choicer[0]!==undefined)
 					{
@@ -549,8 +552,8 @@ function coler(cc,sas,ch)
 	}
 	//cd=cd.replace(new RegExp("$",'g'), "<br> $");
 	cc.innerHTML=cd;
-	cc.innerHTML=cc.innerHTML+"<br>";
-	cc.innerHTML=cc.innerHTML.replace(new RegExp("<br>",'g'), "");
+	//cc.innerHTML=cc.innerHTML+"<br>";
+	//cc.innerHTML=cc.innerHTML.replace(new RegExp("<br>",'g'), "");
 	cc.focus();
 	setEndOfContenteditable(cc);
 	
