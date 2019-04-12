@@ -329,9 +329,9 @@ function calldrag(boxes,content,makenodenmlc)
 }
 //onkeyup="myFunction()"
 document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
-
 function callcolorer()
 {
+	
 	//alert(document.getElementsByTagName("codecontent")[0].innerHTML);
 	var x89 = event.which || event.keyCode;
 	//alert(x89);
@@ -352,7 +352,8 @@ function callcolorer()
 				if(cwords[cwrst]==="<span")
 				{
 					ttttt="1";
-					continue;
+					//continue;
+					
 					
 				}
 				else if(ttttt==="1")
@@ -366,62 +367,103 @@ function callcolorer()
 					ttttt="0";
 					
 				}
-				if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
-				//alert(cwords[cwrst]);
-				
-				switch(cwords[cwrst])
+				if(cwords[cwrst]===undefined)
 				{
-					case "make": 
+					//alert(cwords[cwrst]);
+					cwords[cwrst]=cwords[cwrst+2];
+					//alert(cwords[cwrst]);
+					var rarar=cwords[cwrst].split(">");
+					//alert(rarar[rarar.length-1]);
+					if(rarar[2]!==undefined)
 					{
-						redder(cc,cwords[cwrst]);//alert("2");
-						break;
+						var rre=new RegExp("&nbsp;", 'g');
+						rarar[2]=rarar[2].replace(rre, "");
 					}
-					case "remake": 
+					cwords[cwrst]=rarar[2];
+					//alert(cwords[cwrst]);
+				}
+				if(ttttt!=="1")
+				{
+					if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
+					//alert(cwords[cwrst]);
+					var choicer=cwords[cwrst].split("=");
+					switch(choicer[0])
 					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "with": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "where": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "in": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "having": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "adding": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
-					}
-					case "and": 
-					{
-						redder(cc,cwords[cwrst]);
-						break;
+						case "make": 
+						{
+							coler(cc,cwords[cwrst],"1");//alert("2");
+							break;
+						}
+						case "remake": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "with": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "where": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "in": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "having": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "adding": 
+							{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "and": 
+						{
+							coler(cc,cwords[cwrst],"1");
+							break;
+						}
+						case "class": 
+						{
+							coler(cc,cwords[cwrst],"2");
+							break;
+						}
+						case "id": 
+						{
+							coler(cc,cwords[cwrst],"2");
+							break;
+						}
 					}
 										
-				}				
+				}
+				//if(cwords[cwrst]===undefined)
+				//{
+			//		cwrst+=2;
+		//		}				
 			}
 		}
 	}
 }
 //===================================================
-function redder(cc,sas)
+function coler(cc,sas,ch)
 {
 	var cd=cc.innerHTML;
-	var cd1="<span style='color:red;'>"+sas+"</span>";
+	if(ch==="1")	
+	{
+		var cd1="<span style='color:red;'>"+sas+"</span>";
+	}
+	else if(ch==="2")	
+	{
+		var choicy=sas.split("=");
+		var cd1="<span style='color:green;'>"+choicy[0]+"</span>";
+		cd1=cd1+"="+choicy[1];
+	}
 	var re=new RegExp(sas, 'g');
 	var re1=new RegExp("<div>", 'g');
 	var re2=new RegExp("</div>", 'g');
