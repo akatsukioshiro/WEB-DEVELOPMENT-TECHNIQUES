@@ -247,7 +247,7 @@ for(var i=0;i<txt.length;i++)
 								if(line[j+1]==="all")var a=divs[wit].tagName.toLowerCase();
 								else a=divs[wit];
 								var ce=document.getElementsByTagName(a)[0];
-								ce.style.outline="thin solid grey";
+								//ce.style.outline="thin solid grey";
 								ce.setAttribute("contenteditable","true");
 							}	
 						}
@@ -328,6 +328,7 @@ function calldrag(boxes,content,makenodenmlc)
 	dragElement(content);
 }
 //onkeyup="myFunction()"
+document.getElementsByTagName("codecontent1")[0].style.outline="thin solid grey";
 document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
 function callcolorer()
 {
@@ -348,7 +349,7 @@ function callcolorer()
 			for(var cwrst=0;cwrst<cwords.length;cwrst++)
 			{	
 				cwords[cwrst]=cwords[cwrst].trim();
-				//alert(cwords[cwrst]);
+				//alert("1"+cwords[cwrst]);
 				if(cwords[cwrst]==="<span")
 				{
 					ttttt="1";
@@ -369,125 +370,133 @@ function callcolorer()
 				}
 				if(cwords[cwrst]===undefined)
 				{
-					//alert(cwords[cwrst]);
+					//alert("2"+cwords[cwrst]);
 					cwords[cwrst]=cwords[cwrst+2];
-					//alert(cwords[cwrst]);
-					var rarar=cwords[cwrst].split(">");
-					//alert(rarar[rarar.length-1]);
+					//alert("3"+cwords[cwrst]);
+					if(cwords[cwrst]!==undefined)var rarar=cwords[cwrst].split(">");
+					//alert("4"+rarar[rarar.length-1]);
 					if(rarar[2]!==undefined)
 					{
 						var rre=new RegExp("&nbsp;", 'g');
 						rarar[2]=rarar[2].replace(rre, "");
 					}
 					cwords[cwrst]=rarar[2];
-					//alert(cwords[cwrst]);
+					//alert("5"+cwords[cwrst]);
 				}
 				if(ttttt!=="1")
 				{
 					if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
 					//alert(cwords[cwrst]);
-					var choicer=cwords[cwrst].split("=");
+					var choicer=["","",""];
+					if(cwords[cwrst]!==undefined)choicer=cwords[cwrst].split("=");
+					//alert("6"+choicer[0]);
+					//var fuf=choicer[0].split("<");
+					//if(fuf[1]!==undefined)choicer[0]=fuf[0];
+					choicer[0]=choicer[0].replace(new RegExp("<br>",'g'), "");
+					//alert("7"+choicer[0]);
+					if(choicer[0]!==undefined)
+					{
 					switch(choicer[0])
 					{
 						case "make": 
 						{
-							coler(cc,cwords[cwrst],"1");//alert("2");
+							coler(cc,choicer[0],"1");//alert("2");
 							break;
 						}
 						case "remake": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "with": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "where": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "in": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "having": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "adding": 
-							{
-							coler(cc,cwords[cwrst],"1");
+						{
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "and": 
 						{
-							coler(cc,cwords[cwrst],"1");
+							coler(cc,choicer[0],"1");
 							break;
 						}
 						case "class": 
 						{
-							coler(cc,cwords[cwrst],"2");
+							coler(cc,choicer[0],"2");
 							break;
 						}
 						case "id": 
 						{
-							coler(cc,cwords[cwrst],"2");
+							coler(cc,choicer[0],"2");
 							break;
 						}
 						case "is": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "are": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "take": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "takes": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "input": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "clickable": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "draggable": 
 						{
-							coler(cc,cwords[cwrst],"3");
+							coler(cc,choicer[0],"3");
 							break;
 						}
 						case "text": 
 						{
-							coler(cc,cwords[cwrst],"4");
+							coler(cc,choicer[0],"4");
 							break;
 						}
 						case "image": 
 						{
-							coler(cc,cwords[cwrst],"4");
+							coler(cc,choicer[0],"4");
 							break;
 						}
 						
 						
 					}
-										
+					}										
 				}
 				//if(cwords[cwrst]===undefined)
 				//{
@@ -500,39 +509,46 @@ function callcolorer()
 //===================================================
 function coler(cc,sas,ch)
 {
+	//alert("sas : "+sas);
 	var cd=cc.innerHTML;
 	if(ch==="1")	
 	{
 		var cd1="<span style='color:red;'>"+sas+"</span>";
+	//	alert("sas1 : "+cd1);
 	}
 	else if(ch==="2")	
 	{
 		var choicy=sas.split("=");
 		var cd1="<span style='color:green;'>"+choicy[0]+"</span>";
-		cd1=cd1+"="+choicy[1];
-	}
+		//cd1=cd1+"="+choicy[1];
+//	alert("sas2 : "+cd1);
+}
 	else if(ch==="3")	
 	{
 		var cd1="<span style='color:blue;'>"+sas+"</span>";
-	}
+//	alert("sas3 : "+cd1);
+}
 	else if(ch==="4")	
 	{
 		var choicy=sas.split("=");
 		var cd1="<span style='color:pink;'>"+choicy[0]+"</span>";
-		cd1=cd1+"="+choicy[1];
+		//cd1=cd1+"="+choicy[1];
 		//alert(cd1);
-	}
-	var re=new RegExp(sas, 'g');
+//	alert("sas4 : "+cd1);
+}
+	var re=new RegExp("("+sas+")", 'g');
 	var re1=new RegExp("<div>", 'g');
 	var re2=new RegExp("</div>", 'g');
-	cd=cd.replace(re, cd1);
+	//var cd2=cd.match(cd1);
+	cd=cd.replace(new RegExp("\\b"+sas+"\\b",'g'), cd1);
 	cd=cd.replace(re1, "");
-	cd=cd.replace(re1, "");
+	cd=cd.replace(re2, "");
 	if(ch==="4")	
 	{
 		cd1=cd1+"|";
 		cd=cd.replace(cd1, "");
 	}
+	//cd=cd.replace(new RegExp("$",'g'), "<br> $");
 	cc.innerHTML=cd;
 	cc.focus();
 	setEndOfContenteditable(cc);
