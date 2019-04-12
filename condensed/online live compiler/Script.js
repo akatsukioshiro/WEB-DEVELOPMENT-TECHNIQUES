@@ -386,13 +386,11 @@ function callcolorer()
 				if(ttttt!=="1")
 				{
 					if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
-					//alert(cwords[cwrst]);
 					var choicer=["","",""];
 					if(cwords[cwrst]!==undefined)choicer=cwords[cwrst].split("=");
 					//alert("6"+choicer[0]);
-					//var fuf=choicer[0].split("<");
-					//if(fuf[1]!==undefined)choicer[0]=fuf[0];
 					choicer[0]=choicer[0].replace(new RegExp("<br>",'g'), "");
+					choicer[0]=choicer[0].replace(new RegExp("<br",'g'), "");
 					//alert("7"+choicer[0]);
 					if(choicer[0]!==undefined)
 					{
