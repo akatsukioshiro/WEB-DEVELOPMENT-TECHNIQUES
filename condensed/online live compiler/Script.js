@@ -342,6 +342,7 @@ function callcolorer()
 	if(x89===32 || x89===13 || x89===17 || paster==="pasted")
 	{	paster="notpasted";
 		var cc=document.getElementsByTagName("codecontent")[0];
+		cc.setAttribute("spellcheck","false");
 		var clines=cc.innerHTML.split("$");//alert(clines);
 		for(var clinest=1;clinest<clines.length;clinest++)
 		{	
@@ -378,15 +379,27 @@ function callcolorer()
 					cwords[cwrst]=rarar[2];
 				}
 				if(ttttt!=="1")
-				{
+				{	//alert(cwords[cwrst]);
 					if(cwrst===(cwords.length-1))cwords[cwrst]=cwords[cwrst].replace("&nbsp;", "");
-					var choicer=["","",""];
+					//alert(cwords[cwrst]);var choicer=["","",""];
 					if(cwords[cwrst]!==undefined)choicer=cwords[cwrst].split("=");
+					//alert(choicer[0]);
+					var arer="0";
+					if(choicer[0]==="style")
+					{
+						choicer[0]=choicer[1];
+						arer="1";
+					}
+					//alert(choicer[0]);
 					choicer[0]=choicer[0].replace(new RegExp("<br>",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("<br",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("&nbsp;",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("</div>",'g'), "");
 					choicer[0]=choicer[0].replace(new RegExp("<div>",'g'), "");
+					//alert(choicer[0]);
+					var spanneri=choicer[0].split("</span>");
+					if(arer==="1")choicer[0]=spanneri[1];
+					//alert(choicer[0]);
 					if(choicer[0]!==undefined)
 					{
 					switch(choicer[0])
@@ -442,6 +455,11 @@ function callcolorer()
 							break;
 						}
 						case "is": 
+						{
+							coler(cc,choicer[0],"3");
+							break;
+						}
+						case "all": 
 						{
 							coler(cc,choicer[0],"3");
 							break;
