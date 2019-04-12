@@ -439,6 +439,53 @@ function callcolorer()
 							coler(cc,cwords[cwrst],"2");
 							break;
 						}
+						case "is": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "are": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "take": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "takes": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "input": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "clickable": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "draggable": 
+						{
+							coler(cc,cwords[cwrst],"3");
+							break;
+						}
+						case "text": 
+						{
+							coler(cc,cwords[cwrst],"4");
+							break;
+						}
+						case "image": 
+						{
+							coler(cc,cwords[cwrst],"4");
+							break;
+						}
+						
+						
 					}
 										
 				}
@@ -464,12 +511,28 @@ function coler(cc,sas,ch)
 		var cd1="<span style='color:green;'>"+choicy[0]+"</span>";
 		cd1=cd1+"="+choicy[1];
 	}
+	else if(ch==="3")	
+	{
+		var cd1="<span style='color:blue;'>"+sas+"</span>";
+	}
+	else if(ch==="4")	
+	{
+		var choicy=sas.split("=");
+		var cd1="<span style='color:pink;'>"+choicy[0]+"</span>";
+		cd1=cd1+"="+choicy[1];
+		//alert(cd1);
+	}
 	var re=new RegExp(sas, 'g');
 	var re1=new RegExp("<div>", 'g');
 	var re2=new RegExp("</div>", 'g');
 	cd=cd.replace(re, cd1);
 	cd=cd.replace(re1, "");
 	cd=cd.replace(re1, "");
+	if(ch==="4")	
+	{
+		cd1=cd1+"|";
+		cd=cd.replace(cd1, "");
+	}
 	cc.innerHTML=cd;
 	cc.focus();
 	setEndOfContenteditable(cc);
