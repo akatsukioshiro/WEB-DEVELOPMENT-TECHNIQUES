@@ -331,6 +331,7 @@ document.getElementsByTagName("codecontent1")[0].style.outline="thin solid grey"
 document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
 document.getElementsByTagName("codecontent")[0].addEventListener("paste", callerer);
 var paster="notpasted";
+//document.getElementsByTagName("codecontent")[0].style.overflowY = "scroll";
 function callerer()
 {
 	setTimeout(callcolorer, 50);
@@ -338,11 +339,13 @@ function callerer()
 }
 function callcolorer()
 {
+	
 	if(paster==="notpasted")var x89 = event.which || event.keyCode;
 	if(x89===32 || x89===13 || x89===17 || paster==="pasted")
 	{	paster="notpasted";
 		var cc=document.getElementsByTagName("codecontent")[0];
 		cc.setAttribute("spellcheck","false");
+		cc.focus();
 		var clines=cc.innerHTML.split("$");//alert(clines);
 		for(var clinest=1;clinest<clines.length;clinest++)
 		{	
@@ -521,28 +524,29 @@ function coler(cc,sas,ch)
 	var cd=cc.innerHTML;
 	if(ch==="1")	
 	{
-		var cd1="<span style='color:red;'>"+sas+"</span>";
+		var cd1="<span contenteditable='false' style='color:red;'>"+sas+"</span>";
 	}
 	else if(ch==="2")	
 	{
 		var choicy=sas.split("=");
-		var cd1="<span style='color:green;'>"+choicy[0]+"</span>";
+		var cd1="<span contenteditable='false' style='color:green;'>"+choicy[0]+"</span>";
 		//cd1=cd1+"="+choicy[1];
 	}
 	else if(ch==="3")	
 	{
-		var cd1="<span style='color:blue;'>"+sas+"</span>";
+		var cd1="<span contenteditable='false' style='color:blue;'>"+sas+"</span>";
 	}
 	else if(ch==="4")	
 	{
 		var choicy=sas.split("=");
-		var cd1="<span style='color:pink;'>"+choicy[0]+"</span>";
+		var cd1="<span contenteditable='false' style='color:pink;'>"+choicy[0]+"</span>";
 		//cd1=cd1+"="+choicy[1];
 		//alert(cd1);
 	}
 	var re=new RegExp("("+sas+")", 'g');
 	var re1=new RegExp("<div>", 'g');
 	var re2=new RegExp("</div>", 'g');
+	cd=cd.replace(new RegExp("&#8203;",'g'), "");
 	cd=cd.replace(new RegExp("\\b"+sas+"\\b",'g'), cd1);
 	cd=cd.replace(re1, "");
 	cd=cd.replace(re2, "");
@@ -554,6 +558,7 @@ function coler(cc,sas,ch)
 	cc.innerHTML=cd;
 	cc.focus();
 	setEndOfContenteditable(cc);
+	
 	
 }
 function setEndOfContenteditable(contentEditableElement)

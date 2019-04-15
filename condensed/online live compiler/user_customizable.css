@@ -30,9 +30,10 @@ submit
 codecontent
 {
 	background-color:rgba(0,0,0,0);
-	height:90%;
+	height:89%;
 	width:90%;
 	padding-left:2.8vw;
+	overflow-Y:scroll;
 	display:inline-block;
 }
 pre{
