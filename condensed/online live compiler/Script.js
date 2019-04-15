@@ -1,4 +1,4 @@
-func_count=0;
+func_count=0;var subby="0";
 var x = document.getElementsByTagName("body")[0].childNodes;
 var txt,fText;
 for(var i = 0; i < x.length; i++) 
@@ -15,8 +15,11 @@ for(var i = 0; i < x.length; i++)
        		x[i].parentNode.removeChild(x[i]);
     	}
 }
-fText = fText.replace(/\r?\n|\r/g,"");
-txt =  fText.split("$");
+if(fText!==undefined)
+{
+	fText = fText.replace(/\r?\n|\r/g,"");
+	txt =  fText.split("$");
+}
 document.body.style.margin="0";
 var box=document.createElement("box");
 box.style.height="100vh";
@@ -32,6 +35,8 @@ var funcs = [
     fifth_function,
     sixth_function
 ]
+if(fText!==undefined)
+{
 for(var i=0;i<txt.length;i++)
 {
 	var withwer="0";
@@ -228,7 +233,7 @@ for(var i=0;i<txt.length;i++)
 									var boxes = document.createElement(a+wit);
 									var makenodenmlc=make.nodeName.toLowerCase();
 									var content=document.getElementsByTagName(a)[0];
-									content.onclick = calldrag(boxes,content,makenodenmlc);
+									content.ondblclick = calldrag(boxes,content,makenodenmlc);
 								}
 							}
 						}
@@ -262,8 +267,10 @@ for(var i=0;i<txt.length;i++)
 			
 		}
 		if(check===1)document.getElementsByTagName(tgnm)[0].appendChild(make);
-		tgnm="box";	
+		tgnm="box";
+			
 	}
+}
 }
 //===================================================
 function dragElement(elmnt) 
@@ -327,11 +334,48 @@ function calldrag(boxes,content,makenodenmlc)
 	content.style.marginLeft=0;
 	dragElement(content);
 }
-document.getElementsByTagName("codecontent1")[0].style.outline="thin solid grey";
-document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
-document.getElementsByTagName("codecontent")[0].addEventListener("paste", callerer);
-var paster="notpasted";
-//document.getElementsByTagName("codecontent")[0].style.overflowY = "scroll";
+if(document.getElementsByTagName("codecontent1")[0]!==undefined)
+{
+	document.getElementsByTagName("codecontent1")[0].style.outline="thin solid grey";
+	document.getElementsByTagName("codecontent")[0].addEventListener("keyup", callcolorer);
+	document.getElementsByTagName("codecontent")[0].addEventListener("paste", callerer);
+	var paster="notpasted";
+	// addEventListener support for IE8
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener){
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+	var xframe = document.createElement("IFRAME");
+	xframe.setAttribute("height","99%");
+	xframe.setAttribute("width","99%");
+	xframe.id='the_iframe';
+	//xframe.contentWindow.location = xframe.src;
+	xframe.setAttribute("sandbox","allow-same-origin allow-scripts allow-popups allow-forms");
+ 	xframe.setAttribute("src", "./iframe.html");
+  	document.getElementsByTagName("outputpane")[0].appendChild(xframe);
+	// Send a message to the child iframe
+        var iframeEl = document.getElementById('the_iframe'),
+            messageButton = document.getElementById('subut');
+            
+        // Send a message to the child iframe
+        var sendMessage = function(msg) {
+            // Make sure you are sending a string, and to stringify JSON
+            iframeEl.contentWindow.postMessage(msg, '*');
+        };
+        // Send random messge data on every button click
+        bindEvent(messageButton, 'click', function (e) {
+            var random = Math.random();
+	var liki="";//liki='<script src="Script.js"></script><link rel="stylesheet" href="user_customizable.css"></style>';
+            sendMessage('' + document.getElementsByTagName("codecontent")[0].textContent + liki);
+        });
+	//***************
+
+        
+
+}
 function callerer()
 {
 	setTimeout(callcolorer, 50);
@@ -581,8 +625,27 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();
     }
 }
+// addEventListener support for IE8
+        function bindEvent(element, eventName, eventHandler) {
+            if (element.addEventListener) {
+                element.addEventListener(eventName, eventHandler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + eventName, eventHandler);
+            }
+        }
+        
+        var results = document.getElementsByTagName("box")[0],
+            messageButton = document.getElementById('subut');
+        // Listen to messages from parent window
+        bindEvent(window, 'message', function (e) {
+            results.innerHTML = e.data;
+        });
+        
+function first_function()
+{
+	//alert(document.getElementsByTagName("codecontent")[0].textContent);	
+}
 
-function first_function(){alert(document.getElementsByTagName("codecontent")[0].textContent);}
 function second_function(){alert("hi 2");}
 function third_function(){alert("hi 3");}
 function forth_function(){alert("hi 4");}
