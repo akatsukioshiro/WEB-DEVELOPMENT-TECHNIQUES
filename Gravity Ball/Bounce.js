@@ -8,28 +8,29 @@ function myLoop()
 {           
    	setTimeout(
 	function () 
-	{    i++;
+	{    i*=1.02;
       		if (i < 225) 
 		{            
          		myLoop();
 			n*=1.03; 
-			x.setAttribute("cy",n);          
+			if(n<600){x.setAttribute("cy",n);}          
       		//console.log(n);
-			console.log("A");
-			if(n<225)t="0";
+//			console.log("A");
+			if(i<225)t="0";
 		}
 		else if (i>0 && n>85 && t=="0") 
 		{            
          		myLoop();
 			n/=1.003; 
-			x.setAttribute("cy",n);          
-      		console.log("B");if(n<104){t="1";i=1;}
+			if(n<600){x.setAttribute("cy",n);}          
+//      		console.log("B");
+if(n<104){t="1";i=1;}
 			//console.log(i);
 		}
 		
 		
 		                        
-   	}, 5);
+   	}, 0.1);
 	
 
 }
