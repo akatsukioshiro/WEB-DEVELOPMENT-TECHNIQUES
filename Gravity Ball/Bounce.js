@@ -4,36 +4,17 @@ x.setAttribute("cx",100);
 var i = 1;                     
 var n=1;
 var t="0";
+var down=1.02;
+var up=1.02;
+var ht=2;
 function myLoop() 
 {           
-   	setTimeout(
-	function () 
-	{    i*=1.02;
-      		if (i < 225) 
-		{            
-         		myLoop();
-			n*=1.03; 
-			if(n<600){x.setAttribute("cy",n);}          
-      		//console.log(n);
-//			console.log("A");
-			if(i<225)t="0";
-		}
-		else if (i>0 && n>85 && t=="0") 
-		{            
-         		myLoop();
-			n/=1.003; 
-			if(n<600){x.setAttribute("cy",n);}          
-//      		console.log("B");
-if(n<104){t="1";i=1;}
-			//console.log(i);
-		}
-		
-		
-		                        
-   	}, 0.1);
-	
-
+   	
+if(t=="0"){x.setAttribute("cy",n*=down);}          
+else if(t=="1"){x.setAttribute("cy",n/=up);}
+if(n>=799){t="1";}
+else if(n<=ht){t="0";}
 }
 
-myLoop();
+setInterval(myLoop, 1);
     
