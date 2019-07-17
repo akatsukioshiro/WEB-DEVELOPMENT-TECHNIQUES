@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+$make div id=d1 with editbox(id=ebox;2vh*20%;) passbox(id=pbox;2vh*20%;) submitbox(id=sbox;2vh*20%;) where editbox,passbox take input
+$remake submitbox having id=sbox adding text=|SUBMIT
+
+<script src="Script.js"></script>
+<script>
+var ps="";
+var kp=0;
+document.getElementById("ebox").addEventListener("keyup", myF1);
+//document.getElementById("pbox").addEventListener("keyup", myF2);
+document.getElementById("pbox").addEventListener("keyup", function(event) 
+{
+
+myF2();
+	if(event.which==8)
+	{
+        //kp--;
+        var k=document.getElementById("pbox").innerText.split("");
+	kp=k.length;
+        ps=ps.slice(0, kp);
+}else kp++;
+});
+document.getElementById("sbox").addEventListener("click", myF3);
+function myF1() {
+  var x = document.getElementById("d1");
+  var y = document.getElementById("ebox");
+  x.value = x.style.background=y.innerText;
+}
+function myF2() {
+  var y = document.getElementById("pbox");
+  var p = y.innerText.split("");
+  var temp="";
+  if(p[p.length-1]!=='•')ps=ps+p[p.length-1];
+  for(var c=0;c<p.length;c++)temp=temp+"•";
+  y.innerText=temp;
+  setEndOfContenteditable(y);
+  document.documentElement.setAttribute("p",ps);
+}
+function myF3() {
+alert(ps);
+}
+function setEndOfContenteditable(contentEditableElement)
+{
+    var range,selection;
+    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+    {
+        range = document.createRange();
+	range.selectNodeContents(contentEditableElement);	
+	range.collapse(false);
+	selection = window.getSelection();
+	selection.removeAllRanges();
+	selection.addRange(range);
+    }
+    else if(document.selection)//IE 8 and lower
+    { 
+        range = document.body.createTextRange();
+        range.moveToElementText(contentEditableElement);
+        range.collapse(false);
+        range.select();
+    }
+}
+</script>
+<link rel="stylesheet" href="css.css"></style>
