@@ -7,8 +7,9 @@ DIV
 </body>
 <script>
 var k=0;
+var ms="";
 var count=0;
-window.addEventListener("keydown",function(e){k=e.which || e.keyCode;});
+window.addEventListener("keypress",function(e){k=e.which || e.keyCode;});
 window.addEventListener("keyup",function(e){k=0;});
 
 document.getElementById("d").addEventListener("click",function(event)
@@ -16,6 +17,36 @@ document.getElementById("d").addEventListener("click",function(event)
 var a=document.createElement("SA");
 a.id="SA"+count;
 count+=1;
+a.addEventListener("mouseup",divrez);
+a.addEventListener("mousedown",divrez);
+
+function divrez()
+{ms="d";
+if(a.children.length!==0 || a.children.length!=null){
+if(a.style.width>a.style.height)
+{
+for(var chil=0;chil<a.children.length;chil++)
+{
+var cc=a.children;
+cc[chil].style.float="left";
+cc[chil].style.height="100%";
+var wid=100/a.children.length;
+cc[chil].style.width=wid+"%";
+}
+}
+else if(a.style.width<a.style.height)
+{
+for(var chil=0;chil<a.children.length;chil++)
+{
+var cc=a.children;
+var hyt=100/a.children.length;
+cc[chil].style.height=hyt+"%";
+cc[chil].style.width="100%";
+cc[chil].style.display="block";
+}
+}
+}
+}
 a.addEventListener("click",function(event)
 {
 if (event.detail === 2 && (k===82 || k===114)) 
@@ -32,6 +63,34 @@ window.getSelection().removeAllRanges();
 ee.style.resize="both";
 ee.style.overflow="auto";
 }}
+else if(event.detail === 2 && (k===98 || k===66))
+{
+var ct = prompt("Please enter number of buttons required:", 0);
+  if (ct != null || ct!=0) 
+{
+for(var cnt=1;cnt<=ct;cnt++)
+{
+var b=document.createElement("B");
+b.id="B"+cnt;
+if(a.style.width>a.style.height)
+{
+b.style.float="left";
+var wid=100/ct;
+b.style.width=wid+"%";
+b.style.height="100%";
+}
+else if(a.style.width<a.style.height)
+{
+var hyt=100/ct;
+b.style.height=hyt+"%";
+b.style.width="100%";
+b.style.display="block";
+}
+b.style.background="blue";
+document.getElementById(a.id).appendChild(b);
+}
+}
+}
 else if(event.detail === 2)
 {
 var ee=document.getElementById(a.id);
