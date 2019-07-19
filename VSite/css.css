@@ -26,6 +26,7 @@ display:block;
 overflow:hidden;
 top:6vh;
 left:10vw;
+pointer-events:all;
 }
 #sbox
 {

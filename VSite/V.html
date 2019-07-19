@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 
-$make div id=d1 with editbox(id=ebox;2vh*20%;) passbox(id=pbox;2vh*20%;) submitbox(id=sbox;2vh*20%;) where editbox,passbox take input
+$make div id=d1 with editbox(id=ebox;class=e6703f;2vh*20%;) passbox(id=pbox;2vh*20%;) submitbox(id=sbox;2vh*20%;) where editbox,passbox take input
 $remake submitbox having id=sbox adding text=|SUBMIT
 
 <script src="Script.js"></script>
 <script>
 var ps="";
+document.documentElement.setAttribute("enc","");
 var kp=0;
 document.getElementById("ebox").addEventListener("keyup", myF1);
-//document.getElementById("pbox").addEventListener("keyup", myF2);
+document.getElementById("pbox").addEventListener("mousedown", myF4);
 document.getElementById("pbox").addEventListener("keyup", function(event) 
 {
-
+ps=window.atob(document.documentElement.getAttribute("enc"));
 myF2();
 	if(event.which==8)
 	{
@@ -19,7 +20,7 @@ myF2();
         var k=document.getElementById("pbox").innerText.split("");
 	kp=k.length;
         ps=ps.slice(0, kp);
-}else kp++;
+}else kp++;document.documentElement.setAttribute("enc",window.btoa(ps));ps="";
 });
 document.getElementById("sbox").addEventListener("click", myF3);
 function myF1() {
@@ -35,10 +36,21 @@ function myF2() {
   for(var c=0;c<p.length;c++)temp=temp+"•";
   y.innerText=temp;
   setEndOfContenteditable(y);
-  document.documentElement.setAttribute("p",ps);
+  
 }
 function myF3() {
-alert(ps);
+var d=parseInt(window.atob(document.documentElement.getAttribute("enc"))).toString(16);
+//alert(d);
+var e=document.getElementById("ebox").className;
+//alert(e);
+if(d===e)alert("done");
+else alert("mismatch");
+//alert(window.atob(window.btoa(ps)));
+}
+function myF4()
+{
+document.documentElement.setAttribute("enc","");
+document.getElementById("pbox").innerText="";
 }
 function setEndOfContenteditable(contentEditableElement)
 {
