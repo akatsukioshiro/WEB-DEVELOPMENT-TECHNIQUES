@@ -4,38 +4,38 @@ background:black;
 }
 #d1
 {
+
 background:white;
 display:block;
 height:14vh;
-width:100%;
+width:40vw;
+padding:2vh;
+margin: 0 auto;
+
 }
 #ebox
 {
-position:absolute;
 background:rgba(250,250,250);
 display:block;
 overflow:hidden;
-top:2vh;
-left:10vw;
+margin: 0 auto;
 }
 #pbox
 {
-position:absolute;
 background:rgba(250,250,250);
 display:block;
 overflow:hidden;
-top:6vh;
-left:10vw;
-pointer-events:all;
+margin: 0 auto;
+margin-top:2vh;
 }
 #sbox
 {
-position:absolute;
 background:black;
 color:white;
 text-align:center;
 display:block;
 overflow:hidden;
-top:10vh;
-left:10vw;
+
+margin: 0 auto;
+margin-top:2vh;
 }
