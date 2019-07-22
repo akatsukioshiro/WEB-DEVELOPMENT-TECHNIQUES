@@ -3,38 +3,81 @@
 <style>
 body
 {
-margin:0;
+	margin:0;
 }
 #d
 {
-height:5vh;
-width:2.5vw;
-display:block;
-background:white;
-line-height:5vh;
-text-align:center;
+	height:5vh;
+	background:white;
+	line-height:5vh;
+	text-align:center;
+	float:left;
+}
+#submit
+{
+	height:5vh;
+	background:white;
+	line-height:5vh;
+	float:left;
+	text-align:center;
 }
 navbar
 {
-height:5vh;
-width:100%;
-background:rgba(0,0,0,0.5);
-display:block;
+	height:5vh;
+	width:100%;
+	background:rgba(0,0,0,0.5);
+	display:block;
+}
+Fbody
+{
+	height:95vh;
+	width:100%;
+	display:block;
+	background:rgba(230,100,100,0.5);
+	overflow:scroll;
 }
 </style>
 </head>
 <body>
 <navbar>
-<div id="d">DIV</div>
+	<div id="d">
+		DIV
+	</div>
+	<div id="submit">
+		SUBMIT
+	</div>
 </navbar>
+<Fbody id="fbody">
+</Fbody>
 </body>
 <script>
 var k=0;
+var kp=0;
 var count=0;
 var drag=0;
+
+function detectspecialkeys(e){
+    var evtobj=window.event? event : e
+    if (evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)
+    kp=1;//    alert("you pressed one of the 'Alt', 'Ctrl', or 'Shift' keys");
+}
+//window.onkeypress=;
+
+document.getElementById("submit").addEventListener("click",function(event)
+{
+var o=document.getElementById("fbody").children;
+var txt = "";
+for (var i = 0; i < o.length; i++)
+{
+	txt =txt+o[i].id + ", "+o[i].style.left + ", "+o[i].style.top+", "+o[i].style.position + "; ";
+}
+alert(txt);
+});
 window.addEventListener("keypress",function(e)
 {
 	k=e.which || e.keyCode;
+	detectspecialkeys(event);
+	//alert(e.which);
 }
 );
 window.addEventListener("keyup",function(e)
@@ -54,7 +97,7 @@ document.getElementById("d").addEventListener("click",function(event)
 	a.style.background="red";
 	a.style.overflow="auto";
 	a.setAttribute("state","0");
-	document.body.appendChild(a);
+	document.getElementById("fbody").appendChild(a);
 	a.addEventListener("mouseup",divrez);
 	a.addEventListener("mousedown",divrez);
 	function divrez()
@@ -88,7 +131,7 @@ document.getElementById("d").addEventListener("click",function(event)
 	a.addEventListener("click",function(event)
 	{
 		if (event.detail === 2 && (k===82 || k===114)) 
-		{//r
+		{//r for resize
 			var ee=document.getElementById(a.id);
 			if(ee.style.resize!=="none")
 			{
@@ -104,7 +147,7 @@ document.getElementById("d").addEventListener("click",function(event)
 			}
 		}
 		else if(event.detail === 2 && (k===98 || k===66))
-		{//b
+		{//b for button
 			var ct = prompt("Please enter number of buttons required:", 0);
   			if (ct != null || ct!=0) 
 			{
@@ -132,22 +175,8 @@ document.getElementById("d").addEventListener("click",function(event)
 				}
 			}
 		}
-		else if(event.detail === 2 && (k===101 || k===69))
-		{//e
-			var ee=document.getElementById(a.id);
-			if(ee.getAttribute("contenteditable")==="true" || ee.getAttribute("contenteditable")==="")
-			{
-				ee.blur();window.getSelection().removeAllRanges();
-				ee.setAttribute("contenteditable","false");
-			}
-			else 
-			{
-				ee.setAttribute("contenteditable","true");
-				ee.focus();
-			}
-		}
 		else if(event.detail === 2 && (k===100 || k===68))
-		{
+		{//d for drag
 			var ee=document.getElementById(a.id);
 			ee.style.position="absolute";
 			if(ee.getAttribute("state")==="0")ee.setAttribute("state","1");
@@ -155,10 +184,28 @@ document.getElementById("d").addEventListener("click",function(event)
 			dragElement(ee,ee.getAttribute("state"));
 			alert(ee.getAttribute("state"));
 		}
+		else if(event.detail === 1 && event.ctrlKey)
+		{//CTRL + 1 click
+			var ee=document.getElementById(a.id);
+			edit(ee);
+		}
 	}
 	);
 }
 );
+function edit(ee)
+{
+	if(ee.getAttribute("contenteditable")==="true" || ee.getAttribute("contenteditable")==="")
+	{
+		ee.blur();window.getSelection().removeAllRanges();
+		ee.setAttribute("contenteditable","false");
+	}
+	else 
+	{
+		ee.setAttribute("contenteditable","true");
+		ee.focus();
+	}
+}
 function dragElement(elmnt,state) 
 {
 	if(state==="1")
