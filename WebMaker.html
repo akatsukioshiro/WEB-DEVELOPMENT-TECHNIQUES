@@ -65,11 +65,12 @@ function detectspecialkeys(e){
 
 document.getElementById("submit").addEventListener("click",function(event)
 {
-var o=document.getElementById("fbody").children;
+var o=document.documentElement.querySelectorAll("*");//document.getElementById("fbody").children;
 var txt = "";
 for (var i = 0; i < o.length; i++)
 {
-	txt =txt+o[i].id + ", "+o[i].style.left + ", "+o[i].style.top+", "+o[i].style.position + "; ";
+	txt =txt+o[i].tagName;
+	//txt =txt+o[i].id + ", "+o[i].style.left + ", "+o[i].style.top+", "+o[i].style.position + "; ";
 }
 alert(txt);
 });
