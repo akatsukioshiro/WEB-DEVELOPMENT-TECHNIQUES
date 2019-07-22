@@ -1,10 +1,37 @@
 <!DOCTYPE html>
+<head>
+<style>
+body
+{
+margin:0;
+}
+#d
+{
+height:5vh;
+width:2.5vw;
+display:block;
+background:white;
+line-height:5vh;
+text-align:center;
+}
+navbar
+{
+height:5vh;
+width:100%;
+background:rgba(0,0,0,0.5);
+display:block;
+}
+</style>
+</head>
 <body>
+<navbar>
 <div id="d">DIV</div>
+</navbar>
 </body>
 <script>
 var k=0;
 var count=0;
+var drag=0;
 window.addEventListener("keypress",function(e)
 {
 	k=e.which || e.keyCode;
@@ -20,6 +47,13 @@ document.getElementById("d").addEventListener("click",function(event)
 	var a=document.createElement("SA");
 	a.id="SA"+count;
 	count+=1;
+	a.style.height="100px";
+	a.style.width="100px";
+	a.style.position="fixed";
+	a.style.resize="both";
+	a.style.background="red";
+	a.style.overflow="auto";
+	document.body.appendChild(a);
 	a.addEventListener("mouseup",divrez);
 	a.addEventListener("mousedown",divrez);
 	function divrez()
@@ -96,7 +130,7 @@ document.getElementById("d").addEventListener("click",function(event)
 				}
 			}
 		}
-		else if(event.detail === 2)
+		else if(event.detail === 2 && (k===101 || k===69))
 		{
 			var ee=document.getElementById(a.id);
 			if(ee.getAttribute("contenteditable")==="true" || ee.getAttribute("contenteditable")==="")
@@ -110,15 +144,65 @@ document.getElementById("d").addEventListener("click",function(event)
 				ee.focus();
 			}
 		}
+		else if(event.detail === 2)
+		{
+			var ee=document.getElementById(a.id);
+			ee.style.position="absolute";
+			if(drag===0)
+			{
+				dragElement(ee);
+				alert(ee);
+			}
+		}
 	}
 	);
-a.style.height="100px";
-a.style.width="100px";
-a.style.display="block";
-a.style.resize="both";
-a.style.background="red";
-a.style.overflow="auto";
-document.body.appendChild(a);
 }
 );
+function dragElement(elmnt) 
+{
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  	if (document.getElementById(elmnt.id)) 
+	{
+    		/* if present, the header is where you move the DIV from:*/
+    		document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+  	} 
+	else 
+	{
+    		/* otherwise, move the DIV from anywhere inside the DIV:*/
+    		elmnt.onmousedown = dragMouseDown;
+  	}
+
+  	function dragMouseDown(e) 
+	{
+    		e = e || window.event;
+    		e.preventDefault();
+    		// get the mouse cursor position at startup:
+    		pos3 = e.clientX;
+    		pos4 = e.clientY;
+    		document.onmouseup = closeDragElement;
+    		// call a function whenever the cursor moves:
+    		document.onmousemove = elementDrag;
+  	}
+
+  	function elementDrag(e) 
+	{
+    		e = e || window.event;
+    		e.preventDefault();
+    		// calculate the new cursor position:
+    		pos1 = pos3 - e.clientX;
+    		pos2 = pos4 - e.clientY;
+    		pos3 = e.clientX;
+    		pos4 = e.clientY;
+   		// set the element's new position:
+    		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  	}
+
+  	function closeDragElement() 
+	{
+    		/* stop moving when mouse button is released:*/
+    		document.onmouseup = null;
+    		document.onmousemove = null;
+  	}
+}
 </script>
