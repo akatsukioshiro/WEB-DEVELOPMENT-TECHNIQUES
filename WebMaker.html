@@ -43,9 +43,9 @@ Fbody
 	<div id="d">
 		DIV
 	</div>
-	<div id="submit">
+	<a id="submit" href="" download>
 		SUBMIT
-	</div>
+	</a>
 </navbar>
 <Fbody id="fbody">
 </Fbody>
@@ -65,14 +65,14 @@ function detectspecialkeys(e){
 
 document.getElementById("submit").addEventListener("click",function(event)
 {
-var o=document.documentElement.querySelectorAll("*");//document.getElementById("fbody").children;
-var txt = "";
-for (var i = 0; i < o.length; i++)
-{
-	txt =txt+o[i].tagName;
-	//txt =txt+o[i].id + ", "+o[i].style.left + ", "+o[i].style.top+", "+o[i].style.position + "; ";
-}
-alert(txt);
+var text="<!DOCTYPE html><html><head></head><body>"+document.getElementById("fbody").innerHTML+"</body></html>";
+var data = new Blob([text], {type: 'text/html'});
+
+var url = window.URL.createObjectURL(data);
+
+document.getElementById('submit').href = url;
+//window.setTimeout(window.URL.revokeObjectURL(url),2000);
+//window.URL.revokeObjectURL(url);
 });
 window.addEventListener("keypress",function(e)
 {
