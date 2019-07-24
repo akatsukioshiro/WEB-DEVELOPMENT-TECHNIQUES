@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body onload="start()">
 <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;">
 </svg>
@@ -9,121 +8,119 @@ var downtime=0;
 var hit=0;
 function svgbox(coord,c) 
 {
-var nm="poly"+c;
-var newLine = document.createElementNS('http://www.w3.org/2000/svg','polygon');
-newLine.setAttribute('id',nm);
-newLine.setAttribute('points',coord);
-newLine.setAttribute('fill',"white");
-newLine.setAttribute("stroke", "red");
-newLine.setAttribute("stroke-width",1);
-if(nm==="poly5")newLine.setAttribute("stroke-dasharray","20,10,5,5,5,10");
-document.getElementById('svg').appendChild(newLine);
+	var nm="poly"+c;
+	var poly = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+	poly.setAttribute('id',nm);
+	poly.setAttribute('points',coord);
+	poly.setAttribute('fill',"white");
+	poly.setAttribute("stroke", "red");
+	poly.setAttribute("stroke-width",1);
+	if(nm==="poly5")poly.setAttribute("stroke-dasharray","20,10,5,5,5,10");
+	document.getElementById('svg').appendChild(poly);
 }
 function sbox(x,y)
 {
-var sx=x+10;
-var sy=y+10;
-var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
-for(var c=1;c<5;c++)svgbox(pt,c);
+	var sx=x+10;
+	var sy=y+10;
+	var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
+	for(var c=1;c<5;c++)svgbox(pt,c);
 }
 function fbox(x,y)
 {
-var sx=x+5;
-var sy=y+5;
-var pt=sx+","+sy+" "+sx+","+sy+" "+sx+","+sy+" "+sx+","+sy;
-svgbox(pt,5);
+	var sx=x+5;
+	var sy=y+5;
+	var pt=sx+","+sy+" "+sx+","+sy+" "+sx+","+sy+" "+sx+","+sy;
+	svgbox(pt,5);
 }
 function start()
 {
-
-document.documentElement.addEventListener("mousedown",function(e)
-{
-	document.documentElement.style.cursor = "crosshair";
-	if(hit===1)
+	document.documentElement.addEventListener("mousedown",function(e)
 	{
-		for(var c=1;c<6;c++)
+		document.documentElement.style.cursor = "crosshair";
+		if(hit===1)
 		{
-			var nm="poly"+c;
-			var element = document.getElementById(nm);
-			element.parentNode.removeChild(element); 
+			for(var c=1;c<6;c++)
+			{
+				var nm="poly"+c;
+				var element = document.getElementById(nm);
+				element.parentNode.removeChild(element); 
+			}
 		}
-	}
-	var x=e.clientX;
-	var y=e.clientY;
-	fbox(x,y);
-	sbox(x,y);
-	hit=1;
-	downtime=1;
-
-});
-document.documentElement.addEventListener("mouseup",function(e)
-{
-	document.documentElement.style.cursor = "initial";
-	downtime=0;
-});
-document.documentElement.addEventListener("mousemove",function(e)
-{
-	if(downtime===1)
+		var x=e.clientX;
+		var y=e.clientY;
+		fbox(x,y);
+		sbox(x,y);
+		hit=1;
+		downtime=1;
+	});
+	document.documentElement.addEventListener("mouseup",function(e)
 	{
-		var refer_pt=document.getElementById("poly1").getAttribute("points");
-		var refer_cod=refer_pt.split(" ");
-		var rm=refer_cod[0].split(",");
-		var rn=refer_cod[1].split(",");
-		var ro=refer_cod[2].split(",");
-		var rp=refer_cod[3].split(",");
-		for(var c=2;c<6;c++)
+		document.documentElement.style.cursor = "initial";
+		downtime=0;
+	});
+	document.documentElement.addEventListener("mousemove",function(e)
+	{
+		if(downtime===1)
 		{
-		var nm="poly"+c;
-		var pt=document.getElementById(nm).getAttribute("points");
-		var cod=pt.split(" ");
-		var m=cod[0].split(",");
-		var n=cod[1].split(",");
-		var o=cod[2].split(",");
-		var p=cod[3].split(",");
-		if(c===2)
-		{
-			m[0]=e.clientX;
-			n[0]=e.clientX+10;
-			o[0]=e.clientX+10;
-			p[0]=e.clientX;
+			var refer_pt=document.getElementById("poly1").getAttribute("points");
+			var refer_cod=refer_pt.split(" ");
+			var rm=refer_cod[0].split(",");
+			var rn=refer_cod[1].split(",");
+			var ro=refer_cod[2].split(",");
+			var rp=refer_cod[3].split(",");
+			for(var c=2;c<6;c++)
+			{
+				var nm="poly"+c;
+				var pt=document.getElementById(nm).getAttribute("points");
+				var cod=pt.split(" ");
+				var m=cod[0].split(",");
+				var n=cod[1].split(",");
+				var o=cod[2].split(",");
+				var p=cod[3].split(",");
+				if(c===2)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+				}
+				else if(c===3)
+				{
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===4)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===5)
+				{
+					var a=parseInt(rm[0]);
+					var b=parseInt(rm[1]);
+					m[0]=a+5;
+					m[1]=b+5;
+					n[0]=e.clientX+5;
+					n[1]=b+5;
+					o[0]=e.clientX+5;
+					o[1]=e.clientY+5;
+					p[0]=a+5;
+					p[1]=e.clientY+5;
+				}		
+				pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
+				if(rm[0]<=m[0] && rm[1]<=m[1] && rn[0]<=n[0] && rn[1]<=n[1] && ro[0]<=o[0] && ro[1]<=o[1] && rp[0]<=p[0] && rp[1]<=p[1])
+				document.getElementById(nm).setAttribute("points",pt);
+			}
 		}
-		else if(c===3)
-		{
-			m[1]=e.clientY;
-			n[1]=e.clientY;
-			o[1]=e.clientY+10;
-			p[1]=e.clientY+10;
-		}
-		else if(c===4)
-		{
-			m[0]=e.clientX;
-			n[0]=e.clientX+10;
-			o[0]=e.clientX+10;
-			p[0]=e.clientX;
-			m[1]=e.clientY;
-			n[1]=e.clientY;
-			o[1]=e.clientY+10;
-			p[1]=e.clientY+10;
-		}
-		else if(c===5)
-		{
-			var a=parseInt(rm[0]);
-			var b=parseInt(rm[1]);
-			m[0]=a+5;
-			m[1]=b+5;
-			n[0]=e.clientX+5;
-			n[1]=b+5;
-			o[0]=e.clientX+5;
-			o[1]=e.clientY+5;
-			p[0]=a+5;
-			p[1]=e.clientY+5;
-		}		
-		pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-		if(rm[0]<=m[0] && rm[1]<=m[1] && rn[0]<=n[0] && rn[1]<=n[1] && ro[0]<=o[0] && ro[1]<=o[1] && rp[0]<=p[0] && rp[1]<=p[1])
-		document.getElementById(nm).setAttribute("points",pt);
-		}
-	}
-});
+	});
 }
 
 </script>
