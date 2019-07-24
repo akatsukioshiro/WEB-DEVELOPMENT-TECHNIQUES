@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="start()">
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;">
+</svg>
+<script>
+function start()//5,205;215-415;200
+{
+
+var pos1=5;
+var pos2=pos1+200;
+var pos22=pos2+10;
+var pos=[pos1,pos1+10,pos1+200,pos2+10,pos22+(pos2-pos1)];
+
+
+var top=5;
+var bottom=15;
+var boxadd=0;
+
+for(var sg=0;sg<3;sg++)
+{
+	if(sg===0)boxadd=0;
+	else if(sg===1)boxadd=pos[2]-pos[0];
+	else if(sg===2)boxadd=boxadd+210;
+	
+	sm_box(boxadd,top,bottom,pos[0],pos[1]);
+}
+
+svg(pos[1],10,pos[2],10);
+svg(pos[3],10,pos[4],10);
+sm_box(10,30,40,30,40);
+}
+function sm_box(boxadd,top,bottom,left,right)
+{
+	svg(left+boxadd,top,right+boxadd,top);
+	svg(left+boxadd,top,left+boxadd,bottom);
+	svg(left+boxadd,bottom,right+boxadd,bottom);
+	svg(right+boxadd,top,right+boxadd,bottom);
+}
+
+function svg(x1,y1,x2,y2) {
+var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+newLine.setAttribute('id','line2');
+newLine.setAttribute('x1',x1);
+newLine.setAttribute('y1',y1);
+newLine.setAttribute('x2',x2);
+newLine.setAttribute('y2',y2);
+newLine.setAttribute("stroke", "red");
+newLine.setAttribute("stroke-width",1);
+document.getElementById('svg').appendChild(newLine);
+}
+</script>
+</body>
+</html>
