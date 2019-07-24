@@ -16,6 +16,7 @@ newLine.setAttribute('points',coord);
 newLine.setAttribute('fill',"white");
 newLine.setAttribute("stroke", "red");
 newLine.setAttribute("stroke-width",1);
+if(nm==="poly5")newLine.setAttribute("stroke-dasharray","20,10,5,5,5,10");
 document.getElementById('svg').appendChild(newLine);
 }
 function sbox(x,y)
@@ -25,14 +26,22 @@ var sy=y+10;
 var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
 for(var c=1;c<5;c++)svgbox(pt,c);
 }
+function fbox(x,y)
+{
+var sx=x+5;
+var sy=y+5;
+var pt=sx+","+sy+" "+sx+","+sy+" "+sx+","+sy+" "+sx+","+sy;
+svgbox(pt,5);
+}
 function start()
 {
 
 document.documentElement.addEventListener("mousedown",function(e)
 {
+	document.documentElement.style.cursor = "crosshair";
 	if(hit===1)
 	{
-		for(var c=1;c<5;c++)
+		for(var c=1;c<6;c++)
 		{
 			var nm="poly"+c;
 			var element = document.getElementById(nm);
@@ -41,6 +50,7 @@ document.documentElement.addEventListener("mousedown",function(e)
 	}
 	var x=e.clientX;
 	var y=e.clientY;
+	fbox(x,y);
 	sbox(x,y);
 	hit=1;
 	downtime=1;
@@ -48,6 +58,7 @@ document.documentElement.addEventListener("mousedown",function(e)
 });
 document.documentElement.addEventListener("mouseup",function(e)
 {
+	document.documentElement.style.cursor = "initial";
 	downtime=0;
 });
 document.documentElement.addEventListener("mousemove",function(e)
@@ -60,7 +71,7 @@ document.documentElement.addEventListener("mousemove",function(e)
 		var rn=refer_cod[1].split(",");
 		var ro=refer_cod[2].split(",");
 		var rp=refer_cod[3].split(",");
-		for(var c=2;c<5;c++)
+		for(var c=2;c<6;c++)
 		{
 		var nm="poly"+c;
 		var pt=document.getElementById(nm).getAttribute("points");
@@ -93,6 +104,19 @@ document.documentElement.addEventListener("mousemove",function(e)
 			n[1]=e.clientY;
 			o[1]=e.clientY+10;
 			p[1]=e.clientY+10;
+		}
+		else if(c===5)
+		{
+			var a=parseInt(rm[0]);
+			var b=parseInt(rm[1]);
+			m[0]=a+5;
+			m[1]=b+5;
+			n[0]=e.clientX+5;
+			n[1]=b+5;
+			o[0]=e.clientX+5;
+			o[1]=e.clientY+5;
+			p[0]=a+5;
+			p[1]=e.clientY+5;
 		}		
 		pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
 		if(rm[0]<=m[0] && rm[1]<=m[1] && rn[0]<=n[0] && rn[1]<=n[1] && ro[0]<=o[0] && ro[1]<=o[1] && rp[0]<=p[0] && rp[1]<=p[1])
