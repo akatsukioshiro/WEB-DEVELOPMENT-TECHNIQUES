@@ -5,10 +5,13 @@
 <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;">
 </svg>
 <script>
-function svgbox(coord) 
+var downtime=0;
+var hit=0;
+function svgbox(coord,c) 
 {
+var nm="poly"+c;
 var newLine = document.createElementNS('http://www.w3.org/2000/svg','polygon');
-newLine.setAttribute('id','poly1');
+newLine.setAttribute('id',nm);
 newLine.setAttribute('points',coord);
 newLine.setAttribute('fill',"white");
 newLine.setAttribute("stroke", "red");
@@ -20,13 +23,40 @@ function sbox(x,y)
 var sx=x+10;
 var sy=y+10;
 var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
-svgbox(pt);
+for(var c=1;c<5;c++)svgbox(pt,c);
 }
 function start()
 {
-var x=15;
-var y=5;
-sbox(x,y);
+
+document.documentElement.addEventListener("mousedown",function(e)
+{
+	if(hit===1)
+	{
+		for(var c=1;c<5;c++)
+		{
+			var nm="poly"+c;
+			var element = document.getElementById(nm);
+			element.parentNode.removeChild(element); 
+		}
+	}
+	var x=e.clientX;
+	var y=e.clientY;
+	sbox(x,y);
+	hit=1;
+	downtime=1;
+
+});
+document.documentElement.addEventListener("mouseup",function(e)
+{
+	downtime=0;
+});
+document.documentElement.addEventListener("mousemove",function(e)
+{
+	if(downtime===1)
+	{
+		//document.getElementById("poly2").;
+	}
+});
 }
 
 </script>
