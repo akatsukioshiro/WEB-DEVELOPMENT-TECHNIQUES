@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="start()">
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;">
+</svg>
+<script>
+function svgbox(coord) 
+{
+var newLine = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+newLine.setAttribute('id','poly1');
+newLine.setAttribute('points',coord);
+newLine.setAttribute('fill',"white");
+newLine.setAttribute("stroke", "red");
+newLine.setAttribute("stroke-width",1);
+document.getElementById('svg').appendChild(newLine);
+}
+function sbox(x,y)
+{
+var sx=x+10;
+var sy=y+10;
+var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
+svgbox(pt);
+}
+function start()
+{
+var x=15;
+var y=5;
+sbox(x,y);
+}
+
+</script>
+</body>
+</html>
