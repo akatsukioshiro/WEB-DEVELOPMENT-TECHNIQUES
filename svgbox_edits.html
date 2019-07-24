@@ -54,7 +54,7 @@ document.documentElement.addEventListener("mousemove",function(e)
 {
 	if(downtime===1)
 	{
-		for(var c=2;c<4;c++)
+		for(var c=2;c<5;c++)
 		{
 		var nm="poly"+c;
 		var pt=document.getElementById(nm).getAttribute("points");
@@ -77,6 +77,17 @@ document.documentElement.addEventListener("mousemove",function(e)
 			o[1]=e.clientY+10;
 			p[1]=e.clientY+10;
 		}
+		else if(c===4)
+		{
+			m[0]=e.clientX;
+			n[0]=e.clientX+10;
+			o[0]=e.clientX+10;
+			p[0]=e.clientX;
+			m[1]=e.clientY;
+			n[1]=e.clientY;
+			o[1]=e.clientY+10;
+			p[1]=e.clientY+10;
+		}		
 		pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
 		document.getElementById(nm).setAttribute("points",pt);
 		}
