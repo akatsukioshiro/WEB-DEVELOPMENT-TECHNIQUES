@@ -114,12 +114,15 @@ function remove_svgbox(dt)
 }
 function start()
 {
-	document.getElementById("svg").addEventListener("mousedown",function(e)
+	var pe=document.getElementById("svg");
+	pe.style.pointerEvents="none";
+	document.documentElement.addEventListener("mousedown",function(e)
 	{
 		if(document.getElementsByTagName("polygon").length!==0)
 		remove_svgbox(1);
 		if(divmake===1)//add more options of navbar conditions in or "||"
 		{
+			pe.style.pointerEvents="auto";
 			document.getElementById("svg").style.cursor = "crosshair";
 			var x=e.clientX;
 			var y=e.clientY;
@@ -128,13 +131,15 @@ function start()
 			downtime=1;
 		}
 	});
-	document.getElementById("svg").addEventListener("mouseup",function(e)
+	document.documentElement.addEventListener("mouseup",function(e)
 	{
 		document.getElementById("svg").style.cursor = "initial";
 		if(divmake===1)divcall();		
 		divmake=0;
 		remove_svgbox(downtime);
 		downtime=0;
+		var pe=document.getElementById("svg");
+		pe.style.pointerEvents="none";
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
 	{
@@ -228,7 +233,6 @@ function divcall()
 	var a=document.createElement("div");
 	a.id="div_"+count;
 	count+=1;
-	console.log(parseInt(p[1])-parseInt(m[1]));
 	a.style.background="red";
 	a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
 	a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
@@ -236,14 +240,16 @@ function divcall()
 	a.style.top=parseInt(m[1])+"px";
 	a.style.display="block";
 	a.style.position="fixed";
-	a.style.zIndex="5";
-	a.addEventListener("mouseup",div_control);
-	a.addEventListener("mousedown",div_control);
+	a.style.zIndex="1";
+	a.dc_param=a.id;
+	a.addEventListener("click",div_control,false);
+	//a.addEventListener("click",function(e){alert("hi");});
 	document.getElementById("fbody").appendChild(a);
 }
 function div_control(e)
 {
-console.log(e.target.a);	
+var a=document.getElementById(e.target.dc_param);
+	
 }
 document.getElementById("sub_b").addEventListener("click",function(event)
 {
