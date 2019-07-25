@@ -23,6 +23,7 @@ navbar
 	line-height:5vw;
 	text-align:center;
 	color:white;
+	text-decoration:none;
 	cursor:pointer;
 }
 fbody
@@ -41,7 +42,8 @@ fbody
 <div_b id="div_b" class="navbutton">
 DIV
 </div_b>
-<a id="sub_b" class="navbutton" href="" download="Output_Webpage.html">
+<a id="sub_b" class="navbutton" href="" download="Output_
+Webpage.html">
 SUB
 </a>
 </navbar>
@@ -114,13 +116,17 @@ function start()
 {
 	document.getElementById("svg").addEventListener("mousedown",function(e)
 	{
-		document.getElementById("svg").style.cursor = "crosshair";
-		var x=e.clientX;
-		var y=e.clientY;
-		fbox(x,y);
-		sbox(x,y);
-		hit=1;
-		downtime=1;
+		if(document.getElementsByTagName("polygon").length!==0)
+		remove_svgbox(1);
+		if(divmake===1)
+		{
+			document.getElementById("svg").style.cursor = "crosshair";
+			var x=e.clientX;
+			var y=e.clientY;
+			fbox(x,y);
+			sbox(x,y);
+			downtime=1;
+		}
 	});
 	document.getElementById("svg").addEventListener("mouseup",function(e)
 	{
@@ -231,7 +237,13 @@ function divcall()
 	a.style.display="block";
 	a.style.position="fixed";
 	a.style.zIndex="5";
+	a.addEventListener("mouseup",div_control);
+	a.addEventListener("mousedown",div_control);
 	document.getElementById("fbody").appendChild(a);
+}
+function div_control(e)
+{
+console.log(e.target.a);	
 }
 document.getElementById("sub_b").addEventListener("click",function(event)
 {
