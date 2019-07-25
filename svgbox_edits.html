@@ -41,7 +41,7 @@ fbody
 <div_b id="div_b" class="navbutton">
 DIV
 </div_b>
-<a id="sub_b" class="navbutton" href="" download>
+<a id="sub_b" class="navbutton" href="" download="Output_Webpage.html">
 SUB
 </a>
 </navbar>
@@ -239,8 +239,6 @@ document.getElementById("sub_b").addEventListener("click",function(event)
 	var data = new Blob([text], {type: 'text/html'});
 	var url = window.URL.createObjectURL(data);
 	document.getElementById('sub_b').href = url;
-	//window.setTimeout(window.URL.revokeObjectURL(url),8000);
-//window.URL.revokeObjectURL(url);
 });
 </script>
 </body>
