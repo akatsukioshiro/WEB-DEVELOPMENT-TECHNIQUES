@@ -39,6 +39,7 @@ DIV
 var downtime=0;
 var hit=0;
 var divmake=0;
+var count=0;
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -110,7 +111,7 @@ function start()
 	{
 		document.getElementById("svg").style.cursor = "initial";
 		downtime=0;
-		if(divmake===1)alert("divcall");		
+		if(divmake===1)divcall();		
 		divmake=0;
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
@@ -194,6 +195,28 @@ document.getElementById("div_b").addEventListener("click",function(e)
 {
 	divmake=1;
 });
+function divcall()
+{
+	var pt=document.getElementById("poly5").getAttribute("points");
+	var cod=pt.split(" ");
+	var m=cod[0].split(",");
+	var n=cod[1].split(",");
+	var o=cod[2].split(",");
+	var p=cod[3].split(",");
+	var a=document.createElement("div");
+	a.id="div_"+count;
+	count+=1;
+	console.log(parseInt(p[1])-parseInt(m[1]));
+	a.style.background="red";
+	a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
+	a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
+	a.style.left=parseInt(m[0])+"px";
+	a.style.top=parseInt(m[1])+"px";
+	a.style.display="block";
+	a.style.position="fixed";
+	a.style.zIndex="5";
+	document.body.appendChild(a);
+}
 </script>
 </body>
 </html>
