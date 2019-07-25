@@ -55,6 +55,7 @@ SUB
 <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 95vw; height: 100%; position: absolute;">
 </svg>
 <script>
+var div_identity="";
 var downtime=0;
 var divmake=0;
 var drag=0;
@@ -242,30 +243,34 @@ function divcall()
 	a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
 	a.style.left=parseInt(m[0])+"px";
 	a.style.top=parseInt(m[1])+"px";
-	a.style.display="block";
 	a.style.position="fixed";
+	a.setAttribute("state","0");
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	a.addEventListener("click",div_control,false);
 	//a.addEventListener("click",function(e){alert("hi");});
 	document.getElementById("fbody").appendChild(a);
 }
+function identity_div(clicked_id)
+{
+	div_identity=clicked_id;
+}
 function div_control(e)
 {
 	var a=document.getElementById(e.target.dc_param);
+	identity_div(e.target.dc_param);
 	if(e.detail===2 && drag===1)
 	{
-		a.style.position="absolute";
-		dragElement(a,drag);
-		console.log(drag);
-	}
-	else if(e.detail===2 && drag===0)
-	{
-		dragElement(a,drag);
+		var ee=document.getElementById(a.id);
+		ee.style.position="absolute";
+		if(ee.getAttribute("state")==="0")ee.setAttribute("state","1");
+		else if(ee.getAttribute("state")==="1")ee.setAttribute("state","0");
+		dragElement(ee,ee.getAttribute("state"));
+		console.log("Drag Mode On");
 	}	
 }
 function dragElement(elmnt,state) 
-{console.log(">> "+state);
+{
 	if(state==="1")
 	{
 		var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -313,8 +318,6 @@ function dragElement(elmnt,state)
 	else if(state==="0")
 	{
 		elmnt.style.position="fixed";
-		elmnt.style.resize="both";
-		elmnt.style.overflow="auto";
 		elmnt.onmousedown = "";
 	}
 }
@@ -327,7 +330,11 @@ document.getElementById("sub_b").addEventListener("click",function(event)
 });
 document.getElementById("drag_b").addEventListener("click",function(event)
 {
-	if(drag===0)drag=1;
+	if(drag===0)
+	{
+		drag=1;
+		
+	}
 	else if(drag===1)
 	{
 		drag=0;
