@@ -68,6 +68,7 @@ var div_identity="";
 var downtime=0;
 var divmake=0;
 var drag=0;
+var edit=0;
 var count=0;
 function svgbox(coord,c) 
 {
@@ -256,6 +257,7 @@ function divcall()
 	a.style.top=parseInt(m[1])+"px";
 	a.style.position="fixed";
 	a.setAttribute("state","0");
+	a.setAttribute("contenteditable","false");
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	//a.addEventListener("click",div_control,false);
@@ -335,19 +337,25 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 	{
 		drag=1;
 		document.getElementById("drag_b").style.background="red";
-		fbody_select();
+		fbody_select_all_drag();
 		console.log("Drag Mode On");
+		if(edit===1)
+		{
+			edit=0;
+			document.getElementById("edit_b").style.background="black";
+			fbody_select_all_edit(edit);
+			console.log("Edit Mode Off");
+		}
 	}
 	else if(drag===1)
 	{
 		drag=0;
 		document.getElementById("drag_b").style.background="black";
-		fbody_select();
+		fbody_select_all_drag();
 		console.log("Drag Mode Off");
 	}
-	console.log(drag);
 });
-function fbody_select()
+function fbody_select_all_drag()
 {
 	var a=document.getElementById("fbody");
 	for(var chil=0;chil<a.children.length;chil++)
@@ -360,6 +368,41 @@ function fbody_select()
 		dragElement(ee,ee.getAttribute("state"));
 	}
 }
+function fbody_select_all_edit(edit)
+{
+	var a=document.getElementById("fbody");
+	for(var chil=0;chil<a.children.length;chil++)
+	{
+		var cc=a.children;
+		var ee=document.getElementById(cc[chil].id);
+		if(edit===1)ee.setAttribute("contenteditable","true");
+		else if(edit===0)ee.setAttribute("contenteditable","false");
+	}
+}
+document.getElementById("edit_b").addEventListener("click",function(event)
+{
+	if(edit===0)
+	{
+		edit=1;
+		document.getElementById("edit_b").style.background="red";
+		fbody_select_all_edit(edit);
+		console.log("Edit Mode On");
+		if(drag===1)
+		{
+			drag=0;
+			document.getElementById("drag_b").style.background="black";
+			fbody_select_all_drag();
+			console.log("Drag Mode Off");
+		}
+	}
+	else if(edit===1)
+	{
+		edit=0;
+		document.getElementById("edit_b").style.background="black";
+		fbody_select_all_edit(edit);
+		console.log("Edit Mode Off");
+	}
+});
 </script>
 </body>
 </html>
