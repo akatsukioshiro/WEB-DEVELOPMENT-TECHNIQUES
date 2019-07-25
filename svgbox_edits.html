@@ -51,7 +51,6 @@ SUB
 </svg>
 <script>
 var downtime=0;
-var hit=0;
 var divmake=0;
 var count=0;
 function svgbox(coord,c) 
@@ -101,20 +100,21 @@ function fbox(x,y)
 	var pt=sx+","+sy+" "+sx+","+sy+" "+sx+","+sy+" "+sx+","+sy;
 	svgbox(pt,5);
 }
+function remove_svgbox(dt)
+{
+	if(dt===1)
+	for(var c=1;c<6;c++)
+	{
+		var nm="poly"+c;
+		var element = document.getElementById(nm);
+		element.parentNode.removeChild(element); 
+	}
+}
 function start()
 {
 	document.getElementById("svg").addEventListener("mousedown",function(e)
 	{
 		document.getElementById("svg").style.cursor = "crosshair";
-		if(hit===1)
-		{
-			for(var c=1;c<6;c++)
-			{
-				var nm="poly"+c;
-				var element = document.getElementById(nm);
-				element.parentNode.removeChild(element); 
-			}
-		}
 		var x=e.clientX;
 		var y=e.clientY;
 		fbox(x,y);
@@ -125,9 +125,10 @@ function start()
 	document.getElementById("svg").addEventListener("mouseup",function(e)
 	{
 		document.getElementById("svg").style.cursor = "initial";
-		downtime=0;
 		if(divmake===1)divcall();		
 		divmake=0;
+		remove_svgbox(downtime);
+		downtime=0;
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
 	{
@@ -238,7 +239,7 @@ document.getElementById("sub_b").addEventListener("click",function(event)
 	var data = new Blob([text], {type: 'text/html'});
 	var url = window.URL.createObjectURL(data);
 	document.getElementById('sub_b').href = url;
-//window.setTimeout(window.URL.revokeObjectURL(url),2000);
+	//window.setTimeout(window.URL.revokeObjectURL(url),8000);
 //window.URL.revokeObjectURL(url);
 });
 </script>
