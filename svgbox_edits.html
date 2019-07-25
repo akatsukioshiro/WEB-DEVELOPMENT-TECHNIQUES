@@ -18,13 +18,18 @@ navbar
 .navbutton
 {
 	min-height:5vw;
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,1);
 	display:block;
 	line-height:5vw;
 	text-align:center;
 	color:white;
 	text-decoration:none;
 	cursor:pointer;
+}
+.navbutton:hover
+{
+	background:rgba(255,255,255,1);
+	color:black;
 }
 fbody
 {
@@ -35,6 +40,7 @@ fbody
 	left:0;
 	margin:0;
 }
+
 </style>
 </head>
 <body onload="start()">
@@ -45,6 +51,9 @@ DIV
 <drag_b id="drag_b" class="navbutton">
 DRAG
 </drag_b>
+<edit_b id="edit_b" class="navbutton">
+EDIT
+</edit_b>
 <a id="sub_b" class="navbutton" href="" download="Output_
 Webpage.html">
 SUB
@@ -145,6 +154,7 @@ function start()
 		downtime=0;
 		var pe=document.getElementById("svg");
 		pe.style.pointerEvents="none";
+		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
 	{
@@ -226,6 +236,7 @@ function start()
 document.getElementById("div_b").addEventListener("click",function(e)
 {
 	divmake=1;
+	document.getElementById("div_b").style.background="red";
 });
 function divcall()
 {
@@ -248,7 +259,6 @@ function divcall()
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	//a.addEventListener("click",div_control,false);
-	//a.addEventListener("click",function(e){alert("hi");});
 	document.getElementById("fbody").appendChild(a);
 }
 function identity_div(clicked_id)
@@ -324,12 +334,14 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 	if(drag===0)
 	{
 		drag=1;
+		document.getElementById("drag_b").style.background="red";
 		fbody_select();
 		console.log("Drag Mode On");
 	}
 	else if(drag===1)
 	{
 		drag=0;
+		document.getElementById("drag_b").style.background="black";
 		fbody_select();
 		console.log("Drag Mode Off");
 	}
