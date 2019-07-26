@@ -232,7 +232,7 @@ function start()
 			var rm2=[rm0[0],(parseInt(rm0[1])+11)];
 			var rm3=[(parseInt(rm0[0])+11),(parseInt(rm0[1])+11)];
 			var rm4=[(parseInt(rm0[0])+5),(parseInt(rm0[1])+5)];
-			if(e.clientX>=(parseInt(rm0[0])+12) && e.clientY>=(parseInt(rm0[1])+12))condition="1";
+			if(e.clientX>=(parseInt(rm0[0])+35) && e.clientY>=(parseInt(rm0[1])+35))condition="1";
 		}
 		else if(idd==="poly2")
 		{
@@ -242,7 +242,7 @@ function start()
 			var rm2=[(parseInt(rm1[0])-11),(parseInt(rm1[1])+11)];
 			var rm3=[rm1[0],(parseInt(rm1[1])+11)];
 			var rm4=[(parseInt(rm1[0])-5),(parseInt(rm0[1])+5)];
-			if(e.clientX<=(parseInt(rm1[0])-2) && e.clientY>=(parseInt(rm1[1])+12))condition="2";
+			if(e.clientX<=(parseInt(rm1[0])-30) && e.clientY>=(parseInt(rm1[1])+30))condition="2";
 		}
 		else if(idd==="poly3")
 		{
@@ -252,7 +252,7 @@ function start()
 			var rm1=[(parseInt(rm2[0])+11),(parseInt(rm2[1])-11)];
 			var rm3=[(parseInt(rm2[0])+11),rm2[1]];
 			var rm4=[(parseInt(rm2[0])+5),(parseInt(rm2[1])-5)];
-			if(e.clientX>=(parseInt(rm2[0])+12) && e.clientY<=(parseInt(rm2[1])-2))condition="3";
+			if(e.clientX>=(parseInt(rm2[0])+30) && e.clientY<=(parseInt(rm2[1])-30))condition="3";
 		}
 		else if(idd==="poly4")
 		{
@@ -262,7 +262,7 @@ function start()
 			var rm1=[rm3[0],(parseInt(rm3[1])-11)];
 			var rm2=[(parseInt(rm3[0])-11),rm3[1]];
 			var rm4=[(parseInt(rm3[0])-5),(parseInt(rm3[1])-5)];
-			if(e.clientX<=(parseInt(rm3[0])-2) && e.clientY<=(parseInt(rm3[1])-2))condition="4";
+			if(e.clientX<=(parseInt(rm3[0])-30) && e.clientY<=(parseInt(rm3[1])-30))condition="4";
 		}
 		for(var c=1;c<6;c++)
 		{
@@ -281,8 +281,8 @@ function start()
 					n[0]=e.clientX+10;
 					o[0]=e.clientX+10;
 					p[0]=e.clientX;
-					if(rm1[0]<=m[0] && rm1[1]<=m[1])
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
+					//if(rm1[0]<=m[0] && rm1[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);	
 				}
 				else if(c===3)
@@ -292,7 +292,7 @@ function start()
 					o[1]=e.clientY+10;
 					p[1]=e.clientY+10;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm2[0]<=m[0] && rm2[1]<=m[1])
+					//if(rm2[0]<=m[0] && rm2[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 				else if(c===4)
@@ -306,7 +306,7 @@ function start()
 					o[1]=e.clientY+10;
 					p[1]=e.clientY+10;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm3[0]<=m[0] && rm3[1]<=m[1])
+					//if(rm3[0]<=m[0] && rm3[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 				else if(c===5)
@@ -322,7 +322,7 @@ function start()
 					p[0]=a+5;
 					p[1]=e.clientY+5;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
+					//if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 			}
