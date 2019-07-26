@@ -185,7 +185,8 @@ function start()
 			else if(res_hold==="poly2")
 			{
 				var id="poly3";
-				//resizable(e,id);
+				resizable(e,id);
+				poly_adjust();
 			}
 			else if(res_hold==="poly3")
 			{
@@ -237,7 +238,17 @@ function start()
 			var rm2=[(parseInt(rm1[0])-11),(parseInt(rm1[1])+11)];
 			var rm3=[rm1[0],(parseInt(rm1[1])+11)];
 			var rm4=[(parseInt(rm1[0])-5),(parseInt(rm0[1])+5)];
-			if(e.clientX<=(parseInt(rm0[0])-2) && e.clientY>=(parseInt(rm0[1])+12))condition="2";
+			if(e.clientX<=(parseInt(rm1[0])-2) && e.clientY>=(parseInt(rm1[1])+12))condition="2";
+		}
+		else if(idd==="poly3")
+		{
+			var refer_cod=refer_pt.split(" ");
+			var rm2=refer_cod[0].split(",");
+			var rm0=[rm2[0],(parseInt(rm2[1])-11)];
+			var rm1=[(parseInt(rm2[0])+11),(parseInt(rm2[1])-11)];
+			var rm3=[(parseInt(rm2[0])+11),rm2[1]];
+			var rm4=[(parseInt(rm2[0])+5),(parseInt(rm2[1])-5)];
+			if(e.clientX>=(parseInt(rm3[0])+12) && e.clientY<=(parseInt(rm3[1])-2))condition="3";
 		}
 		for(var c=1;c<6;c++)
 		{
@@ -330,6 +341,49 @@ function start()
 					o[1]=e.clientY+5;
 					p[0]=e.clientX+5;
 					p[1]=e.clientY+5;
+				}
+				pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
+				document.getElementById(nm).setAttribute("points",pt);
+			}
+			else if(condition==="3")
+			{
+				if(c===1)
+				{
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===2)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===4)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+				}
+				else if(c===5)
+				{
+					var a=parseInt(rm2[0]);
+					var b=parseInt(rm2[1]);
+					m[0]=a+5;
+					m[1]=e.clientY+5;
+					n[0]=e.clientX+5;
+					n[1]=e.clientY+5;
+					o[0]=e.clientX+5;
+					o[1]=b+5;
+					p[0]=a+5;
+					p[1]=b+5;
 				}
 				pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
 				document.getElementById(nm).setAttribute("points",pt);
