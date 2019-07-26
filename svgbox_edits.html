@@ -190,7 +190,18 @@ function start()
 			else if(res_hold==="poly3")
 			{
 				var id="poly2";
-				//resizable(e,id);
+				resizable(e,id);
+				var pt=document.getElementById("poly5").getAttribute("points");
+				var cod=pt.split(" ");
+				var m=cod[0].split(",");
+				var n=cod[1].split(",");
+				var o=cod[2].split(",");
+				var p=cod[3].split(",");
+				var a=document.getElementById(div_identity);
+				a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
+				a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
+				a.style.left=parseInt(m[0])+"px";
+				a.style.top=parseInt(m[1])+"px";
 			}
 			else if(res_hold==="poly4")
 			{
@@ -232,6 +243,7 @@ function start()
 			var rm2=[(parseInt(rm1[0])-11),(parseInt(rm1[1])+11)];
 			var rm3=[rm1[0],(parseInt(rm1[1])+11)];
 			var rm4=[(parseInt(rm1[0])-5),(parseInt(rm0[1])+5)];
+			if(e.clientX<=(parseInt(rm0[0])-2) && e.clientY>=(parseInt(rm0[1])+12))condition="2";
 		}
 		for(var c=1;c<6;c++)
 		{
@@ -280,6 +292,49 @@ function start()
 					o[0]=e.clientX+5;
 					o[1]=e.clientY+5;
 					p[0]=a+5;
+					p[1]=e.clientY+5;
+				}
+				pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
+				document.getElementById(nm).setAttribute("points",pt);
+			}
+			else if(condition==="2")
+			{
+				if(c===1)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+				}
+				else if(c===3)
+				{
+					m[0]=e.clientX;
+					n[0]=e.clientX+10;
+					o[0]=e.clientX+10;
+					p[0]=e.clientX;
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===4)
+				{
+					m[1]=e.clientY;
+					n[1]=e.clientY;
+					o[1]=e.clientY+10;
+					p[1]=e.clientY+10;
+				}
+				else if(c===5)
+				{
+					var a=parseInt(rm1[0]);
+					var b=parseInt(rm1[1]);
+					m[0]=e.clientX+5;
+					m[1]=b+5;
+					n[0]=a+5;
+					n[1]=b+5;
+					o[0]=a+5;
+					o[1]=e.clientY+5;
+					p[0]=e.clientX+5;
 					p[1]=e.clientY+5;
 				}
 				pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
