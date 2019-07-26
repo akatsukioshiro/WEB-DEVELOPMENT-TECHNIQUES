@@ -233,17 +233,17 @@ function start()
 			var rm3=[rm1[0],(parseInt(rm1[1])+11)];
 			var rm4=[(parseInt(rm1[0])-5),(parseInt(rm0[1])+5)];
 		}
-		if(condition==="1")
+		for(var c=1;c<6;c++)
 		{
-			for(var c=1;c<6;c++)
+			var nm="poly"+c;
+			var pt=document.getElementById(nm).getAttribute("points");
+			var cod=pt.split(" ");
+			var m=cod[0].split(",");
+			var n=cod[1].split(",");
+			var o=cod[2].split(",");
+			var p=cod[3].split(",");
+			if(condition==="1")
 			{
-				var nm="poly"+c;
-				var pt=document.getElementById(nm).getAttribute("points");
-				var cod=pt.split(" ");
-				var m=cod[0].split(",");
-				var n=cod[1].split(",");
-				var o=cod[2].split(",");
-				var p=cod[3].split(",");
 				if(c===2)
 				{
 					m[0]=e.clientX;
