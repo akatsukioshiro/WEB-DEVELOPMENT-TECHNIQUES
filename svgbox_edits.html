@@ -51,6 +51,9 @@ DIV
 <drag_b id="drag_b" class="navbutton">
 DRAG
 </drag_b>
+<res_b id="res_b" class="navbutton">
+REZ
+</res_b>
 <edit_b id="edit_b" class="navbutton">
 EDIT
 </edit_b>
@@ -69,6 +72,7 @@ var downtime=0;
 var divmake=0;
 var drag=0;
 var edit=0;
+var resize=0;
 var count=0;
 function svgbox(coord,c) 
 {
@@ -154,7 +158,7 @@ function start()
 		remove_svgbox(downtime);
 		downtime=0;
 		var pe=document.getElementById("svg");
-		pe.style.pointerEvents="none";
+		if(resize===0)pe.style.pointerEvents="none";
 		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
@@ -260,7 +264,7 @@ function divcall()
 	a.setAttribute("contenteditable","false");
 	a.style.zIndex="1";
 	a.dc_param=a.id;
-	//a.addEventListener("click",div_control,false);
+	a.addEventListener("click",div_control,false);
 	document.getElementById("fbody").appendChild(a);
 }
 function identity_div(clicked_id)
@@ -271,6 +275,61 @@ function div_control(e)
 {
 	var a=document.getElementById(e.target.dc_param);
 	identity_div(e.target.dc_param);
+	if(resize===1)
+	{
+		var x=a.style.left;
+		var y=a.style.top;
+		var wid=a.style.width;
+		var hyt=a.style.height;
+		wid=wid.replace("px","");
+		hyt=hyt.replace("px","");
+		wid=parseInt(wid);
+		hyt=parseInt(hyt);
+		x=x.replace("px","");
+		y=y.replace("px","");
+		x=parseInt(x-5);
+		y=parseInt(y-5);
+		var x1=x+(wid);
+		var y1=y+(hyt);
+		//console.log(x1+" "+y1);
+		rez_fbox(x,y,x1,y1);
+		rez_sbox(x,y,x1,y1);
+		var pe=document.getElementById("svg");
+		pe.style.pointerEvents="auto";
+	}
+}
+function rez_sbox(x,y,x1,y1)
+{
+	var sx=x+10;
+	var sy=y+10;
+	var pt="";
+	for(var c=1;c<5;c++)
+	{
+		var sx1=x1+10;
+		var sy1=y1+10;
+		var a0=x+5;
+		var a1=y+5;
+		var b0=x1+5;
+		var b1=y+5;
+		var c0=x+5;
+		var c1=y1+5;
+		var d0=x1+5;
+		var d1=y1+5;
+		if(c===1)pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
+		else if(c===2)pt=x1+","+y+" "+sx1+","+y+" "+sx1+","+sy+" "+x1+","+sy;
+		else if(c===3)pt=x+","+y1+" "+sx+","+y1+" "+sx+","+sy1+" "+x+","+sy1;
+		else if(c===4)pt=x1+","+y1+" "+sx1+","+y1+" "+sx1+","+sy1+" "+x1+","+sy1;
+		svgbox(pt,c);
+	}
+}
+function rez_fbox(x,y,x1,y1)
+{
+	var sx=x+5;
+	var sy=y+5;
+	var sx1=x1+5;
+	var sy1=y1+5;
+	var pt=sx+","+sy+" "+sx1+","+sy+" "+sx1+","+sy1+" "+sx+","+sy1;
+	svgbox(pt,5);
 }
 function dragElement(elmnt,state) 
 {
@@ -401,6 +460,37 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		document.getElementById("edit_b").style.background="black";
 		fbody_select_all_edit(edit);
 		console.log("Edit Mode Off");
+	}
+});
+document.getElementById("res_b").addEventListener("click",function(event)
+{
+	if(resize===0)
+	{
+		resize=1;
+		document.getElementById("res_b").style.background="red";
+		console.log("Resize Mode On");
+		if(drag===1)
+		{
+			drag=0;
+			document.getElementById("drag_b").style.background="black";
+			fbody_select_all_drag();
+			console.log("Drag Mode Off");
+		}
+		else if(edit===1)
+		{
+			edit=0;
+			document.getElementById("edit_b").style.background="black";
+			fbody_select_all_edit(edit);
+			console.log("Edit Mode Off");
+		}
+	}
+	else if(resize===1)
+	{
+		resize=0;
+		var pe=document.getElementById("svg");
+		pe.style.pointerEvents="none";
+		document.getElementById("res_b").style.background="black";
+		console.log("Resize Mode Off");
 	}
 });
 </script>
