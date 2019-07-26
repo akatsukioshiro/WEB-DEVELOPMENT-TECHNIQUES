@@ -191,36 +191,30 @@ function start()
 			{
 				var id="poly2";
 				resizable(e,id);
-				var pt=document.getElementById("poly5").getAttribute("points");
-				var cod=pt.split(" ");
-				var m=cod[0].split(",");
-				var n=cod[1].split(",");
-				var o=cod[2].split(",");
-				var p=cod[3].split(",");
-				var a=document.getElementById(div_identity);
-				a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
-				a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
-				a.style.left=parseInt(m[0])+"px";
-				a.style.top=parseInt(m[1])+"px";
+				poly_adjust();
 			}
 			else if(res_hold==="poly4")
 			{
 				var id="poly1";
 				resizable(e,id);
-				var pt=document.getElementById("poly5").getAttribute("points");
-				var cod=pt.split(" ");
-				var m=cod[0].split(",");
-				var n=cod[1].split(",");
-				var o=cod[2].split(",");
-				var p=cod[3].split(",");
-				var a=document.getElementById(div_identity);
-				a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
-				a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
-				a.style.left=parseInt(m[0])+"px";
-				a.style.top=parseInt(m[1])+"px";
+				poly_adjust();
 			} 
 		}
 	});
+	function poly_adjust()
+	{
+		var pt=document.getElementById("poly5").getAttribute("points");
+		var cod=pt.split(" ");
+		var m=cod[0].split(",");
+		var n=cod[1].split(",");
+		var o=cod[2].split(",");
+		var p=cod[3].split(",");
+		var a=document.getElementById(div_identity);
+		a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
+		a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
+		a.style.left=parseInt(m[0])+"px";
+		a.style.top=parseInt(m[1])+"px";
+	}
 	function resizable(e,idd)
 	{
 		var refer_pt=document.getElementById(idd).getAttribute("points");
