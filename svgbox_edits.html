@@ -213,13 +213,18 @@ function start()
 	function resizable(e,idd)
 	{
 		var refer_pt=document.getElementById(idd).getAttribute("points");
-		var refer_cod=refer_pt.split(" ");
-		var rm0=refer_cod[0].split(",");
-		var rm1=[(parseInt(rm0[0])+11),rm0[1]];
-		var rm2=[rm0[0],(parseInt(rm0[1])+11)];
-		var rm3=[(parseInt(rm0[0])+11),(parseInt(rm0[1])+11)];
-		var rm4=[(parseInt(rm0[0])+5),(parseInt(rm0[1])+5)];
-		if(e.clientX>=(parseInt(rm0[0])+12) && e.clientY>=(parseInt(rm0[1])+12))
+		var condition="";
+		if(idd="poly1")
+		{
+			var refer_cod=refer_pt.split(" ");
+			var rm0=refer_cod[0].split(",");
+			var rm1=[(parseInt(rm0[0])+11),rm0[1]];
+			var rm2=[rm0[0],(parseInt(rm0[1])+11)];
+			var rm3=[(parseInt(rm0[0])+11),(parseInt(rm0[1])+11)];
+			var rm4=[(parseInt(rm0[0])+5),(parseInt(rm0[1])+5)];
+			if(e.clientX>=(parseInt(rm0[0])+12) && e.clientY>=(parseInt(rm0[1])+12))condition="1";
+		}
+		if(condition==="1")
 		{
 			for(var c=2;c<6;c++)
 			{
@@ -237,7 +242,7 @@ function start()
 					o[0]=e.clientX+10;
 					p[0]=e.clientX;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm1[0]<=m[0] && rm1[1]<=m[1])
+					//if(rm1[0]<=m[0] && rm1[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 				else if(c===3)
@@ -247,7 +252,7 @@ function start()
 					o[1]=e.clientY+10;
 					p[1]=e.clientY+10;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm2[0]<=m[0] && rm2[1]<=m[1])
+					//if(rm2[0]<=m[0] && rm2[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 				else if(c===4)
@@ -261,7 +266,7 @@ function start()
 					o[1]=e.clientY+10;
 					p[1]=e.clientY+10;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm3[0]<=m[0] && rm3[1]<=m[1])
+					//if(rm3[0]<=m[0] && rm3[1]<=m[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 				else if(c===5)
@@ -277,7 +282,7 @@ function start()
 					p[0]=a+5;
 					p[1]=e.clientY+5;
 					pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-					if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
+					//if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
 					document.getElementById(nm).setAttribute("points",pt);
 				}
 			}	
@@ -312,7 +317,7 @@ function start()
 						o[0]=e.clientX+10;
 						p[0]=e.clientX;
 						pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-						if(rm1[0]<=m[0] && rm1[1]<=m[1])
+						//if(rm1[0]<=m[0] && rm1[1]<=m[1])
 						document.getElementById(nm).setAttribute("points",pt);
 					}
 					else if(c===3)
@@ -322,7 +327,7 @@ function start()
 						o[1]=e.clientY+10;
 						p[1]=e.clientY+10;
 						pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-						if(rm2[0]<=m[0] && rm2[1]<=m[1])
+						//if(rm2[0]<=m[0] && rm2[1]<=m[1])
 						document.getElementById(nm).setAttribute("points",pt);
 					}
 					else if(c===4)
@@ -336,7 +341,7 @@ function start()
 						o[1]=e.clientY+10;
 						p[1]=e.clientY+10;
 						pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-						if(rm3[0]<=m[0] && rm3[1]<=m[1])
+						//if(rm3[0]<=m[0] && rm3[1]<=m[1])
 						document.getElementById(nm).setAttribute("points",pt);
 					}
 					else if(c===5)
@@ -352,7 +357,7 @@ function start()
 						p[0]=a+5;
 						p[1]=e.clientY+5;
 						pt=m[0]+","+m[1]+" "+n[0]+","+n[1]+" "+o[0]+","+o[1]+" "+p[0]+","+p[1];
-						if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
+						//if(rm4[0]<=m[0] && rm4[1]<=m[1] && rm4[0]<=n[0] && rm4[1]<=n[1] && rm4[0]<=o[0] && rm4[1]<=o[1] && rm4[0]<=p[0] && rm4[1]<=p[1])
 						document.getElementById(nm).setAttribute("points",pt);
 					}	
 				}					
