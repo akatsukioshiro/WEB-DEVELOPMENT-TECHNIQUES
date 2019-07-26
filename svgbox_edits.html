@@ -310,14 +310,15 @@ function div_cursor(e)
 	var id=e.target.id;
 	var num=id.replace("poly","");
 	num=parseInt(num);
-	if(num===1)alert(id);//document.getElementById(id).style.cursor
-	else if(num===1)alert(id);
-	else if(num===1)alert(id);
-	else if(num===1)alert(id);
+	//console.log(num);
+	if(num===1)document.getElementById(id).style.cursor="nw-resize";
+	else if(num===2)document.getElementById(id).style.cursor="ne-resize";
+	else if(num===3)document.getElementById(id).style.cursor="ne-resize";
+	else if(num===4)document.getElementById(id).style.cursor="nw-resize";
 }
 function div_resize(e)
 {
-	document.getElementById(e.target.id)
+	//document.getElementById(e.target.id)
 }
 function rez_sbox(x,y,x1,y1)
 {
