@@ -177,6 +177,22 @@ function start()
 		if(res_bin!=="0")
 		{
 			console.log(res_hold);
+			if(res_hold==="poly1")
+			{
+				var id="poly4";
+			}
+			else if(res_hold==="poly2")
+			{
+				var id="poly3";
+			}
+			else if(res_hold==="poly3")
+			{
+				var id="poly2";
+			}
+			else if(res_hold==="poly4")
+			{
+				var id="poly1";
+			} 
 		}
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
@@ -533,6 +549,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		resize=0;
 		var pe=document.getElementById("svg");
 		pe.style.pointerEvents="none";
+		remove_svgbox(1);
 		document.getElementById("res_b").style.background="black";
 		console.log("Resize Mode Off");
 	}
