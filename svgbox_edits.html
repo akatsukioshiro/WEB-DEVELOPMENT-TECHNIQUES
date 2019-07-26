@@ -727,6 +727,16 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			fbody_select_all_edit(edit);
 			console.log("Edit Mode Off");
 		}
+		else if(resize===1)
+		{
+			resize=0;
+			var pe=document.getElementById("svg");
+			pe.style.pointerEvents="none";
+			remove_svgbox(1);
+			document.getElementById("res_b").style.background="black";
+			res_cursor="";
+			console.log("Resize Mode Off");
+		}
 	}
 	else if(drag===1)
 	{
@@ -774,6 +784,16 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			document.getElementById("drag_b").style.background="black";
 			fbody_select_all_drag();
 			console.log("Drag Mode Off");
+		}
+		else if(resize===1)
+		{
+			resize=0;
+			var pe=document.getElementById("svg");
+			pe.style.pointerEvents="none";
+			remove_svgbox(1);
+			document.getElementById("res_b").style.background="black";
+			res_cursor="";
+			console.log("Resize Mode Off");
 		}
 	}
 	else if(edit===1)
