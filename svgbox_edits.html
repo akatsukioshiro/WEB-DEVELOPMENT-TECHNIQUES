@@ -251,7 +251,17 @@ function start()
 			var rm1=[(parseInt(rm2[0])+11),(parseInt(rm2[1])-11)];
 			var rm3=[(parseInt(rm2[0])+11),rm2[1]];
 			var rm4=[(parseInt(rm2[0])+5),(parseInt(rm2[1])-5)];
-			if(e.clientX>=(parseInt(rm3[0])+12) && e.clientY<=(parseInt(rm3[1])-2))condition="3";
+			if(e.clientX>=(parseInt(rm2[0])+12) && e.clientY<=(parseInt(rm2[1])-2))condition="3";
+		}
+		else if(idd==="poly4")
+		{
+			var refer_cod=refer_pt.split(" ");
+			var rm3=refer_cod[0].split(",");
+			var rm0=[(parseInt(rm3[0])-11),(parseInt(rm3[1])-11)];
+			var rm1=[rm3[0],(parseInt(rm3[1])-11)];
+			var rm2=[(parseInt(rm3[0])-11),rm3[1]];
+			var rm4=[(parseInt(rm3[0])-5),(parseInt(rm3[1])-5)];
+			if(e.clientX>=(parseInt(rm3[0])+12) && e.clientY<=(parseInt(rm3[1])-2))condition="4";
 		}
 		for(var c=1;c<6;c++)
 		{
