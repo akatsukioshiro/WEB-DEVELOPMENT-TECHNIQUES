@@ -76,6 +76,7 @@ var resize=0;
 var res_hold="";
 var res_bin="0";
 var res_init="0";
+var res_cursor="";
 var count=0;
 function svgbox(coord,c) 
 {
@@ -155,6 +156,7 @@ function start()
 		if(res_init==="1")
 		{
 			res_bin=1;
+			div_cursor(res_cursor);
 			console.log(res_bin);
 		}
 	});
@@ -169,6 +171,7 @@ function start()
 		if(resize===0)pe.style.pointerEvents="none";
 		res_bin="0";
 		res_hold="";
+		res_cursor="";
 		console.log(res_bin);
 		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
 	});
@@ -545,7 +548,8 @@ function div_cursor(e)
 	else if(num===2)document.getElementById(id).style.cursor="ne-resize";
 	else if(num===3)document.getElementById(id).style.cursor="ne-resize";
 	else if(num===4)document.getElementById(id).style.cursor="nw-resize";
-	res_init="1"
+	res_init="1";
+	res_cursor=e;
 	var a=document.getElementById(e.target.id);
 	res_hold=a.id;
 }
