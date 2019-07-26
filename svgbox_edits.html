@@ -137,7 +137,7 @@ function start()
 	pe.style.pointerEvents="none";
 	document.documentElement.addEventListener("mousedown",function(e)
 	{
-		if(document.getElementsByTagName("polygon").length!==0)
+		if(document.getElementsByTagName("polygon").length!==0 && resize===0)
 		remove_svgbox(1);
 		if(divmake===1)//add more options of navbar conditions in or "||"
 		{
@@ -296,7 +296,28 @@ function div_control(e)
 		rez_sbox(x,y,x1,y1);
 		var pe=document.getElementById("svg");
 		pe.style.pointerEvents="auto";
+		for(var ct=1;ct<5;ct++)
+		{
+			var nm="poly"+ct;
+			var a=document.getElementById(nm);
+			a.addEventListener("mousedown",div_resize,false);
+			a.addEventListener("mouseover",div_cursor,false);
+		}
 	}
+}
+function div_cursor(e)
+{
+	var id=e.target.id;
+	var num=id.replace("poly","");
+	num=parseInt(num);
+	if(num===1)alert(id);//document.getElementById(id).style.cursor
+	else if(num===1)alert(id);
+	else if(num===1)alert(id);
+	else if(num===1)alert(id);
+}
+function div_resize(e)
+{
+	document.getElementById(e.target.id)
 }
 function rez_sbox(x,y,x1,y1)
 {
