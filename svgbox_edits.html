@@ -156,7 +156,7 @@ function start()
 		if(res_init==="1")
 		{
 			res_bin=1;
-			div_cursor(res_cursor);
+			if(res_cursor!=="")div_cursor(res_cursor);
 			console.log(res_bin);
 		}
 	});
@@ -171,7 +171,6 @@ function start()
 		if(resize===0)pe.style.pointerEvents="none";
 		res_bin="0";
 		res_hold="";
-		res_cursor="";
 		console.log(res_bin);
 		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
 	});
@@ -814,6 +813,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		pe.style.pointerEvents="none";
 		remove_svgbox(1);
 		document.getElementById("res_b").style.background="black";
+		res_cursor="";
 		console.log("Resize Mode Off");
 	}
 });
