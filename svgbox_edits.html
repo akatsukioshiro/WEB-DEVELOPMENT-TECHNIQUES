@@ -74,6 +74,8 @@ var drag=0;
 var edit=0;
 var resize=0;
 var res_hold="";
+var res_bin="0";
+var res_init="0";
 var count=0;
 function svgbox(coord,c) 
 {
@@ -150,6 +152,11 @@ function start()
 			sbox(x,y);
 			downtime=1;
 		}
+		if(res_init==="1")
+		{
+			res_bin=1;
+			console.log(res_bin);
+		}
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
 	{
@@ -160,7 +167,17 @@ function start()
 		downtime=0;
 		var pe=document.getElementById("svg");
 		if(resize===0)pe.style.pointerEvents="none";
+		res_bin="0";
+		res_hold="";
+		console.log(res_bin);
 		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
+	});
+	document.documentElement.addEventListener("mousemove",function(e)
+	{
+		if(res_bin!=="0")
+		{
+			console.log(res_hold);
+		}
 	});
 	document.getElementById("svg").addEventListener("mousemove",function(e)
 	{
@@ -302,19 +319,9 @@ function div_control(e)
 			var nm="poly"+ct;
 			var a=document.getElementById(nm);
 			a.setAttribute("res_con","0");
-			a.addEventListener("mousedown",res_condition,false);
-			a.addEventListener("mouseup",res_condition,false);
+			a.addEventListener("mouseout",res_condition_o,false);
 			a.addEventListener("mouseover",div_cursor,false);
 		}
-	}
-}
-document.getElementById("svg").addEventListener("mousemove",resizer,false);
-function resizer()
-{
-	if(res_hold!=="")
-	{
-		var b=document.getElementById(res_hold);
-		if(b.getAttribute("res_con")==="1")console.log(res_hold);
 	}
 }
 function div_cursor(e)
@@ -327,21 +334,13 @@ function div_cursor(e)
 	else if(num===2)document.getElementById(id).style.cursor="ne-resize";
 	else if(num===3)document.getElementById(id).style.cursor="ne-resize";
 	else if(num===4)document.getElementById(id).style.cursor="nw-resize";
-}
-function res_condition(e)
-{
+	res_init="1"
 	var a=document.getElementById(e.target.id);
-	if(a.getAttribute("res_con")==="0")
-	{
-		a.setAttribute("res_con","1");
-		res_hold=a.id;
-	}
-	else if(a.getAttribute("res_con")==="1")
-	{
-		a.setAttribute("res_con","0");
-		res_hold="";
-	}
-	console.log(a.getAttribute("res_con"));
+	res_hold=a.id;
+}
+function res_condition_o(e)
+{
+	res_init="0";
 }
 function rez_sbox(x,y,x1,y1)
 {
