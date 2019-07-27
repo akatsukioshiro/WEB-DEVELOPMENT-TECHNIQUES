@@ -207,7 +207,7 @@
 * Provides **Syntax Highlighting**.
 * Currently work under progress to help develop webpages using condensed.
 
-# 10. **Website Builder _~ alpha version_**
+# 10. **Website Builder** ~ alpha version
 * FileName : **WebMaker.html**
 * A shortcut-key based tool for instant Website Creation.
 * Currently supports the following features :
@@ -240,7 +240,7 @@
     - Repeat the same on DIV to stop this feature.
 * Project Continued as Beta Version with completely different internal infrastucture.
 
-# 11. **Website Builder _~ beta version_**
+# 11. **Website Builder** ~ beta version
 * FileName : **svgbox_edits.html**
 * A Navbar based feature access tool for instant Website Creation.
 * Incorporates svg for better ease of use.
