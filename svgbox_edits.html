@@ -172,7 +172,7 @@ function start()
 		res_bin="0";
 		res_hold="";
 		console.log(res_bin);
-		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="black";
+		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="";
 	});
 	document.documentElement.addEventListener("mousemove",function(e)
 	{
@@ -723,7 +723,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 		if(edit===1)
 		{
 			edit=0;
-			document.getElementById("edit_b").style.background="black";
+			document.getElementById("edit_b").style.background="";
 			fbody_select_all_edit(edit);
 			console.log("Edit Mode Off");
 		}
@@ -733,7 +733,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			var pe=document.getElementById("svg");
 			pe.style.pointerEvents="none";
 			remove_svgbox(1);
-			document.getElementById("res_b").style.background="black";
+			document.getElementById("res_b").style.background="";
 			res_cursor="";
 			console.log("Resize Mode Off");
 		}
@@ -741,7 +741,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 	else if(drag===1)
 	{
 		drag=0;
-		document.getElementById("drag_b").style.background="black";
+		document.getElementById("drag_b").style.background="";
 		fbody_select_all_drag();
 		console.log("Drag Mode Off");
 	}
@@ -781,7 +781,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		if(drag===1)
 		{
 			drag=0;
-			document.getElementById("drag_b").style.background="black";
+			document.getElementById("drag_b").style.background="";
 			fbody_select_all_drag();
 			console.log("Drag Mode Off");
 		}
@@ -791,7 +791,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			var pe=document.getElementById("svg");
 			pe.style.pointerEvents="none";
 			remove_svgbox(1);
-			document.getElementById("res_b").style.background="black";
+			document.getElementById("res_b").style.background="";
 			res_cursor="";
 			console.log("Resize Mode Off");
 		}
@@ -799,7 +799,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 	else if(edit===1)
 	{
 		edit=0;
-		document.getElementById("edit_b").style.background="black";
+		document.getElementById("edit_b").style.background="";
 		fbody_select_all_edit(edit);
 		console.log("Edit Mode Off");
 	}
@@ -814,14 +814,14 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		if(drag===1)
 		{
 			drag=0;
-			document.getElementById("drag_b").style.background="black";
+			document.getElementById("drag_b").style.background="";
 			fbody_select_all_drag();
 			console.log("Drag Mode Off");
 		}
 		else if(edit===1)
 		{
 			edit=0;
-			document.getElementById("edit_b").style.background="black";
+			document.getElementById("edit_b").style.background="";
 			fbody_select_all_edit(edit);
 			console.log("Edit Mode Off");
 		}
@@ -832,7 +832,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		var pe=document.getElementById("svg");
 		pe.style.pointerEvents="none";
 		remove_svgbox(1);
-		document.getElementById("res_b").style.background="black";
+		document.getElementById("res_b").style.background="";
 		res_cursor="";
 		console.log("Resize Mode Off");
 	}
