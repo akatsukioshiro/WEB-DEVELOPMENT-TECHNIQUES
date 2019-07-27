@@ -164,15 +164,12 @@ function start()
 	{
 		document.getElementById("svg").style.cursor = "initial";
 		if(divmake===1)divcall();		
-		divmake=0;
 		remove_svgbox(downtime);
 		downtime=0;
 		var pe=document.getElementById("svg");
 		if(resize===0)pe.style.pointerEvents="none";
 		res_bin="0";
 		res_hold="";
-		console.log(res_bin);
-		if(document.getElementById("div_b").style.background==="red")document.getElementById("div_b").style.background="";
 	});
 	document.documentElement.addEventListener("mousemove",function(e)
 	{
@@ -535,8 +532,40 @@ function start()
 }
 document.getElementById("div_b").addEventListener("click",function(e)
 {
-	divmake=1;
-	document.getElementById("div_b").style.background="red";
+	if(divmake===0)
+	{
+		divmake=1;
+		document.getElementById("div_b").style.background="red";
+		if(drag===1)
+		{
+			drag=0;
+			document.getElementById("drag_b").style.background="";
+			fbody_select_all_drag();
+			console.log("Drag Mode Off");
+		}
+		else if(edit===1)
+		{
+			edit=0;
+			document.getElementById("edit_b").style.background="";
+			fbody_select_all_edit(edit);
+			console.log("Edit Mode Off");
+		}
+		else if(resize===1)
+		{
+			resize=0;
+			var pe=document.getElementById("svg");
+			pe.style.pointerEvents="none";
+			remove_svgbox(1);
+			document.getElementById("res_b").style.background="";
+			res_cursor="";
+			console.log("Resize Mode Off");
+		}
+	}
+	else if(divmake===1)
+	{
+	divmake=0;
+	document.getElementById("div_b").style.background="";
+	}
 });
 function divcall()
 {
@@ -737,6 +766,11 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			res_cursor="";
 			console.log("Resize Mode Off");
 		}
+		else if(divmake===1)
+		{
+			divmake=0;
+			document.getElementById("div_b").style.background="";
+		}
 	}
 	else if(drag===1)
 	{
@@ -795,6 +829,11 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			res_cursor="";
 			console.log("Resize Mode Off");
 		}
+		else if(divmake===1)
+		{
+			divmake=0;
+			document.getElementById("div_b").style.background="";
+		}
 	}
 	else if(edit===1)
 	{
@@ -824,6 +863,11 @@ document.getElementById("res_b").addEventListener("click",function(event)
 			document.getElementById("edit_b").style.background="";
 			fbody_select_all_edit(edit);
 			console.log("Edit Mode Off");
+		}
+		else if(divmake===1)
+		{
+			divmake=0;
+			document.getElementById("div_b").style.background="";
 		}
 	}
 	else if(resize===1)
