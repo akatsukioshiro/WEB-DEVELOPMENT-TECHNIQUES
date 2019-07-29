@@ -139,6 +139,13 @@ function remove_svgbox(dt)
 		var element = document.getElementById(nm);
 		element.parentNode.removeChild(element); 
 	}
+	console.log("remove_svgbox");
+}
+function remove_poly5()
+{
+	var element = document.getElementById("poly5");
+	element.parentNode.removeChild(element); 
+	console.log("remove_poly5");
 }
 function start()
 {
@@ -146,7 +153,7 @@ function start()
 	pe.style.pointerEvents="none";
 	document.documentElement.addEventListener("mousedown",function(e)
 	{
-		if(document.getElementsByTagName("polygon").length!==0 && resize===0 && color===1)
+		if(document.getElementsByTagName("polygon").length!==0 && resize===0 && color===0)
 		remove_svgbox(1);
 		if(divmake===1)//add more options of navbar conditions in or "||"
 		{
@@ -578,6 +585,7 @@ document.getElementById("div_b").addEventListener("click",function(e)
 		else if(color===1)
 		{
 			color=0;
+			remove_poly5();
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -654,6 +662,7 @@ function div_control(e)
 	}
 	else if(color===1)
 	{
+		if(document.getElementsByTagName("polygon").length!==0)remove_poly5();
 		var x=a.style.left;
 		var y=a.style.top;
 		var wid=a.style.width;
@@ -826,6 +835,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
+			remove_poly5();
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -895,6 +905,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
+			remove_poly5();
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -936,6 +947,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
+			remove_poly5();
 			document.getElementById("color_b").style.background="";
 		}
 	}
@@ -1002,6 +1014,7 @@ document.getElementById("color_b").addEventListener("click",function(event)
 	else if(color===1)
 	{
 		color=0;
+		remove_poly5();
 		document.getElementById("color_b").style.background="";
 	}
 });
