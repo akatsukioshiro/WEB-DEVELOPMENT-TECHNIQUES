@@ -78,6 +78,7 @@ var res_bin="0";
 var res_init="0";
 var res_cursor="";
 var count=0;
+var res_poly5_in_out="";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -85,7 +86,7 @@ function svgbox(coord,c)
 	poly.setAttribute('id',nm);
 	poly.setAttribute('points',coord);
 	if(nm!=="poly5")poly.setAttribute('fill',"white");
-	if(nm==="poly5")poly.setAttribute('fill',"none");
+	if(nm==="poly5")poly.setAttribute('fill',"#ffffff00");
 	poly.setAttribute("stroke", "red");
 	poly.setAttribute("stroke-width",1);
 	if(nm==="poly5")poly.setAttribute("stroke-dasharray","20,10,5,5,5,10");
@@ -158,6 +159,14 @@ function start()
 			res_bin=1;
 			if(res_cursor!=="")div_cursor(res_cursor);
 			console.log(res_bin);
+		}
+		if(res_poly5_in_out==="0")
+		{
+			console.log("0");
+		}
+		else if(res_poly5_in_out==="1")
+		{
+			console.log("1");
 		}
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
@@ -628,7 +637,17 @@ function div_control(e)
 			a.addEventListener("mouseout",res_condition_o,false);
 			a.addEventListener("mouseover",div_cursor,false);
 		}
+		document.getElementById("poly5").addEventListener("mouseover",res_poly5_in,false);
+		document.getElementById("poly5").addEventListener("mouseout",res_poly5_out,false);
 	}
+}
+function res_poly5_in(e)
+{
+	res_poly5_in_out="1";
+}
+function res_poly5_out(e)
+{
+	res_poly5_in_out="0";
 }
 function div_cursor(e)
 {
@@ -878,6 +897,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		remove_svgbox(1);
 		document.getElementById("res_b").style.background="";
 		res_cursor="";
+		res_poly5_in_out="";
 		console.log("Resize Mode Off");
 	}
 });
