@@ -585,7 +585,8 @@ document.getElementById("div_b").addEventListener("click",function(e)
 		else if(color===1)
 		{
 			color=0;
-			remove_poly5();
+			remove_svgbox(1);//poly5
+
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -662,7 +663,8 @@ function div_control(e)
 	}
 	else if(color===1)
 	{
-		if(document.getElementsByTagName("polygon").length!==0)remove_poly5();
+		if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+
 		var x=a.style.left;
 		var y=a.style.top;
 		var wid=a.style.width;
@@ -688,8 +690,25 @@ function div_control(e)
 		rgb=rgb.replace(" ","");
 		rgb=rgb.replace(")","");
 		var rgb_array=rgb.split(",");
-		alert(rgb_array);
+		//alert(rgb_array);
+		rgb_array.push("0");
+		for(var rg=0;rg<4;rg++)rgb_array[rg]=parseInt(rgb_array[rg]);
+		for(var ct=1;ct<5;ct++)
+		{
+			if(ct===1)color_sbox(((x+5)+5+rgb_array[0]),((y+5)+(hyt/5)),ct);
+			else if(ct===2)color_sbox(((x+5)+5+rgb_array[1]),((y+5)+((2*hyt)/5)),ct);
+			else if(ct===3)color_sbox(((x+5)+5+rgb_array[2]),((y+5)+((3*hyt)/5)),ct);
+			else if(ct===4)color_sbox(((x+5)+5+rgb_array[3]),((y+5)+((4*hyt)/5)),ct);
+					
+		}
 	}
+}
+function color_sbox(x,y,c)
+{
+	var sx=x+10;
+	var sy=y+10;
+	var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
+	svgbox(pt,c);
 }
 function res_poly5_in(e)
 {
@@ -843,7 +862,8 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_poly5();
+			remove_svgbox(1);//poly5
+
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -913,7 +933,8 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_poly5();
+			remove_svgbox(1);//poly5
+
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -955,7 +976,8 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_poly5();
+			remove_svgbox(1);//poly5
+
 			document.getElementById("color_b").style.background="";
 		}
 	}
@@ -1022,7 +1044,7 @@ document.getElementById("color_b").addEventListener("click",function(event)
 	else if(color===1)
 	{
 		color=0;
-		remove_poly5();
+		remove_svgbox(1);//poly5
 		document.getElementById("color_b").style.background="";
 	}
 });
