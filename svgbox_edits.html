@@ -160,11 +160,13 @@ function start()
 			if(res_cursor!=="")div_cursor(res_cursor);
 			console.log(res_bin);
 		}
-		if(res_poly5_in_out==="0")
+		else if(res_poly5_in_out==="0"  && resize===1)
 		{
 			console.log("0");
+			res_off_on();
+			
 		}
-		else if(res_poly5_in_out==="1")
+		else if(res_poly5_in_out==="1"  && resize===1)
 		{
 			console.log("1");
 		}
@@ -891,16 +893,28 @@ document.getElementById("res_b").addEventListener("click",function(event)
 	}
 	else if(resize===1)
 	{
+		res_poly5_in_out="";
 		resize=0;
 		var pe=document.getElementById("svg");
 		pe.style.pointerEvents="none";
-		remove_svgbox(1);
+		//remove_svgbox(1);
 		document.getElementById("res_b").style.background="";
 		res_cursor="";
-		res_poly5_in_out="";
 		console.log("Resize Mode Off");
 	}
 });
+function res_off_on()
+{
+	console.log("Resize Mode On here "+res_poly5_in_out+" "+resize);
+	resize=0;
+	var pe=document.getElementById("svg");
+	pe.style.pointerEvents="none";
+	remove_svgbox(1);
+	res_cursor="";
+	res_poly5_in_out="";
+	resize=1;
+}
+
 </script>
 </body>
 </html>
