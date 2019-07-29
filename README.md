@@ -252,10 +252,11 @@
   * Download Output as *.html* file.
 * List of Navbar Buttons and Features :
   * **DIV**
-    - Currently, must click again for creating each new DIV.
+    - Click and Activate to apply the effect in Work Area.
     - Deploys custom svg selection box.
     - A new DIV gets deployed in the area selected by svg selection box.
-    - While Navbar button is active, it will glow red until DIV deployment is complete.
+    - Multiple DIV can be created in series.
+    - While Navbar button is active, it will glow red.
   * **DRAG**
     - Click and Activate to apply the effect to all elements in Work Area.
     - Double Click and drag DIV to reposition any DIV.
@@ -264,9 +265,9 @@
   * **REZ**
     - Click and Activate to apply the effect to any one element.
     - If an element is clicked while this Navbar Button is active, it is the only element that will get selected.
-    - Deploys custom svg selection box around the DIV.
+    - Deploys **custom svg selection box** around the DIV.
     - Svg selection box can be utilized to resize DIV from any four corners of DIV.
-    - To resize another, one must Deactivate and Reactivate the Navbar Button.
+    - To resize another, one must **double click** the other DIV.
     - While Navbar button is active, it will glow red.
   * **EDIT**
     - Click and Activate to apply the effect to all elements in Work Area.
@@ -276,5 +277,5 @@
     - While Navbar button is active, it will glow red.
   * **SUB**
     - Click to download the created webpage.
-    - Output filename will be Output__Webpage.html
+    - Output filename will be Output_Webpage.html
 * Two Navbar buttons cannot be pressed together.
