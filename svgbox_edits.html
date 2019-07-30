@@ -41,6 +41,7 @@ navbar
 	text-align:center;
 	color:white;
 	text-decoration:none;
+	display:none;
 }
 fbody
 {
@@ -688,6 +689,7 @@ document.getElementById("div_b").addEventListener("click",function(e)
 			colorbox_a=0;
 			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
 		}
 
 	}
@@ -985,6 +987,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			colorbox_a=0;
 			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
 		}
 
 	}
@@ -1061,6 +1064,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			colorbox_a=0;
 			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
 		}
 
 	}
@@ -1110,6 +1114,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 			colorbox_a=0;
 			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
 		}
 	}
 	else if(resize===1)
@@ -1140,6 +1145,7 @@ document.getElementById("color_b").addEventListener("click",function(event)
 	{
 		color=1;
 		document.getElementById("color_b").style.background="red";
+		document.getElementById("rgb_b").style.display="block";
 		if(drag===1)
 		{
 			drag=0;
@@ -1182,6 +1188,7 @@ document.getElementById("color_b").addEventListener("click",function(event)
 		colorbox_a=0;
 		colorbox_last_y=0;
 		document.getElementById("color_b").style.background="";
+		document.getElementById("rgb_b").style.display="";
 	}
 });
 </script>
