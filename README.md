@@ -275,6 +275,13 @@
     - This is CSS 'contenteditable' feature.
     - Click and Deactivate to remove the effect from all elements.
     - While Navbar button is active, it will glow red.
+  * **COLR**
+    - Click and Activate to apply the effect to any one element.
+    - One activated, four custom svg sliders will appear in RGBA option in Navbar.
+    - These color sliders are custom programmed.
+    - These vertical sliders can be used to change color of any DIV. 
+    - To select another DIV, one must **single click** the other DIV.
+    - While Navbar button is active, it will glow red.
   * **SUB**
     - Click to download the created webpage.
     - Output filename will be Output_Webpage.html
