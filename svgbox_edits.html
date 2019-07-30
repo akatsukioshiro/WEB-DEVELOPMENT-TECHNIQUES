@@ -31,6 +31,17 @@ navbar
 	background:rgba(255,255,255,1);
 	color:black;
 }
+.navbutton_big
+{
+	min-height:300px;
+	max-height:400pxvw;
+	background:rgba(0,0,0,1);
+	display:block;
+	padding-top:1vw;
+	text-align:center;
+	color:white;
+	text-decoration:none;
+}
 fbody
 {
 	height:100%;
@@ -40,7 +51,18 @@ fbody
 	left:0;
 	margin:0;
 }
-
+#rgb_box
+{
+	min-height:300px;
+	max-height:300px;
+	width:100%;
+	background:rgba(255,255,255,1);
+	display:block;
+	margin-top:1vw;
+	
+	
+	
+}
 </style>
 </head>
 <body onload="start()">
@@ -60,6 +82,13 @@ EDIT
 <color_b id="color_b" class="navbutton">
 COLR
 </color_b>
+<rgb_b id="rgb_b" class="navbutton_big">
+RGBA<br>
+<rgb_box id="rgb_box">
+<svg id="rgba" version="1.1" xmlns="http://www.w3.org/2000/svg" style="max-width:50px;height: 300px;display:block; position:absolute;">
+</svg>
+</rgb_box>
+</rgb_b>
 <a id="sub_b" class="navbutton" href="" download="Output_
 Webpage.html">
 SUB
@@ -83,6 +112,14 @@ var res_cursor="";
 var count=0;
 var res_poly5_in_out="";
 var color=0;
+var colorbox_id="";
+var colorbox_y=0;
+var colorbox_r=0;
+var colorbox_g=0;
+var colorbox_b=0;
+var colorbox_a=0;
+var colorbox_last_y=0;
+var colorbox_finalcolor="";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -94,7 +131,8 @@ function svgbox(coord,c)
 	poly.setAttribute("stroke", "red");
 	poly.setAttribute("stroke-width",1);
 	if(nm==="poly5")poly.setAttribute("stroke-dasharray","20,10,5,5,5,10");
-	document.getElementById('svg').appendChild(poly);
+	if(color===1 && nm!=="poly5")document.getElementById('rgba').appendChild(poly);
+	else if(color===0 || nm==="poly5")document.getElementById('svg').appendChild(poly);
 }
 function sbox(x,y)
 {
@@ -153,7 +191,7 @@ function start()
 	pe.style.pointerEvents="none";
 	document.documentElement.addEventListener("mousedown",function(e)
 	{
-		if(document.getElementsByTagName("polygon").length!==0 && resize===0 && color===0)
+		if(document.getElementsByTagName("polygon").length!==0 && resize===0 && color===0 && colorbox_id==="")
 		remove_svgbox(1);
 		if(divmake===1)//add more options of navbar conditions in or "||"
 		{
@@ -184,9 +222,15 @@ function start()
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
 	{
+		if(colorbox_id==="poly1")colorbox_r=colorbox_last_y;
+		else if(colorbox_id==="poly2")colorbox_g=colorbox_last_y;
+		else if(colorbox_id==="poly3")colorbox_b=colorbox_last_y;
+		else if(colorbox_id==="poly4")colorbox_a=colorbox_last_y;
 		document.getElementById("svg").style.cursor = "initial";
-		if(divmake===1)divcall();		
-		remove_svgbox(downtime);
+		if(divmake===1)divcall();
+		if(color===1 && colorbox_id!=="")document.getElementById(div_identity).style.background=colorbox_finalcolor;		
+		if(colorbox_id==="")remove_svgbox(downtime);
+		colorbox_id="";
 		downtime=0;
 		var pe=document.getElementById("svg");
 		if(resize===0)pe.style.pointerEvents="none";
@@ -223,7 +267,63 @@ function start()
 				poly_adjust();
 			} 
 		}
+		else if(color===1 && colorbox_id!=="")
+		{
+			console.log("mousemove");
+			poly_colorizer(e);
+			console.log(colorbox_y);
+		}
 	});
+	function poly_colorizer(e)
+	{
+		var color_range=0;
+		if(colorbox_id==="poly1")color_range=colorbox_r;
+		else if(colorbox_id==="poly2")color_range=colorbox_g;
+		else if(colorbox_id==="poly3")color_range=colorbox_b;
+		else if(colorbox_id==="poly4")color_range=colorbox_a;
+		var refer_pt=document.getElementById(colorbox_id).getAttribute("points");
+		var refer_cod=refer_pt.split(" ");
+		var rm=refer_cod[0].split(",");
+		var rn=refer_cod[1].split(",");
+		var ro=refer_cod[2].split(",");
+		var rp=refer_cod[3].split(",");
+		var y=parseInt(rm[1]);
+		var y_org=parseInt(rm[1]);
+		y=e.clientY-colorbox_y+color_range;
+		var sy=y+10;
+		if(y>=0 && y<=255)
+		{
+		var pt=rm[0]+","+y+" "+rn[0]+","+y+" "+ro[0]+","+sy+" "+rp[0]+","+sy;
+		document.getElementById(colorbox_id).setAttribute("points",pt);			
+		console.log(y);
+		colorbox_last_y=y;
+		var poly=document.getElementById("poly5");
+		var ccol="#";
+		var color_r="";
+		var color_g="";
+		var color_b="";
+		var color_a="";
+		var color_temp="";
+		if(colorbox_r<10)color_r="0"+colorbox_r.toString(16);
+		else if(colorbox_r>=10)color_r=colorbox_r.toString(16);
+		if(colorbox_g<10)color_g="0"+colorbox_g.toString(16);
+		else if(colorbox_g>=10)color_g=colorbox_g.toString(16);
+		if(colorbox_b<10)color_b="0"+colorbox_b.toString(16);
+		else if(colorbox_b>=10)color_b=colorbox_b.toString(16);
+		if(colorbox_a<10)color_a="0"+colorbox_a.toString(16);
+		else if(colorbox_a>=10)color_a=colorbox_a.toString(16);
+		if(y<10)color_temp="0"+y.toString(16);
+		else if(y>=10)color_temp=y.toString(16);
+		
+		if(colorbox_id==="poly1")ccol="#"+color_temp+color_g+color_b+color_a;
+		else if(colorbox_id==="poly2")ccol="#"+color_r+color_temp+color_b+color_a;
+		else if(colorbox_id==="poly3")ccol="#"+color_r+color_g+color_temp+color_a;
+		else if(colorbox_id==="poly4")ccol="#"+color_r+color_g+color_b+color_temp;
+		poly.setAttribute("fill",ccol);
+		console.log(ccol);
+		colorbox_finalcolor=ccol;		
+		}
+	}
 	function poly_adjust()
 	{
 		var pt=document.getElementById("poly5").getAttribute("points");
@@ -585,8 +685,14 @@ document.getElementById("div_b").addEventListener("click",function(e)
 		else if(color===1)
 		{
 			color=0;
-			remove_svgbox(1);//poly5
-
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -663,7 +769,7 @@ function div_control(e)
 	}
 	else if(color===1)
 	{
-		if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+		if(document.getElementsByTagName("polygon").length!==0 && colorbox_id==="")remove_svgbox(1);//poly5
 
 		var x=a.style.left;
 		var y=a.style.top;
@@ -690,15 +796,25 @@ function div_control(e)
 		rgb=rgb.replace(" ","");
 		rgb=rgb.replace(")","");
 		var rgb_array=rgb.split(",");
-		//alert(rgb_array);
-		rgb_array.push("0");
+		if(rgb_array[3]===undefined)rgb_array.push("255");
 		for(var rg=0;rg<4;rg++)rgb_array[rg]=parseInt(rgb_array[rg]);
+		var r=document.getElementById("rgba");
+		wid=r.style.width;
+		hyt=r.style.height;
+		wid=wid.replace("px","");
+		hyt=hyt.replace("px","");
+		wid=parseInt(wid);
+		hyt=parseInt(hyt);
+		colorbox_r=rgb_array[0];
+		colorbox_g=rgb_array[1];
+		colorbox_b=rgb_array[2];
+		colorbox_a=rgb_array[3];
 		for(var ct=1;ct<5;ct++)
 		{
-			if(ct===1)color_sbox(((x+5)+5+rgb_array[0]),((y+5)+(hyt/5)),ct);
-			else if(ct===2)color_sbox(((x+5)+5+rgb_array[1]),((y+5)+((2*hyt)/5)),ct);
-			else if(ct===3)color_sbox(((x+5)+5+rgb_array[2]),((y+5)+((3*hyt)/5)),ct);
-			else if(ct===4)color_sbox(((x+5)+5+rgb_array[3]),((y+5)+((4*hyt)/5)),ct);
+			if(ct===1)color_sbox((1),(5+rgb_array[0]),ct);
+			else if(ct===2)color_sbox((12),(5+rgb_array[1]),ct);
+			else if(ct===3)color_sbox((23),(5+rgb_array[2]),ct);
+			else if(ct===4)color_sbox((34),(5+rgb_array[3]),ct);
 					
 		}
 	}
@@ -709,6 +825,21 @@ function color_sbox(x,y,c)
 	var sy=y+10;
 	var pt=x+","+y+" "+sx+","+y+" "+sx+","+sy+" "+x+","+sy;
 	svgbox(pt,c);
+	document.getElementById("poly"+c).addEventListener("mousedown",color_drag1,false);
+	//document.getElementById("poly"+c).addEventListener("mouseup",color_drag,false);
+}
+function color_drag1(e)
+{
+	//alert(e.target.id);
+	colorbox_id=e.target.id;
+	console.log(colorbox_id);
+	//var refer_pt=document.getElementById(colorbox_id).getAttribute("points");
+	//var refer_cod=refer_pt.split(" ");
+	//var rm=refer_cod[0].split(",");
+	//colorbox_y=parseInt(rm[1]);
+	var a=e.clientY;
+	colorbox_y=a;
+	console.log(colorbox_y);			
 }
 function res_poly5_in(e)
 {
@@ -862,8 +993,14 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_svgbox(1);//poly5
-
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -933,8 +1070,14 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_svgbox(1);//poly5
-
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
 		}
 
@@ -976,8 +1119,14 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		else if(color===1)
 		{
 			color=0;
-			remove_svgbox(1);//poly5
-
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
 		}
 	}
@@ -1044,7 +1193,14 @@ document.getElementById("color_b").addEventListener("click",function(event)
 	else if(color===1)
 	{
 		color=0;
-		remove_svgbox(1);//poly5
+		if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+		colorbox_id="";
+		colorbox_y=0;
+		colorbox_r=0;
+		colorbox_g=0;
+		colorbox_b=0;
+		colorbox_a=0;
+		colorbox_last_y=0;
 		document.getElementById("color_b").style.background="";
 	}
 });
