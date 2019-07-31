@@ -724,6 +724,17 @@ document.getElementById("div_b").addEventListener("click",function(e)
 			document.getElementById("color_b").style.background="";
 			document.getElementById("rgb_b").style.display="";
 		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
+
 
 	}
 	else if(divmake===1)
@@ -1053,6 +1064,17 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			document.getElementById("color_b").style.background="";
 			document.getElementById("rgb_b").style.display="";
 		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
+
 
 	}
 	else if(drag===1)
@@ -1130,6 +1152,17 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			document.getElementById("color_b").style.background="";
 			document.getElementById("rgb_b").style.display="";
 		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
+
 
 	}
 	else if(edit===1)
@@ -1180,6 +1213,17 @@ document.getElementById("res_b").addEventListener("click",function(event)
 			document.getElementById("color_b").style.background="";
 			document.getElementById("rgb_b").style.display="";
 		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
+
 	}
 	else if(resize===1)
 	{
@@ -1239,6 +1283,16 @@ document.getElementById("color_b").addEventListener("click",function(event)
 			res_cursor="";
 			console.log("Resize Mode Off");
 		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
 	}
 	else if(color===1)
 	{
@@ -1259,6 +1313,49 @@ document.getElementById("pen_b").addEventListener("click",function(event)
 {
 	if(pen===0)
 	{
+		if(drag===1)
+		{
+			drag=0;
+			document.getElementById("drag_b").style.background="";
+			fbody_select_all_drag();
+			console.log("Drag Mode Off");
+		}
+		else if(edit===1)
+		{
+			edit=0;
+			document.getElementById("edit_b").style.background="";
+			fbody_select_all_edit(edit);
+			console.log("Edit Mode Off");
+		}
+		else if(divmake===1)
+		{
+			divmake=0;
+			document.getElementById("div_b").style.background="";
+		}
+		else if(resize===1)
+		{
+			res_poly5_in_out="";
+			resize=0;
+			var pe=document.getElementById("svg");
+			pe.style.pointerEvents="none";
+			document.getElementById("res_b").style.background="";
+			res_cursor="";
+			console.log("Resize Mode Off");
+		}
+		else if(color===1)
+		{
+			color=0;
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
+			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
+		}
 		pen=1;
 		document.getElementById("fbody").style.cursor="none";
 		document.getElementById("pen").style.cursor="none";
@@ -1308,10 +1405,6 @@ document.getElementById("pen").addEventListener("mouseout",function(event)
 {
 	pen_limiter="0";
 });
-//document.getElementById("navbar").addEventListener("mouseover",function(event)
-//{
-//pen_drawtime="0";
-//});
 </script>
 </body>
 </html>
