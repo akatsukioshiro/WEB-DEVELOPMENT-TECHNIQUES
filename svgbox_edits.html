@@ -90,12 +90,17 @@ RGBA<br>
 </svg>
 </rgb_box>
 </rgb_b>
+<pen_b id="pen_b" class="navbutton">
+PEN
+</pen_b>
 <a id="sub_b" class="navbutton" href="" download="Output_
 Webpage.html">
 SUB
 </a>
 </navbar>
 <fbody id="fbody">
+<svg id="pen" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;pointer-events:none;">
+</svg>
 </fbody>
 <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 95vw; height: 100%; position: absolute;">
 </svg>
@@ -121,6 +126,7 @@ var colorbox_b=0;
 var colorbox_a=0;
 var colorbox_last_y=0;
 var colorbox_finalcolor="";
+var pen=0;
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -1191,6 +1197,28 @@ document.getElementById("color_b").addEventListener("click",function(event)
 		document.getElementById("rgb_b").style.display="";
 	}
 });
+document.getElementById("pen_b").addEventListener("click",function(event)
+{
+	if(pen===0)
+	{
+		pen=1;
+		document.getElementById("fbody").style.cursor="none";
+		document.getElementById("pen").style.cursor="none";
+		document.getElementById("pen_b").style.background="red";
+		cursor();
+	}
+	else if(pen===1)
+	{
+		pen=0;
+		document.getElementById("fbody").style.cursor="";
+		document.getElementById("pen").style.cursor="";
+		document.getElementById("pen_b").style.background="";
+	}
+});
+function cursor()
+{
+	
+}
 </script>
 </body>
 </html>
