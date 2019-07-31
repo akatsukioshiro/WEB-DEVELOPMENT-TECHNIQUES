@@ -67,7 +67,7 @@ fbody
 </style>
 </head>
 <body onload="start()">
-<navbar>
+<navbar id="navbar">
 <div_b id="div_b" class="navbutton">
 DIV
 </div_b>
@@ -128,6 +128,7 @@ var colorbox_last_y=0;
 var colorbox_finalcolor="";
 var pen=0;
 var pen_limiter="";
+var pen_drawtime="0";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -227,6 +228,10 @@ function start()
 		{
 			console.log("1");
 		}
+		if(pen===1)
+		{
+			pen_drawtime="1";
+		}
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
 	{
@@ -244,6 +249,7 @@ function start()
 		if(resize===0)pe.style.pointerEvents="none";
 		res_bin="0";
 		res_hold="";
+		if(pen===1)pen_drawtime="0";
 	});
 	document.documentElement.addEventListener("mousemove",function(e)
 	{
@@ -285,11 +291,24 @@ function start()
 		{
 			var a=document.getElementById("cursor");
 			a.style.top=e.clientY+"px";
-			a.style.left=e.clientX+"px";	
-			console.log(e.clientX);
-		}
-		console.log(pen_limiter);
+			a.style.left=e.clientX+"px";
+			if(pen_drawtime==="1")console.log("Line");	
+		}//console.log(pen_drawtime);
 	});
+	function pen_liner()
+	{
+		
+	}
+	function pen_poly(lin,strokew,status) 
+	{
+		var newLine = document.createElementNS('http://www.w3.org/2000/svg','polyline');
+		newLine.setAttribute('id','penpoly');
+		if(status===1)newLine.setAttribute('points',lin);
+		newLine.setAttribute("stroke", "black");
+		if(status===1)newLine.setAttribute("stroke-width",strokew);
+		newLine.setAttribute("fill","none");
+		document.getElementById('pen').appendChild(newLine);
+	}
 	function poly_colorizer(e)
 	{
 		var color_range=0;
@@ -1258,6 +1277,10 @@ document.getElementById("pen").addEventListener("mouseout",function(event)
 {
 	pen_limiter="0";
 });
+//document.getElementById("navbar").addEventListener("mouseover",function(event)
+//{
+//pen_drawtime="0";
+//});
 </script>
 </body>
 </html>
