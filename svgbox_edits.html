@@ -995,6 +995,16 @@ function dragElement(elmnt,state)
 }
 document.getElementById("sub_b").addEventListener("click",function(event)
 {
+	if(pen===1)
+	{
+		pen=0;
+		document.getElementById("fbody").style.cursor="";
+		document.getElementById("pen").style.cursor="";
+		document.getElementById("pen").style.pointerEvents="";
+		document.getElementById("pen_b").style.background="";
+		cursor();
+		pen_limiter="";
+	}
 	var text="<!DOCTYPE html><html><head></head><body>"+document.getElementById("fbody").innerHTML+"</body></html>";
 	var data = new Blob([text], {type: 'text/html'});
 	var url = window.URL.createObjectURL(data);
