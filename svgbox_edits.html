@@ -292,22 +292,15 @@ function start()
 			var a=document.getElementById("cursor");
 			a.style.top=e.clientY+"px";
 			a.style.left=e.clientX+"px";
-			if(pen_drawtime==="1")console.log("Line");	
-		}//console.log(pen_drawtime);
+			if(pen_drawtime==="1")pen_liner(e.clientX,e.clientY);	
+		}
 	});
-	function pen_liner()
+	function pen_liner(x,y)
 	{
-		
-	}
-	function pen_poly(lin,strokew,status) 
-	{
-		var newLine = document.createElementNS('http://www.w3.org/2000/svg','polyline');
-		newLine.setAttribute('id','penpoly');
-		if(status===1)newLine.setAttribute('points',lin);
-		newLine.setAttribute("stroke", "black");
-		if(status===1)newLine.setAttribute("stroke-width",strokew);
-		newLine.setAttribute("fill","none");
-		document.getElementById('pen').appendChild(newLine);
+		var lin=document.getElementById("penpoly").getAttribute("points");
+		lin=lin+x+","+y+" ";
+		var strokew="2.5px";
+		pen_poly(lin,strokew,1); 
 	}
 	function poly_colorizer(e)
 	{
@@ -846,6 +839,25 @@ function div_control(e)
 		}
 	}
 }
+function pen_poly(lin,strokew,status) 
+{
+	if(status===0)
+	{
+		var newLine = document.createElementNS('http://www.w3.org/2000/svg','polyline');
+		newLine.setAttribute('id','penpoly');
+		newLine.setAttribute("stroke", "black");
+		newLine.setAttribute("fill","none");
+		newLine.setAttribute('points',"");
+		document.getElementById('pen').appendChild(newLine);
+	}
+	else if(status===1)
+	{
+		var newLine=document.getElementById("penpoly");
+		newLine.setAttribute("stroke-width",strokew);
+		newLine.setAttribute('points',lin);
+	}
+}
+	
 function color_sbox(x,y,c)
 {
 	var sx=x+10;
@@ -1261,6 +1273,7 @@ function cursor()
 		div1.style.top = "1px";
 		div1.style.borderRadius = "50%";
 		div1.style.zIndex = 5;
+		pen_poly(null,null,0);
 		document.getElementById("fbody").appendChild(div1);
 	}
 	else if(pen===0)
