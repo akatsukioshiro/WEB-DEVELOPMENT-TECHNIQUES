@@ -127,6 +127,7 @@ var colorbox_a=0;
 var colorbox_last_y=0;
 var colorbox_finalcolor="";
 var pen=0;
+var pen_limiter="";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -280,6 +281,14 @@ function start()
 			poly_colorizer(e);
 			console.log(colorbox_y);
 		}
+		else if(pen===1 && pen_limiter==="1")
+		{
+			var a=document.getElementById("cursor");
+			a.style.top=e.clientY+"px";
+			a.style.left=e.clientX+"px";	
+			console.log(e.clientX);
+		}
+		console.log(pen_limiter);
 	});
 	function poly_colorizer(e)
 	{
@@ -1204,6 +1213,7 @@ document.getElementById("pen_b").addEventListener("click",function(event)
 		pen=1;
 		document.getElementById("fbody").style.cursor="none";
 		document.getElementById("pen").style.cursor="none";
+		document.getElementById("pen").style.pointerEvents="auto";
 		document.getElementById("pen_b").style.background="red";
 		cursor();
 	}
@@ -1212,13 +1222,42 @@ document.getElementById("pen_b").addEventListener("click",function(event)
 		pen=0;
 		document.getElementById("fbody").style.cursor="";
 		document.getElementById("pen").style.cursor="";
+		document.getElementById("pen").style.pointerEvents="";
 		document.getElementById("pen_b").style.background="";
+		cursor();
+		pen_limiter="";
 	}
 });
 function cursor()
 {
-	
+	if(pen===1)
+	{
+		var div1 = document.createElement("cursor");
+		div1.id = "cursor";
+		div1.style.width = "5px";
+		div1.style.height = "5px";
+		div1.style.background = "black";
+		div1.style.position = "absolute";
+		div1.style.left = "1px";
+		div1.style.top = "1px";
+		div1.style.borderRadius = "50%";
+		div1.style.zIndex = 5;
+		document.getElementById("fbody").appendChild(div1);
+	}
+	else if(pen===0)
+	{
+		var element=document.getElementById("cursor");
+		element.parentNode.removeChild(element); 
+	}
 }
+document.getElementById("pen").addEventListener("mouseover",function(event)
+{
+	pen_limiter="1";
+});
+document.getElementById("pen").addEventListener("mouseout",function(event)
+{
+	pen_limiter="0";
+});
 </script>
 </body>
 </html>
