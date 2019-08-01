@@ -136,6 +136,7 @@ var pen_line_count=0;
 var pen_pid="";
 var txt_make=0;
 var txt_count=0;
+var txt_over="1";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -249,6 +250,17 @@ function start()
 			sbox(x,y);
 			downtime=1;
 		}
+		if(div_identity!=="" && txt_over==="1")
+		{console.log(txt_over);
+			var txt_doc=document.getElementById(div_identity);
+			console.log(txt_doc.innerText);
+			if(txt_doc.getAttribute("colorstate")==="0" && (txt_doc.innerText).localeCompare("Text Here")===0)
+			{
+				txt_doc.innerText="";
+				txt_doc.style.color="#000000ff";
+				console.log("inside");
+			}
+		}
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
 	{
@@ -271,6 +283,15 @@ function start()
 		{
 			pen_drawtime="0";
 			pen_poly(null,null,0);
+		}
+		var txt_doc=document.getElementById(div_identity);
+		if(div_identity!=="" && txt_over==="0")
+		{console.log(txt_over);	
+			if(txt_doc.getAttribute("colorstate")==="0" && (txt_doc.innerText).localeCompare("")===0)
+			{
+				txt_doc.innerText="Text Here";
+				txt_doc.style.color="#0000000e";
+			}
 		}
 	});
 	document.documentElement.addEventListener("mousemove",function(e)
@@ -878,17 +899,43 @@ function txtcall()
 	a.style.position="fixed";
 	a.setAttribute("state","0");
 	a.setAttribute("contenteditable","false");
+	a.innerText="Text Here";
+	a.style.color="#0000000e";
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	a.style.lineHeight=parseInt(p[1])-parseInt(m[1])+"px";
 	a.style.fontSize=parseInt(p[1])-parseInt(m[1])+"px";
 	a.setAttribute("colorstate","0");
 	a.addEventListener("click",div_control,false);
+	a.addEventListener("mouseover",over,false);
+	a.addEventListener("mouseout",out,false);
 	if((parseInt(p[1])-parseInt(m[1]))!==0)
 	{	
 		txt_count+=1;
 		document.getElementById("fbody").appendChild(a);
 	}
+}
+function over(e)
+{
+	if(div_identity!=="")
+	{
+		var txt_doc=document.getElementById(div_identity);
+		if(txt_doc.getAttribute("colorstate")==="0" && (txt_doc.innerText).localeCompare("")===0)
+		{
+			txt_doc.innerText="Text Here";
+			txt_doc.style.color="#0000000e";
+		}
+	}
+	div_identity=e.target.id;
+	txt_over="1";
+	//console.log(e.target.id);
+	console.log(txt_over);
+}
+function out()
+{
+	//div_identity="";
+	txt_over="0";
+	console.log(txt_over);
 }
 function identity_div(clicked_id)
 {
