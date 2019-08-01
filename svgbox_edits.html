@@ -196,6 +196,32 @@ function remove_svgbox(dt)
 	}
 	console.log("remove_svgbox");
 }
+function remove_boxdots()
+{
+	var lengthy=document.getElementsByTagName("textbox").length;
+	for(var c=0;c<lengthy;c++)
+	{
+		var nm="txt_"+c;
+		var element = document.getElementById(nm);
+		if((element.innerText).localeCompare("Text Here")!==0)
+		{
+			element.style.outlineStyle = "none";console.log("1"+element.id);
+		}
+		else if((element.innerText).localeCompare("Text Here")===0)
+		{
+			element.style.outlineStyle = "none";
+			element.innerText = "";
+			//element.parentNode.removeChild(element);console.log("2"+element.id); 
+		}console.log(element.id);
+	}
+	for(var c=0;c<lengthy;c++)
+	{
+		var nm="txt_"+c;
+		var element = document.getElementById(nm);
+		if(element.innerText==="")
+		element.parentNode.removeChild(element);
+	}
+}
 function remove_poly5()
 {
 	var element = document.getElementById("poly5");
@@ -906,6 +932,8 @@ function txtcall()
 	a.style.lineHeight=parseInt(p[1])-parseInt(m[1])+"px";
 	a.style.fontSize=parseInt(p[1])-parseInt(m[1])+"px";
 	a.setAttribute("colorstate","0");
+	a.style.outlineColor = "#0000000e";
+	a.style.outlineStyle = "dotted";
 	a.addEventListener("click",div_control,false);
 	a.addEventListener("mouseover",over,false);
 	a.addEventListener("mouseout",out,false);
@@ -1187,6 +1215,7 @@ document.getElementById("sub_b").addEventListener("click",function(event)
 		cursor();
 		pen_limiter="";
 	}
+	remove_boxdots();
 	var text="<!DOCTYPE html><html><head></head><body>"+document.getElementById("fbody").innerHTML+"</body></html>";
 	var data = new Blob([text], {type: 'text/html'});
 	var url = window.URL.createObjectURL(data);
