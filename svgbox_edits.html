@@ -136,7 +136,7 @@ var pen_line_count=0;
 var pen_pid="";
 var txt_make=0;
 var txt_count=0;
-var txt_over="1";
+var txt_over="";
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -811,6 +811,7 @@ document.getElementById("txt_b").addEventListener("click",function(e)
 	else if(txt_make===1)
 	{
 		txt_make=0;
+		txt_over="";
 		document.getElementById("txt_b").style.background="";
 	}
 });
@@ -870,6 +871,7 @@ document.getElementById("div_b").addEventListener("click",function(e)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 	}
@@ -930,10 +932,11 @@ function txtcall()
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	a.style.lineHeight=parseInt(p[1])-parseInt(m[1])+"px";
-	a.style.fontSize=parseInt(p[1])-parseInt(m[1])+"px";
+	a.style.fontSize=parseInt(p[1])-parseInt(m[1])-2+"px";
 	a.setAttribute("colorstate","0");
 	a.style.outlineColor = "#0000000e";
 	a.style.outlineStyle = "dotted";
+	a.style.overflow="hidden";
 	a.addEventListener("click",div_control,false);
 	a.addEventListener("mouseover",over,false);
 	a.addEventListener("mouseout",out,false);
@@ -1277,6 +1280,7 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 	}
@@ -1368,6 +1372,7 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 	}
@@ -1432,6 +1437,7 @@ document.getElementById("res_b").addEventListener("click",function(event)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 	}
@@ -1505,6 +1511,7 @@ document.getElementById("color_b").addEventListener("click",function(event)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 	}
@@ -1573,6 +1580,7 @@ document.getElementById("pen_b").addEventListener("click",function(event)
 		else if(txt_make===1)
 		{
 			txt_make=0;
+			txt_over="";
 			document.getElementById("txt_b").style.background="";
 		}
 		pen=1;
