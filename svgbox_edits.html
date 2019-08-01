@@ -9,7 +9,7 @@ margin:0;
 navbar
 {
 	height:100%;
-	width:5vw;
+	width:2.5vw;
 	background:rgba(0,0,0,0.8);
 	position:absolute;
 	right:0;
@@ -17,10 +17,10 @@ navbar
 }
 .navbutton
 {
-	min-height:5vw;
+	min-height:2.5vw;
 	background:rgba(0,0,0,1);
 	display:block;
-	line-height:5vw;
+	line-height:2.5vw;
 	text-align:center;
 	color:white;
 	text-decoration:none;
@@ -46,7 +46,7 @@ navbar
 fbody
 {
 	height:100%;
-	width:95vw;
+	width:97.5vw;
 	background:rgba(0,0,0,0.05);
 	position:fixed;
 	left:0;
@@ -71,6 +71,9 @@ fbody
 <div_b id="div_b" class="navbutton">
 DIV
 </div_b>
+<txt_b id="txt_b" class="navbutton">
+TEXT
+</txt_b>
 <drag_b id="drag_b" class="navbutton">
 DRAG
 </drag_b>
@@ -102,7 +105,7 @@ SUB
 <svg id="pen" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute;pointer-events:none;">
 </svg>
 </fbody>
-<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 95vw; height: 100%; position: absolute;">
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 97.5vw; height: 100%; position: absolute;">
 </svg>
 <script>
 var div_identity="";
@@ -131,6 +134,7 @@ var pen_limiter="";
 var pen_drawtime="0";
 var pen_line_count=0;
 var pen_pid="";
+var txt_make=0;
 function svgbox(coord,c) 
 {
 	var nm="poly"+c;
@@ -234,6 +238,16 @@ function start()
 		{
 			pen_drawtime="1";
 		}
+		if(txt_make===1)
+		{
+			pe.style.pointerEvents="auto";
+			document.getElementById("svg").style.cursor = "crosshair";
+			var x=e.clientX;
+			var y=e.clientY;
+			fbox(x,y);
+			sbox(x,y);
+			downtime=1;
+		}
 	});
 	document.documentElement.addEventListener("mouseup",function(e)
 	{
@@ -243,6 +257,7 @@ function start()
 		else if(colorbox_id==="poly4")colorbox_a=colorbox_last_y;
 		document.getElementById("svg").style.cursor = "initial";
 		if(divmake===1)divcall();
+		if(txt_make===1)divcall();
 		if(color===1 && colorbox_id!=="")document.getElementById(div_identity).style.background=colorbox_finalcolor;		
 		if(colorbox_id==="")remove_svgbox(downtime);
 		colorbox_id="";
@@ -681,6 +696,71 @@ function start()
 		}
 	});
 }
+document.getElementById("txt_b").addEventListener("click",function(e)
+{
+	if(txt_make===0)
+	{
+		txt_make=1;
+		document.getElementById("txt_b").style.background="red";
+		if(drag===1)
+		{
+			drag=0;
+			document.getElementById("drag_b").style.background="";
+			fbody_select_all_drag();
+			console.log("Drag Mode Off");
+		}
+		else if(edit===1)
+		{
+			edit=0;
+			document.getElementById("edit_b").style.background="";
+			fbody_select_all_edit(edit);
+			console.log("Edit Mode Off");
+		}
+		else if(resize===1)
+		{
+			resize=0;
+			var pe=document.getElementById("svg");
+			pe.style.pointerEvents="none";
+			document.getElementById("res_b").style.background="";
+			res_cursor="";
+			console.log("Resize Mode Off");
+		}
+		else if(color===1)
+		{
+			color=0;
+			if(document.getElementsByTagName("polygon").length!==0)remove_svgbox(1);//poly5
+			colorbox_id="";
+			colorbox_y=0;
+			colorbox_r=0;
+			colorbox_g=0;
+			colorbox_b=0;
+			colorbox_a=0;
+			colorbox_last_y=0;
+			document.getElementById("color_b").style.background="";
+			document.getElementById("rgb_b").style.display="";
+		}
+		else if(pen===1)
+		{
+			pen=0;
+			document.getElementById("fbody").style.cursor="";
+			document.getElementById("pen").style.cursor="";
+			document.getElementById("pen").style.pointerEvents="";
+			document.getElementById("pen_b").style.background="";
+			cursor();
+			pen_limiter="";
+		}
+		else if(divmake===1)
+		{
+			divmake=0;
+			document.getElementById("div_b").style.background="";
+		}
+	}
+	else if(txt_make===1)
+	{
+		txt_make=0;
+		document.getElementById("txt_b").style.background="";
+	}
+});
 document.getElementById("div_b").addEventListener("click",function(e)
 {
 	if(divmake===0)
@@ -734,8 +814,11 @@ document.getElementById("div_b").addEventListener("click",function(e)
 			cursor();
 			pen_limiter="";
 		}
-
-
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
+		}
 	}
 	else if(divmake===1)
 	{
@@ -753,7 +836,6 @@ function divcall()
 	var p=cod[3].split(",");
 	var a=document.createElement("div");
 	a.id="div_"+count;
-	count+=1;
 	a.style.background="red";
 	a.style.height=parseInt(p[1])-parseInt(m[1])+"px";
 	a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
@@ -765,7 +847,11 @@ function divcall()
 	a.style.zIndex="1";
 	a.dc_param=a.id;
 	a.addEventListener("click",div_control,false);
-	document.getElementById("fbody").appendChild(a);
+	if((parseInt(p[1])-parseInt(m[1]))!==0)
+	{	
+		count+=1;
+		document.getElementById("fbody").appendChild(a);
+	}
 }
 function identity_div(clicked_id)
 {
@@ -1074,8 +1160,11 @@ document.getElementById("drag_b").addEventListener("click",function(event)
 			cursor();
 			pen_limiter="";
 		}
-
-
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
+		}
 	}
 	else if(drag===1)
 	{
@@ -1162,8 +1251,11 @@ document.getElementById("edit_b").addEventListener("click",function(event)
 			cursor();
 			pen_limiter="";
 		}
-
-
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
+		}
 	}
 	else if(edit===1)
 	{
@@ -1223,7 +1315,11 @@ document.getElementById("res_b").addEventListener("click",function(event)
 			cursor();
 			pen_limiter="";
 		}
-
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
+		}
 	}
 	else if(resize===1)
 	{
@@ -1293,6 +1389,11 @@ document.getElementById("color_b").addEventListener("click",function(event)
 			cursor();
 			pen_limiter="";
 		}
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
+		}
 	}
 	else if(color===1)
 	{
@@ -1355,6 +1456,11 @@ document.getElementById("pen_b").addEventListener("click",function(event)
 			colorbox_last_y=0;
 			document.getElementById("color_b").style.background="";
 			document.getElementById("rgb_b").style.display="";
+		}
+		else if(txt_make===1)
+		{
+			txt_make=0;
+			document.getElementById("txt_b").style.background="";
 		}
 		pen=1;
 		document.getElementById("fbody").style.cursor="none";
