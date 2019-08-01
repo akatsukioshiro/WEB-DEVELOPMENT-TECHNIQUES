@@ -386,6 +386,11 @@ function start()
 		a.style.width=parseInt(n[0])-parseInt(m[0])+"px";
 		a.style.left=parseInt(m[0])+"px";
 		a.style.top=parseInt(m[1])+"px";
+		if(a.getAttribute("colorstate")==="0")
+		{
+			a.style.lineHeight=parseInt(p[1])-parseInt(m[1])+"px";
+			a.style.fontSize=parseInt(p[1])-parseInt(m[1])+"px";
+		}
 	}
 	function resizable(e,idd)
 	{
@@ -875,6 +880,8 @@ function txtcall()
 	a.setAttribute("contenteditable","false");
 	a.style.zIndex="1";
 	a.dc_param=a.id;
+	a.style.lineHeight=parseInt(p[1])-parseInt(m[1])+"px";
+	a.style.fontSize=parseInt(p[1])-parseInt(m[1])+"px";
 	a.setAttribute("colorstate","0");
 	a.addEventListener("click",div_control,false);
 	if((parseInt(p[1])-parseInt(m[1]))!==0)
