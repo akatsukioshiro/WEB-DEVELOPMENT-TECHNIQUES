@@ -205,14 +205,13 @@ function remove_boxdots()
 		var element = document.getElementById(nm);
 		if((element.innerText).localeCompare("Text Here")!==0)
 		{
-			element.style.outlineStyle = "none";console.log("1"+element.id);
+			element.style.outlineStyle = "none";
 		}
 		else if((element.innerText).localeCompare("Text Here")===0)
 		{
 			element.style.outlineStyle = "none";
 			element.innerText = "";
-			//element.parentNode.removeChild(element);console.log("2"+element.id); 
-		}console.log(element.id);
+		}
 	}
 	for(var c=0;c<lengthy;c++)
 	{
@@ -277,14 +276,12 @@ function start()
 			downtime=1;
 		}
 		if(div_identity!=="" && txt_over==="1")
-		{console.log(txt_over);
+		{
 			var txt_doc=document.getElementById(div_identity);
-			console.log(txt_doc.innerText);
 			if(txt_doc.getAttribute("colorstate")==="0" && (txt_doc.innerText).localeCompare("Text Here")===0)
 			{
 				txt_doc.innerText="";
 				txt_doc.style.color="#000000ff";
-				console.log("inside");
 			}
 		}
 	});
@@ -312,7 +309,7 @@ function start()
 		}
 		var txt_doc=document.getElementById(div_identity);
 		if(div_identity!=="" && txt_over==="0")
-		{console.log(txt_over);	
+		{
 			if(txt_doc.getAttribute("colorstate")==="0" && (txt_doc.innerText).localeCompare("")===0)
 			{
 				txt_doc.innerText="Text Here";
@@ -959,12 +956,9 @@ function over(e)
 	}
 	div_identity=e.target.id;
 	txt_over="1";
-	//console.log(e.target.id);
-	console.log(txt_over);
 }
 function out()
 {
-	//div_identity="";
 	txt_over="0";
 	console.log(txt_over);
 }
